@@ -6,7 +6,9 @@ export const App = () => {
 
   return (
     <div className="App">
+      <body>
       
+      </body>
     </div>
   )
 }
