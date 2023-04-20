@@ -125,131 +125,147 @@ export const Register = () => {
             <Container>
               <Row className="mb-3">
                 <Col md={4} id="formGridName">
-                  <p className="mb-0 mt-3">Name</p>
+                  <p className="mb-0 mt-3">Title</p>
                   <InputText
                     className={
-                      credentialsError.nameError === ""
+                      credentialsError.titleError === ""
                         ? "inputsDesignCommon inputBasicDesign"
                         : "inputsDesignCommon inputBasicDesign inputErrorDesign"
                     }
                     type={"text"}
-                    name={"name"}
-                    placeholder="Name"
+                    name={"title"}
+                    placeholder="Title"
                     required={true}
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.nameError}</div>
+                  <div>{credentialsError.titleError}</div>
                 </Col>
 
                 <Col md={4} id="formGridFirstSurname">
-                  <p className="mb-0 mt-3">First Surname</p>
+                  <p className="mb-0 mt-3">category</p>
                   <InputText
                     className={
-                      credentialsError.first_surnameError === ""
+                      credentialsError.categoryError === ""
                         ? "inputsDesignCommon inputBasicDesign"
                         : "inputsDesignCommon inputBasicDesign inputErrorDesign"
                     }
                     type={"text"}
-                    name={"first_surname"}
+                    name={"category"}
                     required={true}
-                    placeholder="First Surname"
+                    placeholder="category"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.first_surnameError}</div>
+                  <div>{credentialsError.categoryError}</div>
                 </Col>
 
                 <Col md={4} id="formGridSecondSurname">
-                  <p className="mb-0 mt-3">Second Surname</p>
+                  <p className="mb-0 mt-3">description</p>
                   <InputText
                     className={
-                      credentialsError.second_surnameError === ""
+                      credentialsError.descriptionError === ""
                         ? "inputsDesignCommon inputBasicDesign"
                         : "inputsDesignCommon inputBasicDesign inputErrorDesign"
                     }
                     type={"text"}
-                    name={"second_surname"}
+                    name={"description"}
                     required={true}
-                    placeholder="Second Surname"
+                    placeholder="Description"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.second_surnameError}</div>
+                  <div>{credentialsError.descriptionError}</div>
                 </Col>
               </Row>
               <Row className="mb-3">
                
                 <Col sm={12} lg={6} id="formGridEmail">
-                  <p className="mb-0 mt-3">Email</p>
+                  <p className="mb-0 mt-3">technique</p>
                   <InputText
                     className={
-                      credentialsError.emailError === ""
+                      credentialsError.techniqueError === ""
                         ? "inputsDesignCommon inputBasicDesign inputEmailDesign"
                         : "inputsDesignCommon inputBasicDesign inputErrorDesign inputEmailDesign"
                     }
-                    type={"email"}
-                    name={"email"}
+                    type={"text"}
+                    name={"technique"}
                     required={true}
-                    placeholder="Email"
+                    placeholder="Technique"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.emailError}</div>
+                  <div>{credentialsError.techniqueError}</div>
                 </Col>
 
                 <Col sm={12} lg={6} id="formGridPassword">
-                  <p className="mb-0 mt-3">Password</p>
+                  <p className="mb-0 mt-3">dimensions</p>
                   <InputText
                     className={
-                      credentialsError.passwordError === ""
+                      credentialsError.dimensionsError === ""
                         ? "inputsDesignCommon inputBasicDesign inputPasswordDesign"
                         : "inputsDesignCommon inputBasicDesign inputErrorDesign inputPasswordDesign"
                     }
-                    type={"password"}
-                    name={"password"}
+                    type={"text"}
+                    name={"dimensions"}
                     required={true}
-                    placeholder="e.g. Password_123"
+                    placeholder="e.g. 500x500mm"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.passwordError}</div>
+                  <div>{credentialsError.dimensionsError}</div>
                 </Col>
               </Row>
               <Row>
               <Col sm={12} lg={6} id="formGridAddress">
-                <p className="mb-0 mt-3">Address</p>
+                <p className="mb-0 mt-3">date_creation</p>
                 <InputText
                   className={
-                    credentialsError.addressError === ""
+                    credentialsError.date_creationError === ""
                       ? "inputsDesignCommon inputBasicDesign inputAddressDesign"
                       : "inputsDesignCommon inputBasicDesign inputErrorDesign inputAddressDesign"
                   }
-                  type={"text"}
-                  name={"address"}
+                  type={"datetime-local"}
+                  name={"date_creation"}
                   required={true}
-                  placeholder="Address"
                   changeFunction={(e) => inputHandler(e)}
                   blurFunction={(e) => checkError(e)}
                 />
-                <div>{credentialsError.addressError}</div>
+                <div>{credentialsError.date_creationError}</div>
               </Col>
               <Col  id="formGridPhone">
-                  <p className="mb-0 mt-3">Phone</p>
+                  <p className="mb-0 mt-3">image_url</p>
                   <InputText
                     className={
-                      credentialsError.phoneError === ""
+                      credentialsError.image_urlError === ""
                         ? "inputsDesignCommon inputBasicDesign"
                         : "inputsDesignCommon inputBasicDesign inputErrorDesign"
                     }
                     type={"text"}
-                    name={"phone"}
+                    name={"image_url"}
                     required={true}
-                    placeholder="e.g. +34666555444"
+                    placeholder="e.g. httt://..."
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.phoneError}</div>
+                  <div>{credentialsError.image_urlError}</div>
+                </Col>
+                <Col  id="formGridPhone">
+                  <p className="mb-0 mt-3">Phone</p>
+                  <InputText
+                    className={
+                      credentialsError.priceError === ""
+                        ? "inputsDesignCommon inputBasicDesign"
+                        : "inputsDesignCommon inputBasicDesign inputErrorDesign"
+                    }
+                    type={"integer"}
+                    name={"price"}
+                    required={true}
+                    placeholder="e.g. 50"
+                    changeFunction={(e) => inputHandler(e)}
+                    blurFunction={(e) => checkError(e)}
+                  />
+                  <div>{credentialsError.priceError}</div>
                 </Col>
                 </Row>
                 <Row className="d-flex justify-content-center">
