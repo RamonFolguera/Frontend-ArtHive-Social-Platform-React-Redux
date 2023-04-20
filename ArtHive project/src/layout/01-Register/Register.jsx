@@ -3,10 +3,9 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import { InputText } from "../../components/InputText/InputText";
-import { validate } from "../../helpers/useful";
-// import { registerUser } from "../../services/apiCalls";
 import "./Register.css";
 import { registerUser } from "../../services/apiCall";
+import { validate } from "../../helpers/userful";
 
 export const Register = () => {
   const navigate = useNavigate();
