@@ -53,9 +53,6 @@ console.log(allArtworks, "artwork random");
             </Row>
             <Row className="homeSection1">
                 <Col>
-                {/* <form action="/profile" method="post" enctype="multipart/form-data">
-  <input type="file" name="avatar" />
-</form> */}
                 </Col>
             </Row>
             <Row className="homeSection1">
