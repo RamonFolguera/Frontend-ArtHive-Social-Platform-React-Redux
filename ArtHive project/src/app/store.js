@@ -5,9 +5,10 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 
 import thunk from 'redux-thunk';
+import userSlice from '../layout/userSlice';
 
 const reducers = combineReducers({
-    
+    user: userSlice,
 })
 
 const persistConfig = {
