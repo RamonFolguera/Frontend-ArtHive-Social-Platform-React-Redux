@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { InputTemplate } from "../../components/InputTemplate/InputTemplate";
 import { logMe } from "../../services/apiCalls";
 import "./Login.css";
 
@@ -8,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, userData } from "../userSlice";
 
 import { decodeToken } from "react-jwt";
+import { InputText } from "../../components/InputText/InputText";
 
 
 export const Login = () => {
@@ -104,7 +104,7 @@ export const Login = () => {
       
        
         <div>Your email</div>
-          <InputTemplate
+          <InputText
             type="email"
             name="email"
             placeholder="e.g. elon@tesla.com"
@@ -114,7 +114,7 @@ export const Login = () => {
           <div>{credentialsError.emailError}</div>
           <div>Your password</div>
 
-          <InputTemplate
+          <InputText
             type="password"
             name="password"
             placeholder="e.g. 123456"
@@ -137,7 +137,7 @@ export const Login = () => {
         </div>
       )}
   
-    <img className="toothImgDesign" src="../../img/Diseño sin título.png" alt=""></img>
+    
    
     </>
   );

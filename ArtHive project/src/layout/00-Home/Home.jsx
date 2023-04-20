@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
 import './Home.css'
-import { bringAllArtworks } from "../../services/apiCall";
+import { bringAllArtworks } from "../../services/apiCalls";
 
 export const Home = () => {
 
