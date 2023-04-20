@@ -31,8 +31,9 @@ console.log(allArtworks, "artwork random");
         <Container>
              <h2>All artworks:</h2>
             <Row className="homeSection1">
+            <Col>
             <div className="cardsContainer">
-               
+           
                 {allArtworks.map((artwork) => {
                     return (
                     <div className="appointmentCardDesign" key={artwork.id}>
@@ -41,18 +42,20 @@ console.log(allArtworks, "artwork random");
                             <span className="pe-4 nameFieldDesign">Title:</span>
                             {artwork.title}
                         </p>
-                        
                 </div>
               </div>
             );
           })}
         </div>
-                <Col>
+               
                 </Col>
+                <Col></Col>
             </Row>
             <Row className="homeSection1">
                 <Col>
-                <p>Hello</p>
+                {/* <form action="/profile" method="post" enctype="multipart/form-data">
+  <input type="file" name="avatar" />
+</form> */}
                 </Col>
             </Row>
             <Row className="homeSection1">
