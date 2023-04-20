@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { InputText } from "../../components/InputText/InputText";
 import "./Register.css";
 import { registerUser } from "../../services/apiCall";
-import { validate } from "../../helpers/userful";
+import { validate } from "../../helpers/useful";
 
 export const Register = () => {
   const navigate = useNavigate();
