@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
-import { InputText } from "../../components/InputText/InputText";
-import "./Register.css";
-import { registerUser } from "../../services/apiCall";
 import { validate } from "../../helpers/useful";
+import { InputText } from "../../components/InputText/InputText";
+import "./NewArtwork.css";
+import { registerNewArtwork } from "../../services/apiCalls";
 
-export const Register = () => {
+
+export const NewArtwork = () => {
   const navigate = useNavigate();
 
   const [credentials, setCredentials] = useState({
@@ -17,7 +17,7 @@ export const Register = () => {
     description: "",
     technique: "",
     dimensions: "",
-    date_creation: "",
+    // date_creation: "",
     image_url: "",
     status: true,
     price: "",
@@ -37,7 +37,7 @@ export const Register = () => {
     descriptionVali: false,
     techniqueVali: false,
     dimensionsVali: false,
-    date_creationVali: false,
+    // date_creationVali: false,
     image_urlVali: false,
     statusVali: false,
     priceVali: false,
@@ -51,7 +51,7 @@ export const Register = () => {
     descriptionError: "",
     techniqueError: "",
     dimensionsError: "",
-    date_creationError: "",
+    // date_creationError: "",
     image_urlError: "",
     statusError: "",
     priceError: "",
@@ -103,8 +103,9 @@ export const Register = () => {
     }));
   };
 
-  const userRegister = () => {
-    registerUser(credentials);
+  const artworkRegister = () => {
+    console.log("entro")
+    registerNewArtwork(credentials);
 
     setWelcome(`Congratulations! Your new artwork is out there to share with the world!`);
     setTimeout(() => {
@@ -218,7 +219,7 @@ export const Register = () => {
               </Row>
               <Row>
               <Col sm={12} lg={6} id="formGridAddress">
-                <p className="mb-0 mt-3">date_creation</p>
+                {/* <p className="mb-0 mt-3">date_creation</p>
                 <InputText
                   className={
                     credentialsError.date_creationError === ""
@@ -231,7 +232,7 @@ export const Register = () => {
                   changeFunction={(e) => inputHandler(e)}
                   blurFunction={(e) => checkError(e)}
                 />
-                <div>{credentialsError.date_creationError}</div>
+                <div>{credentialsError.date_creationError}</div> */}
               </Col>
               <Col  id="formGridPhone">
                   <p className="mb-0 mt-3">image_url</p>
@@ -276,15 +277,16 @@ export const Register = () => {
                     ? "mt-3 buttonDesign registerSendAct text-center"
                     : "mt-3 buttonDesign text-center"
                 }
-                onClick={
-                  registerAct
-                    ? () => {
-                        userRegister();
-                        <div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
-        <h1 className="welcomeMsgDesign">{welcome}</h1>
-        </div>
-                      }
-                    : () => {}
+                onClick={() => {
+                    artworkRegister()}
+        //           registerAct
+        //             ? () => {
+        //                 artworkRegister();
+        //                 <div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
+        // <h1 className="welcomeMsgDesign">{welcome}</h1>
+        // </div>
+        //               }
+        //             : () => {}
                 }
               >
                 Submit
