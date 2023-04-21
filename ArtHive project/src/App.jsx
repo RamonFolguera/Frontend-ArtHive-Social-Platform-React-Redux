@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import { Body } from './layout/Body/Body'
 
 export const App = () => {
