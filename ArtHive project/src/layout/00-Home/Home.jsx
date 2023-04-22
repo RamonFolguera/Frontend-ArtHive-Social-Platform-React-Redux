@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
-
 import './Home.css'
 import { bringAllArtworks } from "../../services/apiCalls";
+import { NavBar } from "../../components/Navbar/NavBar";
+import community from "../../assets/images/community.png"
 
 export const Home = () => {
 
-const [allArtworks, setAllArtworks] = useState([])
-const [image, setImage] = useState({})
+const [allArtworks, setAllArtworks] = useState([]);
+const [image, setImage] = useState({});
 
 const fileOnChange = (e) => {
 setImage(e.target.files[0]);
@@ -42,31 +43,37 @@ try {
 
 console.log(allArtworks, "artwork random");
     return (
-        <Container>
-       
-             <h2>All artworks:</h2>
+      <>
+        <NavBar/>
+        <Container className="m-0">
             <Row className="homeSection1">
-            <Col>
-            
-            <div className="cardsContainer">
+              <Col lg={8} className="ps-5">
+              <p className="titleDesign">Discover limitless creativity everyday</p>
+              <div className="d-flex justify-content-start align-items-end">
+                <img src={community} alt="Several users profile pictures" style={{ width: 'auto', height: '5em', objectFit: 'contain' }} />
+                <p className="joinTitleDesign d-flex align-items-center ms-4">JOIN OUR 150K+ COMMUNITY OF TALENTED ARTISTS</p>
+              </div>
+              </Col>
+
+            <Col lg={4} >
+          
                 {allArtworks.map((artwork) => {
                     return (
-                    <div className="appointmentCardDesign" key={artwork.id}>
-                        <div className="d-flex flex-column">
+                    <div key={artwork.id}>
+                        <div className="d-flex align-items-end justify-content-between">
                        
                             <span className="pe-4 nameFieldDesign">Title:</span>
                             <p>{artwork.title}</p>
                         
                             
-                            <img src={`http://localhost:3000/static/${artwork.image_url}`} style={{ width: '20%', height: 'auto', objectFit: 'cover' }}  />
-                </div>
-              </div>
+                            <img className="selectedImgDesign" src={`http://localhost:3000/static/${artwork.image_url}`}/>
+                        </div>
+                    </div>
             );
           })}
-        </div>
-               
+     
                 </Col>
-                <Col></Col>
+                
             </Row>
             <Row className="homeSection1">
                 <Col>
@@ -88,6 +95,6 @@ console.log(allArtworks, "artwork random");
                 </Col>
             </Row>
         </Container>
-
+        </>
 
     )};

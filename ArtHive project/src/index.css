@@ -4,14 +4,18 @@ html {
   
   body {
     margin: 0;
-    font: 300 11px/1.4 'Helvetica Neue', sans-serif;
+    font-size: 1.5em;
+    font-family: 'Fira Sans', sans-serif;;
     color: #444;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: white;
-    overflow: hidden;
+    /* overflow: hidden; */
     display: block;
   }
+/* 
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  } */
   
   .dashboard {
     margin-top: 200px;
