@@ -26,7 +26,7 @@ useEffect(() => {
     }
   }, []);
 
-console.log(allArtworks, "artwork random");
+
     return (
         <Container>
              <h2>All artworks:</h2>
