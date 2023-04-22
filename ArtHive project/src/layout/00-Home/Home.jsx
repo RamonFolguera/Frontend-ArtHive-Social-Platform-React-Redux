@@ -45,9 +45,9 @@ console.log(allArtworks, "artwork random");
     return (
       <>
         <NavBar/>
-        <Container className="m-0">
+        <Container fluid className="m-0 main-container">
             <Row className="homeSection1">
-              <Col lg={8} className="ps-5">
+              <Col lg={6} className="ps-5">
               <p className="titleDesign">Discover limitless creativity everyday</p>
               <div className="d-flex justify-content-start align-items-end">
                 <img src={community} alt="Several users profile pictures" style={{ width: 'auto', height: '5em', objectFit: 'contain' }} />
@@ -55,7 +55,7 @@ console.log(allArtworks, "artwork random");
               </div>
               </Col>
 
-            <Col lg={4} >
+            <Col lg={5} className="selectedImgCol" >
           
                 {allArtworks.map((artwork) => {
                     return (

@@ -35,7 +35,7 @@ export const NavBar = () => {
       <a href="/#">Home</a>
       <a href="/#">My work</a>
       <a href="/#">Blog</a>
-      <a className="login-btn" href="/#">Log in</a>
+      <a className="login-btn" href=" /login">Log in</a>
       <button className="nav-btn nav-close-btn" onClick={showNavbar}>
         <FaTimes/>
       </button>

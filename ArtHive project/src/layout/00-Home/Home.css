@@ -1,7 +1,10 @@
+
 .homeSection1 {
+    width: 100%;
     min-height: 50em; 
-    margin-left: 20px;
-   
+    padding: 0 20px ;
+    display:flex;
+    justify-content: space-between;
 }
 
 .titleDesign{
@@ -13,10 +16,13 @@
 }
 
 .joinTitleDesign {
-
     color: black;
     font-weight:bold;
     width: 14em;
+}
+
+.selectedImgCol{
+    padding-right: 30px;
 }
 
 .selectedImgDesign{
