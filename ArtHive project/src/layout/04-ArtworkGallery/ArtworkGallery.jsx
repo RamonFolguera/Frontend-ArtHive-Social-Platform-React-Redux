@@ -7,8 +7,9 @@ import { Col, Container, Row, Spinner } from 'react-bootstrap'
 import './ArtworkGallery.css'
 import { useNavigate } from 'react-router'
 import { NavBar } from '../../components/Navbar/NavBar'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addChoosenArtwork } from '../artworkSlice'
+import { userData } from '../userSlice'
 
 export const ArtworkGallery = () => {
   const [allArtworks, setAllArtworks] = useState([])
@@ -24,6 +25,7 @@ export const ArtworkGallery = () => {
 
   useEffect(() => {
     if (allArtworks.length === 0) {
+        setTimeout(() => {
       bringAllArtworks()
         .then((result) => {
             setLoading(false);
@@ -34,6 +36,7 @@ export const ArtworkGallery = () => {
           setAllArtworks(result.data.data)
         })
         .catch((error) => console.log(error))
+    }, 2000);
     }
   }, [allArtworks])
 
@@ -58,7 +61,7 @@ export const ArtworkGallery = () => {
         </div>
         <div>
           {" "}
-          <h4>Loading...</h4>
+          <h4>Art is coming... hold on!</h4>
         </div>
       </div>
       </>
@@ -98,4 +101,5 @@ export const ArtworkGallery = () => {
     </Container>
     </>
   )
+}
 }
