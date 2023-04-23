@@ -9,8 +9,14 @@ export const validate = (name, data, required) => {
       case "lastName":
       case "first_surname":
       case "second_surname":
-        
-  
+      case "last_name":
+      case "title":
+      case "category":
+      case "technique":
+      case "description":
+      case "image_url":
+      case "dimensions":
+
         if (data === "" && required === true) {
   
           
@@ -48,6 +54,7 @@ export const validate = (name, data, required) => {
       case "telefono":
       case "phonenumber":
       case "mobile":
+      case "price":
         if (data === "" && required === true) {
           return {message: "Please fill the field", validated: false};
         } else if (

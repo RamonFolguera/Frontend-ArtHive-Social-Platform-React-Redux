@@ -1,4 +1,33 @@
+
 .homeSection1 {
-    min-height: 20em;
-    border: 5px black solid;
+    width: 100%;
+    min-height: 50em; 
+    padding: 0 20px ;
+    display:flex;
+    justify-content: space-between;
+}
+
+.titleDesign{
+    font-family: 'Lobster', sans-serif;
+    font-size: 8rem;
+    color: black;
+    border-bottom: 2px lightgray solid;
+    margin-right: 50px;
+}
+
+.joinTitleDesign {
+    color: black;
+    font-weight:bold;
+    width: 14em;
+}
+
+.selectedImgCol{
+    padding-right: 30px;
+}
+
+.selectedImgDesign{
+    border-radius: 20px;
+    width: 30em;
+    height: 35em;
+    object-fit: cover;
 }
