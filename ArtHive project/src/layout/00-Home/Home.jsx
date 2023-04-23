@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import axios from "axios";
 import './Home.css'
 import { bringAllArtworks } from "../../services/apiCalls";
 import { NavBar } from "../../components/Navbar/NavBar";
@@ -9,11 +8,7 @@ import community from "../../assets/images/community.png"
 export const Home = () => {
 
 const [allArtworks, setAllArtworks] = useState([]);
-const [image, setImage] = useState({});
 
-const fileOnChange = (e) => {
-setImage(e.target.files[0]);
-}
 
 useEffect(() => {
     if (allArtworks.length === 0) {
@@ -29,17 +24,7 @@ useEffect(() => {
     }
   }, []);
 
-const sendImage = async (e) => {
 
-const formData = new FormData();
-formData.append("file", image);
-try {
-  const result = await axios.post("http://localhost:3000/file", formData);
-  console.log(result);
- } catch (error) {
-  console.log(error);
- }
-}
 
 console.log(allArtworks, "artwork random");
     return (
@@ -75,25 +60,7 @@ console.log(allArtworks, "artwork random");
                 </Col>
                 
             </Row>
-            <Row className="homeSection1">
-                <Col>
-{/* 
-          <input type='file' onChange={(event)=> {
-            const file = event.target.files[0];
-            postFile(file)
-            console.log(file);
-          }}/> */}
-
-
-          <input type='file' onChange={fileOnChange} />
-          <button onClick={sendImage}>Upload</button>
-                </Col>
-            </Row>
-            <Row className="homeSection1">
-                <Col>
-                <p>Hello</p>
-                </Col>
-            </Row>
+       
         </Container>
         </>
 

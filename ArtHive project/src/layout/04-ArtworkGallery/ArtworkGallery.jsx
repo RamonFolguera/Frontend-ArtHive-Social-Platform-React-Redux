@@ -43,7 +43,7 @@ export const ArtworkGallery = () => {
   const artworkSelected = (artwork) => {
     dispatch(addChoosenArtwork({ choosenArtwork: artwork }));
     setTimeout(() => {
-      navigate("/artwork-detail");
+      navigate("/artwork-details");
     }, 1000);
   };
 

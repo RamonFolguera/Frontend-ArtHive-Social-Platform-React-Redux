@@ -5,10 +5,16 @@ import { validate } from "../../helpers/useful";
 import { InputText } from "../../components/InputText/InputText";
 import "./NewArtwork.css";
 import { registerNewArtwork } from "../../services/apiCalls";
-
+import axios from "axios";
 
 export const NewArtwork = () => {
   const navigate = useNavigate();
+  const [image, setImage] = useState({});
+
+  const fileOnChange = (e) => {
+  setImage(e.target.files[0]);
+  }
+
 
   const [credentials, setCredentials] = useState({
     artist_id: "",
@@ -102,7 +108,18 @@ export const NewArtwork = () => {
       [e.target.name + "Error"]: error,
     }));
   };
+  const sendImage = async (e) => {
 
+    const formData = new FormData();
+    formData.append("file", image);
+    try {
+      const result = await axios.post("http://localhost:3000/file", formData);
+      console.log(result);
+     } catch (error) {
+      console.log(error);
+     }
+    }
+console.log(image);
   const artworkRegister = () => {
     console.log("entro")
     registerNewArtwork(credentials);
@@ -125,6 +142,18 @@ export const NewArtwork = () => {
           <div className="registerContainerDesign mb-5">
             <Container>
               <Row className="mb-3">
+              <Col>
+{/* 
+          <input type='file' onChange={(event)=> {
+            const file = event.target.files[0];
+            postFile(file)
+            console.log(file);
+          }}/> */}
+
+
+          <input type='file' onChange={fileOnChange} />
+          <button onClick={sendImage}>Upload</button>
+                </Col>
                 <Col md={4} id="formGridName">
                   <p className="mb-0 mt-3">Title</p>
                   <InputText
