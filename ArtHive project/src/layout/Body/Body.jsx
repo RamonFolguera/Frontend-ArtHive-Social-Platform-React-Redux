@@ -5,7 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { Register } from '../01-Register/Register'
 import { Login } from '../02-Login/Login'
 import { NewArtwork } from '../05-NewArtwork/NewArtwork'
-import { Gallery } from '../06-Gallery/Gallery'
+import { ArtworkGallery } from '../04-ArtworkGallery/ArtworkGallery'
 
 export const Body = () => {
   return (
@@ -17,7 +17,7 @@ export const Body = () => {
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/newArtwork" element={<NewArtwork/>}/>
-        <Route path="/artworks-gallery" element={<Gallery/>}/>
+        <Route path="/artworks-gallery" element={<ArtworkGallery/>}/>
     </Routes>
     </>
   )

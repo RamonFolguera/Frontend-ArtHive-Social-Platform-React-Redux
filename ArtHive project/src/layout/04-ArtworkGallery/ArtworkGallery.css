@@ -1,0 +1,23 @@
+.ImgDesign {
+    display:block;
+    width: 100%;
+    object-fit: contain;
+    margin-bottom:1.25rem;
+}
+
+.cardsContainer {   
+    columns:4;
+    gap:1.25rem;
+    padding-top:1.25rem;
+}
+
+@media (max-width:48rem) {
+    .cardsContainer {
+      columns:2;
+     }
+   }
+   @media (max-width:32rem) {
+    .cardsContainer {
+      columns:1;
+     }
+   }
