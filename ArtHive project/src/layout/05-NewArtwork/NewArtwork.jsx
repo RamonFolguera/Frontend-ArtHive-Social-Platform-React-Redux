@@ -6,15 +6,25 @@ import { InputText } from "../../components/InputText/InputText";
 import "./NewArtwork.css";
 import { registerNewArtwork } from "../../services/apiCalls";
 import axios from "axios";
+import { MdCloudUpload, MdDelete } from 'react-icons/md'
+import { AiFillFileImage } from 'react-icons/ai'
 
 export const NewArtwork = () => {
   const navigate = useNavigate();
-  const [image, setImage] = useState({});
+  const [image, setImage] = useState(null);
+  const [fileName, setFileName] = useState("No Selected File")
 
   const fileOnChange = (e) => {
-  setImage(e.target.files[0]);
+  setFileName(e.target.files[0].name);
+  if(e.target.files){
+    setImage(URL.createObjectURL(e.target.files[0]))
+  }
   }
 
+  const deleteFile =() =>{
+    setFileName("No selected File");
+    setImage(null);
+  }
 
   const [credentials, setCredentials] = useState({
     artist_id: "",
@@ -109,7 +119,6 @@ export const NewArtwork = () => {
     }));
   };
   const sendImage = async (e) => {
-
     const formData = new FormData();
     formData.append("file", image);
     try {
@@ -119,9 +128,10 @@ export const NewArtwork = () => {
       console.log(error);
      }
     }
+
 console.log(image);
+
   const artworkRegister = () => {
-    console.log("entro")
     registerNewArtwork(credentials);
 
     setWelcome(`Congratulations! Your new artwork is out there to share with the world!`);
@@ -137,22 +147,43 @@ console.log(image);
       {welcome === "" ? (
         <div className="registerContent">
           <div className="w-100 text-center pt-3 pb-3">
-            <h1>Fill in info with your artwork</h1>
+            <h1>Create New Item</h1>
+            <p>* Required fields</p>
+            <p>File types supported: JPG, PNG, GIF. Max size: 100 MB</p>
           </div>
           <div className="registerContainerDesign mb-5">
             <Container>
               <Row className="mb-3">
               <Col>
-{/* 
-          <input type='file' onChange={(event)=> {
-            const file = event.target.files[0];
-            postFile(file)
-            console.log(file);
-          }}/> */}
+              <form 
+                action="/profile" 
+                method="post" 
+                encType="multipart/form-data"
+                onClick={() => document.querySelector(".input-field").click()}>
+                  <input type="file" name="avatar" onChange={(e)=>{fileOnChange(e)}} className="input-field" hidden />
 
+                  {image ? 
+                  <img src={image} alt={fileName} />
+                :
+                <>
+                <MdCloudUpload color='#1475cf' size={60}/>
+                <p>Browse Files to upload</p>
+                </>
+                }
+              </form>
+              <section className="uploaded-row">
+                <AiFillFileImage color='#1475cf'/>
+                <span className='upload-content'>
+                  {fileName} -
+                  <MdDelete
+                  onClick={()=> deleteFile()}
 
-          <input type='file' onChange={fileOnChange} />
-          <button onClick={sendImage}>Upload</button>
+                  />
+                </span>
+              </section>
+          {/* <input type='file' className="selectImgDesign" onChange={fileOnChange}/> */}
+          {/* <div type='file' className="selectImgDesign" onChange={fileOnChange}></div> */}
+          <button onClick={() => {sendImage()}}>Upload</button>
                 </Col>
                 <Col md={4} id="formGridName">
                   <p className="mb-0 mt-3">Title</p>

@@ -1,0 +1,48 @@
+.selectImgDesign {
+    
+    border: 1px lightgray dashed;
+    width: 15em;
+    height: 10em;
+    border-radius: 10px;
+    background-image: "url(../../assets/images/upload-symbol.png)";
+    background-position: contain;
+}
+
+.selectImgDesign:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    transition: 1s;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px #1475cf dashed;
+    width: 25em;
+    height: 20em;
+    cursor: pointer;
+
+}
+
+form img {
+    width: 85%;
+    height:auto;
+}
+
+.uploaded-row{
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 5px;
+    background-color: #e9f0ff;
+}
+
+.upload-content{
+    display:flex;
+    align-items: center;
+}
