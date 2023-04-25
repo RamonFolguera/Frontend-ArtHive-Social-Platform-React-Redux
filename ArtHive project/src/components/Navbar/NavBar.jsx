@@ -34,6 +34,7 @@ console.log(userCredentialsRdx);
     <>
     <nav ref={navRef} className='d-flex align-items-lg-center justify-content-lg-between w-100'>
       <div className="d-flex flex-xs-column align-items-xs-center">
+      <a href="/profile">Hi {userCredentialsRdx.credentials?.user?.name}!</a>
       <a href="/">Home</a>
       <a href="/artworks-gallery">Art gallery</a>
       <a href="/artworks-featured">Featured</a>
@@ -64,6 +65,7 @@ console.log(userCredentialsRdx);
 <>
         <nav ref={navRef} className='d-flex align-items-lg-center justify-content-lg-between w-100'>
       <div className="d-flex flex-xs-column align-items-xs-center">
+      <a href="/profile">Hi {userCredentialsRdx.credentials?.user?.name}!</a>
       <a href="/">Home</a>
       <a href="/artworks-gallery">My panel</a>
       </div>
@@ -89,7 +91,7 @@ console.log(userCredentialsRdx);
 <>
         <nav ref={navRef} className='d-flex align-items-lg-center justify-content-lg-between w-100'>
       <div className="d-flex flex-xs-column align-items-xs-center">
-      <a href="/artists">Hi {userCredentialsRdx.credentials?.user?.name}!</a>
+      <a href="/profile">Hi {userCredentialsRdx.credentials?.user?.name}!</a>
       <a href="/">Home</a>
       <a href="/artworks-gallery">Art gallery</a>
       <a href="/artworks-featured">Featured</a>
@@ -122,6 +124,7 @@ console.log(userCredentialsRdx);
 <>
         <nav ref={navRef} className='d-flex align-items-lg-center justify-content-lg-between w-100'>
       <div className="d-flex flex-xs-column align-items-xs-center">
+      <a href="/profile">Hi {userCredentialsRdx.credentials?.user?.name}!</a>
       <a href="/">Home</a>
       <a href="/artworks-gallery">Art gallery</a>
       <a href="/artworks-featured">Featured</a>

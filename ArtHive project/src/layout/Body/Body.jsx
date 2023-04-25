@@ -9,6 +9,7 @@ import { NewArtwork } from '../05-NewArtwork/NewArtwork'
 import { ArtworkGallery } from '../04-ArtworkGallery/ArtworkGallery'
 import { MyGalleryAsArtist } from '../07-MyGalleryAsArtist/MyGalleryAsArtist'
 
+import { UserProfile } from '../03-UserProfile/UserProfile'
 
 export const Body = () => {
   return (
@@ -23,6 +24,8 @@ export const Body = () => {
         <Route path="/new-artwork" element={<NewArtwork/>}/>
         <Route path="/artworks-gallery" element={<ArtworkGallery/>}/>
         <Route path="/my-artworks-gallery" element={<MyGalleryAsArtist/>}/>
+        <Route path="/profile" element={<UserProfile/>}/>
+
     </Routes>
     </>
   )
