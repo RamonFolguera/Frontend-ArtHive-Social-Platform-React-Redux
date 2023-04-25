@@ -21,5 +21,13 @@ export const bringAllArtworks = async () => {
   }
 
 
-    
+  export const bringMyUserProfile = async (token) => {
+    let config = {
+      headers: { 
+        'Authorization': 'Bearer '+ token,  
+      }
+    };
+    return await axios.get(`${root}users/me`, config);
+  }
+  
  

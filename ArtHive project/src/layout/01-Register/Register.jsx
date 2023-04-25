@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { InputText } from "../../components/InputText/InputText";
 import "./Register.css";
-import { registerUser } from "../../services/apiCall";
+import { registerUser } from "../../services/apiCalls";
 import { validate } from "../../helpers/useful";
 
 export const Register = () => {
