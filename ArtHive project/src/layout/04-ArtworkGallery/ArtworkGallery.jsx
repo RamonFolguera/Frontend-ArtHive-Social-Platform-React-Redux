@@ -10,6 +10,7 @@ import { NavBar } from '../../components/Navbar/NavBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { addChoosenArtwork } from '../artworkSlice'
 import { userData } from '../userSlice'
+import { SpinnerComponent } from '../../components/SpinnerComponent/SpinnerComponent'
 
 export const ArtworkGallery = () => {
   const [allArtworks, setAllArtworks] = useState([])
@@ -47,21 +48,14 @@ export const ArtworkGallery = () => {
     }, 1000);
   };
 
-
-
   if (loading) {
     return (
         <>
-    <NavBar/>
-
+        <NavBar/>
       <div className="spinnerDesign d-flex justify-content-center align-items-center flex-column">
         <div>
           {" "}
-          <Spinner animation="border" variant="primary" />
-        </div>
-        <div>
-          {" "}
-          <h4>Art is coming... hold on!</h4>
+          <SpinnerComponent message="Art is coming... hold on!" />
         </div>
       </div>
       </>

@@ -26,6 +26,9 @@ export const UserProfile = () => {
 
   if (userCredentialsRdx.credentials.user.roleId === 4) {
   return (
+    <>
+    <NavBar/>
+
     <Container className="profileMainDesign">
       <div className="text-center">
         <p className="nameDesign">
@@ -66,10 +69,13 @@ export const UserProfile = () => {
         </Link>
       </div>
     </Container>
+    </>
   )
-
+ 
 } else if (userCredentialsRdx.credentials.user.roleId === 3) {
     return (
+        <>
+        <NavBar/>
         <Container className="profileMainDesign">
           <div className="text-center">
             <p className="nameDesign">
@@ -131,9 +137,12 @@ export const UserProfile = () => {
             </Link>
           </div>
         </Container>
+        </>
       )
 } else {
     return (
+        <>
+        <NavBar/>
         <Container className="profileMainDesign">
           <div className="text-center">
             <p className="nameDesign">
@@ -174,6 +183,7 @@ export const UserProfile = () => {
             </Link>
           </div>
         </Container>
+        </>
       )
 }
 }
