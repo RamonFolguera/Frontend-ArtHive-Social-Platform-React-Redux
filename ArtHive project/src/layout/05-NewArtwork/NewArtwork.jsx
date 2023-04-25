@@ -1,52 +1,69 @@
-import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { validate } from "../../helpers/useful";
-import { InputText } from "../../components/InputText/InputText";
-import "./NewArtwork.css";
-import { registerNewArtwork } from "../../services/apiCalls";
-import axios from "axios";
+import { useEffect, useState } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { validate } from '../../helpers/useful'
+import { InputText } from '../../components/InputText/InputText'
+import './NewArtwork.css'
+import { registerNewArtwork } from '../../services/apiCalls'
+import axios from 'axios'
 import { MdCloudUpload, MdDelete } from 'react-icons/md'
 import { AiFillFileImage } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
+import { userData } from "../userSlice";
 
 export const NewArtwork = () => {
-  const navigate = useNavigate();
-  const [image, setImage] = useState(null);
-  const [fileName, setFileName] = useState("No Selected File")
+  const userCredentialsRdx = useSelector(userData);
+  const navigate = useNavigate()
+
+  
+  const [image, setImage] = useState(null)
+  const [imageUrl, setImageUrl] = useState()
+  const [fileName, setFileName] = useState('No Selected File')
+
+  console.log(fileName)
+  
+  const [infoArtwork, setInfoArtwork] = useState({
+    artist_id: userCredentialsRdx.credentials.user.artistId,
+    title: '',
+    category: '',
+    description: '',
+    technique: '',
+    dimensions: '',
+    // date_creation: "",
+    image_url: '',
+    status: true,
+    price: '',
+  })
 
   const fileOnChange = (e) => {
-  setFileName(e.target.files[0].name);
-  if(e.target.files){
-    setImage(URL.createObjectURL(e.target.files[0]))
+    if (e.target.files[0]) {
+      setFileName(e.target.files[0].name);
+      setInfoArtwork((prevState) => ({
+        ...prevState,
+        image_url: e.target.files[0].name,
+       
+      }));
+    }
+    if (e.target.files) {
+      setImageUrl(URL.createObjectURL(e.target.files[0]))
+      setImage(e.target.files[0])
+    }
   }
-  }
+  console.log(infoArtwork)
 
-  const deleteFile =() =>{
-    setFileName("No selected File");
-    setImage(null);
+  const deleteFile = () => {
+    setFileName('No selected File')
+    setImage(null)
   }
-
-  const [credentials, setCredentials] = useState({
-    artist_id: "",
-    title: "",
-    category: "",
-    description: "",
-    technique: "",
-    dimensions: "",
-    // date_creation: "",
-    image_url: "",
-    status: true,
-    price: "",
-  });
 
   const inputHandler = (e) => {
-    setCredentials((prevState) => ({
+    setInfoArtwork((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
-    }));
-  };
+    }))
+  }
 
-  const [valiCredentials, setValiCredentials] = useState({
+  const [valiInfoArtwork, setValiInfoArtwork] = useState({
     artist_idVali: false,
     titleVali: false,
     categoryVali: false,
@@ -57,94 +74,93 @@ export const NewArtwork = () => {
     image_urlVali: false,
     statusVali: false,
     priceVali: false,
+  })
 
-  });
-
-  const [credentialsError, setCredentialsError] = useState({
-    artist_idError: "",
-    titleError: "",
-    categoryError: "",
-    descriptionError: "",
-    techniqueError: "",
-    dimensionsError: "",
+  const [infoArtworkError, setInfoArtworkError] = useState({
+    artist_idError: '',
+    titleError: '',
+    categoryError: '',
+    descriptionError: '',
+    techniqueError: '',
+    dimensionsError: '',
     // date_creationError: "",
-    image_urlError: "",
-    statusError: "",
-    priceError: "",
-  });
+    image_urlError: '',
+    statusError: '',
+    priceError: '',
+  })
 
-  const [registerAct, setRegisterAct] = useState(false);
+  const [registerAct, setRegisterAct] = useState(false)
 
-  const [welcome, setWelcome] = useState("");
+  const [welcome, setWelcome] = useState('')
 
   useEffect(() => {
-    for (let error in credentialsError) {
-      if (credentialsError[error] != "") {
-        setRegisterAct(false);
-        return;
+    for (let error in infoArtworkError) {
+      if (infoArtworkError[error] != '') {
+        setRegisterAct(false)
+        return
       }
     }
 
-    for (let empty in credentials) {
-      if (credentials[empty] === "") {
-        setRegisterAct(false);
-        return;
+    for (let empty in infoArtwork) {
+      if (infoArtwork[empty] === '') {
+        setRegisterAct(false)
+        return
       }
     }
 
-    for (let validated in valiCredentials) {
-      if (valiCredentials[validated] === false) {
-        setRegisterAct(false);
-        return;
+    for (let validated in valiInfoArtwork) {
+      if (valiInfoArtwork[validated] === false) {
+        setRegisterAct(false)
+        return
       }
     }
-    setRegisterAct(true);
-  });
+    setRegisterAct(true)
+  })
 
   const checkError = (e) => {
-    let error = "";
+    let error = ''
 
-    let checked = validate(e.target.name, e.target.value, e.target.required);
+    let checked = validate(e.target.name, e.target.value, e.target.required)
 
-    error = checked.message;
+    error = checked.message
 
-    setValiCredentials((prevState) => ({
+    setValiInfoArtwork((prevState) => ({
       ...prevState,
-      [e.target.name + "Vali"]: checked.validated,
-    }));
+      [e.target.name + 'Vali']: checked.validated,
+    }))
 
-    setCredentialsError((prevState) => ({
+    setInfoArtworkError((prevState) => ({
       ...prevState,
-      [e.target.name + "Error"]: error,
-    }));
-  };
+      [e.target.name + 'Error']: error,
+    }))
+  }
   const sendImage = async (e) => {
-    const formData = new FormData();
-    formData.append("file", image);
+    const formData = new FormData()
+    formData.append('file', image)
     try {
-      const result = await axios.post("http://localhost:3000/file", formData);
-      console.log(result);
-     } catch (error) {
-      console.log(error);
-     }
+      const result = await axios.post('http://localhost:3000/file', formData)
+      console.log(result)
+    } catch (error) {
+      console.log(error)
     }
+  }
 
-console.log(image);
+  console.log(image)
 
   const artworkRegister = () => {
-    registerNewArtwork(credentials);
-
-    setWelcome(`Congratulations! Your new artwork is out there to share with the world!`);
-    setTimeout(() => {
-      navigate("/");
-    }, 500);
-  };
+    registerNewArtwork(infoArtwork, userCredentialsRdx.credentials.token)
+    
+    setWelcome(
+      `Congratulations! Your new artwork is out there to share with the world!`
+    )
+    // setTimeout(() => {
+    //   navigate('/')
+    // }, 500)
+  }
 
   return (
-
     <div className="d-flex justify-content-center defaultPageHeight">
-      
-      {welcome === "" ? (
+      {welcome === '' ? (
         <div className="registerContent">
           <div className="w-100 text-center pt-3 pb-3">
             <h1>Create New Item</h1>
@@ -154,132 +170,143 @@ console.log(image);
           <div className="registerContainerDesign mb-5">
             <Container>
               <Row className="mb-3">
-              <Col>
-              <form 
-                action="/profile" 
-                method="post" 
-                encType="multipart/form-data"
-                onClick={() => document.querySelector(".input-field").click()}>
-                  <input type="file" name="avatar" onChange={(e)=>{fileOnChange(e)}} className="input-field" hidden />
+                <Col md={12}>
+                  <form
+                    action="/profile"
+                    method="post"
+                    encType="multipart/form-data"
+                    onClick={() =>
+                      document.querySelector('.input-field').click()
+                    }
+                  >
+                    <input
+                      type="file"
+                      name="avatar"
+                      onChange={(e) => {
+                        fileOnChange(e)
+                      }}
+                      className="input-field"
+                      hidden
+                    />
 
-                  {image ? 
-                  <img src={image} alt={fileName} />
-                :
-                <>
-                <MdCloudUpload color='#1475cf' size={60}/>
-                <p>Browse Files to upload</p>
-                </>
-                }
-              </form>
-              <section className="uploaded-row">
-                <AiFillFileImage color='#1475cf'/>
-                <span className='upload-content'>
-                  {fileName} -
-                  <MdDelete
-                  onClick={()=> deleteFile()}
-
-                  />
-                </span>
-              </section>
-          {/* <input type='file' className="selectImgDesign" onChange={fileOnChange}/> */}
-          {/* <div type='file' className="selectImgDesign" onChange={fileOnChange}></div> */}
-          <button onClick={() => {sendImage()}}>Upload</button>
+                    {imageUrl ? (
+                      <img src={imageUrl} alt={fileName} />
+                    ) : (
+                      <>
+                        <MdCloudUpload color="#1475cf" size={60} />
+                        <p>Browse Files to upload</p>
+                      </>
+                    )}
+                  </form>
+                  <section className="uploaded-row">
+                    <AiFillFileImage color="#1475cf" />
+                    <span className="upload-content">
+                      {fileName} -
+                      <MdDelete onClick={() => deleteFile()} />
+                    </span>
+                  </section>
+                  <button
+                    onClick={() => {
+                      sendImage()
+                    }}
+                  >
+                    Upload
+                  </button>
                 </Col>
                 <Col md={4} id="formGridName">
                   <p className="mb-0 mt-3">Title</p>
                   <InputText
                     className={
-                      credentialsError.titleError === ""
-                        ? "inputsDesignCommon inputBasicDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign"
+                      infoArtworkError.titleError === ''
+                        ? 'inputsDesignCommon inputBasicDesign'
+                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign'
                     }
-                    type={"text"}
-                    name={"title"}
+                    type={'text'}
+                    name={'title'}
                     placeholder="Title"
                     required={true}
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.titleError}</div>
+                  <div>{infoArtworkError.titleError}</div>
                 </Col>
 
                 <Col md={4} id="formGridFirstSurname">
                   <p className="mb-0 mt-3">category</p>
                   <InputText
                     className={
-                      credentialsError.categoryError === ""
-                        ? "inputsDesignCommon inputBasicDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign"
+                      infoArtworkError.categoryError === ''
+                        ? 'inputsDesignCommon inputBasicDesign'
+                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign'
                     }
-                    type={"text"}
-                    name={"category"}
+                    type={'text'}
+                    name={'category'}
                     required={true}
                     placeholder="category"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.categoryError}</div>
+                  <div>{infoArtworkError.categoryError}</div>
                 </Col>
 
                 <Col md={4} id="formGridSecondSurname">
                   <p className="mb-0 mt-3">description</p>
                   <InputText
                     className={
-                      credentialsError.descriptionError === ""
-                        ? "inputsDesignCommon inputBasicDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign"
+                      infoArtworkError.descriptionError === ''
+                        ? 'inputsDesignCommon inputBasicDesign'
+                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign'
                     }
-                    type={"text"}
-                    name={"description"}
+                    type={'text'}
+                    name={'description'}
                     required={true}
                     placeholder="Description"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.descriptionError}</div>
+                  <div>{infoArtworkError.descriptionError}</div>
                 </Col>
               </Row>
               <Row className="mb-3">
-               
                 <Col sm={12} lg={6} id="formGridEmail">
                   <p className="mb-0 mt-3">technique</p>
                   <InputText
                     className={
-                      credentialsError.techniqueError === ""
-                        ? "inputsDesignCommon inputBasicDesign inputEmailDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign inputEmailDesign"
+                      infoArtworkError.techniqueError === ''
+                        ? 'inputsDesignCommon inputBasicDesign inputEmailDesign'
+                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputEmailDesign'
                     }
-                    type={"text"}
-                    name={"technique"}
+                    type={'text'}
+                    name={'technique'}
                     required={true}
                     placeholder="Technique"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.techniqueError}</div>
+                  <div>{infoArtworkError.techniqueError}</div>
                 </Col>
 
                 <Col sm={12} lg={6} id="formGridPassword">
                   <p className="mb-0 mt-3">dimensions</p>
                   <InputText
                     className={
-                      credentialsError.dimensionsError === ""
-                        ? "inputsDesignCommon inputBasicDesign inputPasswordDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign inputPasswordDesign"
+                      infoArtworkError.dimensionsError === ''
+                        ? 'inputsDesignCommon inputBasicDesign inputPasswordDesign'
+                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputPasswordDesign'
                     }
-                    type={"text"}
-                    name={"dimensions"}
+                    type={'text'}
+                    name={'dimensions'}
                     required={true}
                     placeholder="e.g. 500x500mm"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.dimensionsError}</div>
+                  <div>{infoArtworkError.dimensionsError}</div>
                 </Col>
               </Row>
               <Row>
-              <Col sm={12} lg={6} id="formGridAddress">
-                {/* <p className="mb-0 mt-3">date_creation</p>
+                <Col sm={12} lg={6} id="formGridAddress">
+                  {/* <p className="mb-0 mt-3">date_creation</p>
                 <InputText
                   className={
                     credentialsError.date_creationError === ""
@@ -293,74 +320,59 @@ console.log(image);
                   blurFunction={(e) => checkError(e)}
                 />
                 <div>{credentialsError.date_creationError}</div> */}
-              </Col>
-              <Col  id="formGridPhone">
-                  <p className="mb-0 mt-3">image_url</p>
-                  <InputText
-                    className={
-                      credentialsError.image_urlError === ""
-                        ? "inputsDesignCommon inputBasicDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign"
-                    }
-                    type={"text"}
-                    name={"image_url"}
-                    required={true}
-                    placeholder="e.g. httt://..."
-                    changeFunction={(e) => inputHandler(e)}
-                    blurFunction={(e) => checkError(e)}
-                  />
-                  <div>{credentialsError.image_urlError}</div>
                 </Col>
-                <Col  id="formGridPhone">
-                  <p className="mb-0 mt-3">Phone</p>
+
+                <Col id="formGridPrice">
+                  <p className="mb-0 mt-3">Price</p>
                   <InputText
                     className={
-                      credentialsError.priceError === ""
-                        ? "inputsDesignCommon inputBasicDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign"
+                      infoArtworkError.priceError === ''
+                        ? 'inputsDesignCommon inputBasicDesign'
+                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign'
                     }
-                    type={"integer"}
-                    name={"price"}
+                    type={'integer'}
+                    name={'price'}
                     required={true}
                     placeholder="e.g. 50"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.priceError}</div>
+                  <div>{infoArtworkError.priceError}</div>
                 </Col>
-                </Row>
-                <Row className="d-flex justify-content-center">
-              <div
-                type="submit"
-                className={
-                  registerAct
-                    ? "mt-3 buttonDesign registerSendAct text-center"
-                    : "mt-3 buttonDesign text-center"
-                }
-                onClick={() => {
-                    artworkRegister()}
-        //           registerAct
-        //             ? () => {
-        //                 artworkRegister();
-        //                 <div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
-        // <h1 className="welcomeMsgDesign">{welcome}</h1>
-        // </div>
-        //               }
-        //             : () => {}
-                }
-              >
-                Submit
-              </div>
+              </Row>
+              <Row className="d-flex justify-content-center">
+                <div
+                  type="submit"
+                  className={
+                    registerAct
+                      ? 'mt-3 buttonDesign registerSendAct text-center'
+                      : 'mt-3 buttonDesign text-center'
+                  }
+                  onClick={
+                    () => {
+                      artworkRegister()
+                    }
+                    //           registerAct
+                    //             ? () => {
+                    //                 artworkRegister();
+                    //                 <div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
+                    // <h1 className="welcomeMsgDesign">{welcome}</h1>
+                    // </div>
+                    //               }
+                    //             : () => {}
+                  }
+                >
+                  Submit
+                </div>
               </Row>
             </Container>
           </div>
         </div>
       ) : (
         <div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
-        <h1 className="welcomeMsgDesign">{welcome}</h1>
+          <h1 className="welcomeMsgDesign">{welcome}</h1>
         </div>
       )}
     </div>
-   
-  );
-};
+  )
+}

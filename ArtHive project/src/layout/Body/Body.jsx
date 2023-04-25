@@ -7,6 +7,8 @@ import { ArtworkDetails } from '../06-ArtworkDetails/ArtworkDetails'
 import { Login } from '../02-Login/Login'
 import { NewArtwork } from '../05-NewArtwork/NewArtwork'
 import { ArtworkGallery } from '../04-ArtworkGallery/ArtworkGallery'
+import { MyGalleryAsArtist } from '../07-MyGalleryAsArtist/MyGalleryAsArtist'
+
 
 export const Body = () => {
   return (
@@ -20,6 +22,7 @@ export const Body = () => {
         <Route path="/login" element={<Login/>}/>
         <Route path="/new-artwork" element={<NewArtwork/>}/>
         <Route path="/artworks-gallery" element={<ArtworkGallery/>}/>
+        <Route path="/my-artworks-gallery" element={<MyGalleryAsArtist/>}/>
     </Routes>
     </>
   )

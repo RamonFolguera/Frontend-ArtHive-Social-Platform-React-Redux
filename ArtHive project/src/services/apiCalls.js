@@ -30,7 +30,15 @@ export const bringAllArtworks = async () => {
     return await axios.get(`${root}artworks`);
   }
 
-
+  
+export const bringAllMyArtworks = async (token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+    return await axios.get(`${root}artworks/mine`, config);
+}
 
 
 
