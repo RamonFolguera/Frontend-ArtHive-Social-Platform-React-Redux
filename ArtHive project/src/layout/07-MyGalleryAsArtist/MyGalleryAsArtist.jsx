@@ -22,11 +22,10 @@ export const MyGalleryAsArtist = () => {
   
   const userCredentialsRdx = useSelector(userData)
 
-
   useEffect(() => {
     if (allMyArtworks.length === 0) {
         setTimeout(() => {
-      bringAllMyArtworks()
+      bringAllMyArtworks(userCredentialsRdx.credentials.token)
         .then((result) => {
             setLoading(false);
 
@@ -46,8 +45,6 @@ export const MyGalleryAsArtist = () => {
       navigate("/artwork-details");
     }, 1000);
   };
-
-
 
   if (loading) {
     return (
@@ -79,7 +76,7 @@ export const MyGalleryAsArtist = () => {
             {allMyArtworks.map((artwork) => {
               return (
                 <div className="artworkCardDesign " key={artwork.id}>
-                 
+
                     {/* <p>
                       <span className="pe-4 nameFieldDesign">Title:</span>
                       {artwork.title}
@@ -91,7 +88,6 @@ export const MyGalleryAsArtist = () => {
                       className="ImgDesign"
                       src={`http://localhost:3000/static/${artwork.image_url}`}
                     />
-                 
                 </div>
               )
             })}

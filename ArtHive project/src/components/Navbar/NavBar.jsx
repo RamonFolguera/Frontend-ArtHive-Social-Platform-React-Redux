@@ -94,7 +94,7 @@ console.log(userCredentialsRdx);
       <a href="/artworks-gallery">Art gallery</a>
       <a href="/artworks-featured">Featured</a>
       <a href="/new-artwork">New artwork</a>
-      <a href="/my-artworks">My artworks</a>
+      <a href="/my-artworks-gallery">My artworks</a>
       </div>
 
       <div>
