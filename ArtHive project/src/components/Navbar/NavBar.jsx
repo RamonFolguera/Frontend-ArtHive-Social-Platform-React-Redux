@@ -19,7 +19,7 @@ export const NavBar = () => {
   }
 
   const userCredentialsRdx = useSelector(userData);
-console.log(userCredentialsRdx);
+
   const logoutFunction = () => {
     dispatch(userout({ credentials: {} }));
     setTimeout(() => {
@@ -142,7 +142,7 @@ console.log(userCredentialsRdx);
       <a href="/how-it-works">How it works</a>
       <a href="/about-me">About me</a>
       <a href="/contact">Contact</a>
-      <a className="login-btn" href=" /login">Log in</a>
+      <a className="login-btn" onClick={() => logoutFunction()}>Log out</a>
       </div>
       <button className="nav-btn nav-close-btn" onClick={showNavbar}>
         <FaTimes/>

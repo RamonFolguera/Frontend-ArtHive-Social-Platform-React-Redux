@@ -7,10 +7,12 @@ import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 import userSlice from '../layout/userSlice';
 import artworkSlice from '../layout/artworkSlice';
+import userArtworkSlice from '../layout/userArtworkSlice';
 
 const reducers = combineReducers({
     user: userSlice,
     artwork: artworkSlice,
+    userArtwork: userArtworkSlice,
 })
 
 const persistConfig = {
