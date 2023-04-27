@@ -11,6 +11,52 @@
     padding-top:1.25rem;
 }
 
+.pinDesign{
+  position:relative;
+}
+
+.saveBtn {
+  border: none;
+  opacity: 0.5;
+  background-color: rgba(203, 0, 0);
+  color: white;
+  font-weight: bold;
+  height: 3rem;
+  width: 7rem;
+  border-radius: 15px;
+  position: absolute;
+  top:0;
+  right:0;
+  margin: 1rem;
+}
+
+.saveBtn:hover {
+  opacity: 1;
+}
+
+.detailsBtn{
+  border: none;
+  opacity: 0.5;
+  background-color: rgb(206, 205, 205);
+  color: black;
+  font-weight: bold;
+  height: 3rem;
+  width: 15rem;
+  border-radius: 15px;
+  position: absolute;
+  bottom:0;
+  left:0;
+  margin: 1rem;
+}
+
+.detailsBtn:hover {
+  opacity: 1;
+}
+
+.bsIcon{
+  color: black;
+}
+
 @media (max-width:48rem) {
     .cardsContainer {
       columns:2;

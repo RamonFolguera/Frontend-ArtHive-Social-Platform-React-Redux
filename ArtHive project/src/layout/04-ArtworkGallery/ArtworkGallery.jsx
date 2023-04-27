@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import {
   addFavorite,
-  bringAllArtworks,
   bringAllArtworksAsUser,
   bringMyUserArtworks,
   updateFavorite,
@@ -17,14 +16,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addChoosenArtwork, artworkData } from '../artworkSlice'
 import { userData } from '../userSlice'
 import { SpinnerComponent } from '../../components/SpinnerComponent/SpinnerComponent'
+import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 
 export const ArtworkGallery = () => {
   const userCredentialsRdx = useSelector(userData)
 
   const [allArtworks, setAllArtworks] = useState([])
   const [loading, setLoading] = useState(true)
-  const [savingPost, setSavingPost] = useState(false)
-  const [postHovered, setPostHovered] = useState(false)
+  const [hoveredArtworkId, setHoveredArtworkId] = useState(null)
   const [myUserArtwork, setMyUserArtwork] = useState([])
   const [isAlreadySaved, setIsAlreadySaved] = useState({})
 
@@ -161,11 +160,12 @@ export const ArtworkGallery = () => {
             <Col>
               <div className="cardsContainer">
                 {allArtworks.map((artwork) => {
+                    const isHovered = artwork.id === hoveredArtworkId
                   return (
                     <div
                       className="pinDesign "
-                      onMouseEnter={() => setPostHovered(true)}
-                      onMouseLeave={() => setPostHovered(false)}
+                      onMouseEnter={() => setHoveredArtworkId(artwork.id)}
+                      onMouseLeave={() => setHoveredArtworkId(null)}
                       onClick={() => artworkSelected(artwork)}
                       key={artwork.id}
                     >
@@ -177,28 +177,28 @@ export const ArtworkGallery = () => {
                         className="imgDesign"
                         src={`http://localhost:3000/static/${artwork.image_url}`}
                       />
-                      {postHovered && (
-                        <div className="">
-                          <div className="">
-                            <div className="">
-                              <a href=""></a>
+                      {isHovered && (
+                      
                               <>
+                              <button type="button"
+                                  className="detailsBtn"
+                                  onClick={() => artworkSelected(artwork)}>
+                                    <BsFillArrowUpRightCircleFill className="bs"/>  Go to Details
+                              </button>
                                 <button
                                   onClick={(e) => {
                                     e.stopPropagation()
                                     addToUserArtwork(artwork)
                                   }}
                                   type="button"
-                                  className="bg-danger"
+                                  className="saveBtn"
                                 >
                                   {isAlreadySaved[artwork.id]
                                     ? 'Saved'
                                     : 'Save'}
                                 </button>
                               </>
-                            </div>
-                          </div>
-                        </div>
+                      
                       )}
                     </div>
                   )
