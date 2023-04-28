@@ -157,6 +157,7 @@ export const Login = () => {
                       <div>{credentialsError.passwordError}</div>
                       <div className="d-flex justify-content-center">
                         <div
+                        type="button" 
                           className="mt-5 buttonDesign d-flex justify-content-center align-items-center"
                           onClick={() => loginFunction()}
                         >

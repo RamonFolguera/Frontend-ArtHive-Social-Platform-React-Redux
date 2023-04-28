@@ -16,6 +16,8 @@ export const validate = (name, data, required) => {
       case "description":
       case "image_url":
       case "dimensions":
+      case "comment":
+      case "rating":
 
         if (data === "" && required === true) {
   

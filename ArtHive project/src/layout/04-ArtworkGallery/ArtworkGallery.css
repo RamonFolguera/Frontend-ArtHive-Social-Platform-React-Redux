@@ -57,6 +57,7 @@
   color: black;
 }
 
+
 @media (max-width:48rem) {
     .cardsContainer {
       columns:2;

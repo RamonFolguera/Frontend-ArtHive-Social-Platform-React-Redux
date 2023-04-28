@@ -85,3 +85,34 @@ export const bringMyUserArtworks = async (token) => {
   return await axios.get(`${root}user-artwork/mine`,  config);
 
 }
+
+export const bringAllUserArtworks = async (token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+  return await axios.get(`${root}user-artwork/`,  config);
+
+}
+
+export const addComment = async (token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.post(`${root}user-artwork/comment`,  config)
+}
+
+
+export const updateComment = async (params, body, token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.put(`${root}user-artwork/comment/${params}`,  body, config)
+}

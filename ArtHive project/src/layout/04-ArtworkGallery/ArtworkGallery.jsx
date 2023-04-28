@@ -7,7 +7,7 @@ import {
   bringMyUserArtworks,
   updateFavorite,
 } from '../../services/apiCalls'
-import { Col, Container, Row, Spinner } from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 
 import './ArtworkGallery.css'
 import { useNavigate } from 'react-router'
@@ -17,6 +17,7 @@ import { addChoosenArtwork, artworkData } from '../artworkSlice'
 import { userData } from '../userSlice'
 import { SpinnerComponent } from '../../components/SpinnerComponent/SpinnerComponent'
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
+import { addChoosenUserArtwork } from '../userArtworkSlice'
 
 export const ArtworkGallery = () => {
   const userCredentialsRdx = useSelector(userData)
@@ -76,8 +77,19 @@ export const ArtworkGallery = () => {
   console.log(isAlreadySaved[2])
 
   const artworkSelected = (artwork) => {
-    dispatch(addChoosenArtwork({ choosenArtwork: artwork }))
 
+    dispatch(addChoosenArtwork({ choosenArtwork: artwork }));
+ 
+    const isRegistered = myUserArtwork.some(
+      (userArtwork) => userArtwork.artwork_id === artwork.id
+    )
+
+    if (isRegistered) {
+      const artworkToUpdateFav = myUserArtwork.find(
+        (userArtwork) => userArtwork.artwork_id === artwork.id
+      )
+     console.log(dispatch(addChoosenUserArtwork({ choosenUserArtwork: artworkToUpdateFav })))
+      }
     setTimeout(() => {
       navigate('/artwork-details')
     }, 500)
@@ -95,6 +107,7 @@ export const ArtworkGallery = () => {
       const artworkToUpdateFav = myUserArtwork.find(
         (userArtwork) => userArtwork.artwork_id === artwork.id
       )
+     
 
       updateFavorite(
         artworkToUpdateFav.id,
