@@ -96,14 +96,14 @@ export const bringAllUserArtworks = async (token) => {
 
 }
 
-export const addComment = async (token) => {
+export const addComment = async (body, token) => {
   let config = {
     headers: { 
       'Authorization': 'Bearer '+ token,  
     }
   };
 
-  return await axios.post(`${root}user-artwork/comment`,  config)
+  return await axios.post(`${root}user-artwork/comment`, body, config)
 }
 
 
@@ -115,4 +115,49 @@ export const updateComment = async (params, body, token) => {
   };
 
   return await axios.put(`${root}user-artwork/comment/${params}`,  body, config)
+}
+
+export const deleteComment = async (params, token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.delete(`${root}user-artwork/comment/${params}`,  config)
+}
+
+
+
+
+export const addRating = async (body, token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.post(`${root}user-artwork/rating`,body,  config)
+}
+
+
+export const updateRating = async (params, body, token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.put(`${root}user-artwork/rating/${params}`,  body, config)
+}
+
+
+export const deleteRating = async (params, token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.delete(`${root}user-artwork/rating/${params}`,  config)
 }

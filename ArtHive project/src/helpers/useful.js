@@ -17,7 +17,6 @@ export const validate = (name, data, required) => {
       case "image_url":
       case "dimensions":
       case "comment":
-      case "rating":
 
         if (data === "" && required === true) {
   
@@ -86,7 +85,17 @@ export const validate = (name, data, required) => {
 
         return {message: "", validated: true};
 
-      
+        case "rating":
+          if (data === "" && required === true) {
+            return {message: "Please fill the field", validated: false};
+          } else if (
+            /^[0-9]*$/.test(data)
+            ) {
+            return {message: "Only numbers", validated: false};
+          }
+  
+       
+          return {message: "", validated: true};
   
       default:
         console.log("Field not recognized");
