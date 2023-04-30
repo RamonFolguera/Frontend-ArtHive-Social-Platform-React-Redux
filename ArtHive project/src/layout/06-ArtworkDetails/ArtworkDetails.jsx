@@ -7,7 +7,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { useState } from 'react'
 import { SpinnerComponent } from '../../components/SpinnerComponent/SpinnerComponent'
 import './ArtworkDetails.css'
-import { userArtworkData } from '../userArtworkSlice'
+// import { userArtworkData } from '../userArtworkSlice'
 import {
   addComment,
   addRating,
@@ -27,13 +27,13 @@ export const ArtworkDetails = () => {
   const userCredentialsRdx = useSelector(userData)
   const artworkSelectedRdx = useSelector(artworkData)
   const artworkSelectedObj = artworkSelectedRdx.choosenArtwork
-  const userArtworkSelectedRdx = useSelector(userArtworkData)
-  const userArtworkSelectedObj = userArtworkSelectedRdx.choosenUserArtwork
-  const params = userArtworkSelectedObj.id
-  console.log(userArtworkSelectedRdx)
-
+  // const userArtworkSelectedRdx = useSelector(userArtworkData)
+  // const userArtworkSelectedObj = userArtworkSelectedRdx.choosenUserArtwork
+  // const params = userArtworkSelectedObj.id
+  const [myUserArtwork, setMyUserArtwork] = useState([])
   const [allUserArtworks, setAllUserArtworks] = useState([])
   const [allUserArtworksSelected, setAllUserArtworksSelected] = useState([])
+  const [allUserArtworksSelectedWithComment, setAllUserArtworksSelectedWithComment] = useState([])
   const [loading, setLoading] = useState(true)
   const [commentRating, setCommentRating] = useState({
     artwork_id: artworkSelectedObj.id,
@@ -72,22 +72,51 @@ export const ArtworkDetails = () => {
               return
             }
             setAllUserArtworks(result.data.data)
+
+
+            const myUserArtworkSelected = result.data.data.filter((userArtwork) => {
+              return (
+                userArtwork.user_id === userCredentialsRdx.credentials.user.userId
+              )
+            })
+            console.log(myUserArtworkSelected);
+            if (myUserArtworkSelected.length === 0) {
+              setMyUserArtwork(null)
+            } else {
+              setMyUserArtwork(myUserArtworkSelected[0])
+
+            }
+
           })
           .catch((error) => console.log(error))
       }, 2000)
     }
   }, [allUserArtworks])
 
+console.log(myUserArtwork);
+
+useEffect(() => {
+  if (allUserArtworks.length > 0) {
+    /////////////// Getting all user_artworks registered for this selected artwork
+    const selectedUserArtworks = allUserArtworks.filter((userArtwork) => {
+      return (
+        artworkSelectedObj.id === userArtwork.artwork_id 
+      )
+    })
+    setAllUserArtworksSelected(selectedUserArtworks)
+  }
+},[allUserArtworks])
+
+
   useEffect(() => {
-    if (allUserArtworks.length > 0) {
+    if (allUserArtworksSelected.length > 0) {
       /////////////// Getting all user_artworks registered for this selected artwork with comments not null
-      const selectedUserArtworks = allUserArtworks.filter((userArtwork) => {
+      const selectedUserArtworksWithComment = allUserArtworksSelected.filter((userArtworkSelected) => {
         return (
-          artworkSelectedObj.id === userArtwork.artwork_id &&
-          userArtwork.comment !== null
+          userArtworkSelected.comment !== null
         )
       })
-      setAllUserArtworksSelected(selectedUserArtworks)
+      setAllUserArtworksSelectedWithComment(selectedUserArtworksWithComment)
       /////////////// Saving average rating
     //   let avgRating = 0
 
@@ -110,6 +139,9 @@ export const ArtworkDetails = () => {
     }
   }, [allUserArtworks])
 
+console.log(allUserArtworksSelected, "registros con artwork id seleccionado");
+console.log(allUserArtworksSelectedWithComment, "registros con artwork id seleccionado y comentario no NULL");
+
   useEffect(() => {
           /////////////// Saving average rating
 
@@ -128,7 +160,7 @@ export const ArtworkDetails = () => {
     setAverageRating(null)
   }
 
-  }, [allUserArtworksSelected])
+  }, [allUserArtworks])
 
 
   const [valiCommentRating, setValiCommentRating] = useState({
@@ -183,10 +215,10 @@ export const ArtworkDetails = () => {
     }))
   }
 
-  const createOrUpdateComment = (userArtworkSelectedObj) => {
-console.log(userArtworkSelectedObj);
-    if (!userArtworkSelectedObj || userArtworkSelectedObj.comment === null) {
-      addComment({ comment: commentRating.comment, artwork_id: artworkSelectedObj }, userCredentialsRdx.credentials.token)
+  const createOrUpdateComment = (myUserArtwork) => {
+console.log(myUserArtwork);
+    if (!myUserArtwork || myUserArtwork.comment === null) {
+      addComment({ comment: commentRating.comment, artwork_id: myUserArtwork }, userCredentialsRdx.credentials.token)
       .then(() => {
         setAllUserArtworksSelected((prevState) =>
           prevState.map((userArtworkSelected) =>
@@ -243,9 +275,9 @@ console.log(userArtworkSelectedObj);
     })
   }
 
-  const deleteYourRating = (userArtworkSelectedObj) => {
+  const deleteYourRating = (myUserArtwork) => {
     deleteRating(
-      userArtworkSelectedObj.id,
+      myUserArtwork.id,
       userCredentialsRdx.credentials.token
     ).then(() => {
       setAllUserArtworks((prevState) =>
@@ -262,12 +294,11 @@ console.log(userArtworkSelectedObj);
     })
   }
 
-  const createOrUpdateRating = (userArtworkSelectedObj) => {
+  const createOrUpdateRating = (myUserArtwork) => {
 
     
-    if (parseInt(commentRating.rating) === null) {
-      console.log(parseInt(commentRating.rating));
-
+    if (myUserArtwork === null) {
+      
       addRating({rating: parseInt(commentRating.rating), artwork_id:artworkSelectedObj.id },userCredentialsRdx.credentials.token)
       .then(() => {
         setAllUserArtworks((prevState) =>
@@ -285,7 +316,7 @@ console.log(userArtworkSelectedObj);
     } else {
 
       updateRating(
-        params,
+        myUserArtwork.id,
         { rating: parseInt(commentRating.rating) },
         userCredentialsRdx.credentials.token
       ).then(() => {
@@ -365,9 +396,9 @@ console.log(userArtworkSelectedObj);
                     >
                       <div
                         className={
-                          (userArtworkSelected.id === userArtworkSelectedObj.id && userArtworkSelected.comment !== null)
+                          (userArtworkSelected.id === myUserArtwork.id && userArtworkSelected.comment !== null)
                           ? 'commentLine userComment m-0 w-100' :
-                          (userArtworkSelected.id !== userArtworkSelectedObj.id && userArtworkSelected.comment !== null)  
+                          (userArtworkSelected.id !== myUserArtwork.id && userArtworkSelected.comment !== null)  
                           ? 'commentLine m-0 w-100'
                           : ''
                         }
@@ -376,10 +407,10 @@ console.log(userArtworkSelectedObj);
                           <p className="m-0">{userArtworkSelected.comment}</p>
                         </div>
                       </div>
-                      {(userArtworkSelected.id === userArtworkSelectedObj.id && userArtworkSelected.comment !== null) ? (
+                      {(userArtworkSelected.id === myUserArtwork.id && userArtworkSelected.comment !== null) ? (
                         <button
                           onClick={() =>
-                            deleteYourComment(userArtworkSelectedObj)
+                            deleteYourComment(myUserArtwork)
                           }
                           className="buttonSubmitCommentDesign"
                         >
@@ -408,7 +439,7 @@ console.log(userArtworkSelectedObj);
                   <button
                     className="ps-3 pe-3 mt-3 mb-3 buttonSubmitCommentDesign d-flex justify-content-center align-items-center"
                     onClick={() => {
-                      createOrUpdateComment(userArtworkSelectedObj)
+                      createOrUpdateComment(myUserArtwork)
                     }}
                     // commentRatingAct
                     // ?
@@ -434,7 +465,7 @@ console.log(userArtworkSelectedObj);
                 <div className="d-flex justify-content-center flex-column align-items-center">
                 {allUserArtworksSelected.map((userArtworkSelected)=>{
                   return(
-                  <div key={userArtworkSelected.id}> {(userArtworkSelected.id === userArtworkSelectedObj.id && userArtworkSelected.rating !== null) ? `Your rating is: ${userArtworkSelected.rating}` : <div></div>}</div>
+                  <div key={userArtworkSelected.id}> {(userArtworkSelected.id === myUserArtwork.id && userArtworkSelected.rating !== null) ? `Your rating is: ${userArtworkSelected.rating}` : <div></div>}</div>
                 )
                 })} 
                   <InputText
@@ -453,7 +484,7 @@ console.log(userArtworkSelectedObj);
                   <button
                     className="ps-3 pe-3 mt-3 mb-3 buttonSubmitRatingDesign d-flex justify-content-center align-items-center"
                     onClick={() => {
-                      createOrUpdateRating(userArtworkSelectedObj)
+                      createOrUpdateRating(myUserArtwork)
                     }}
                     // commentRatingAct
                     // ?
@@ -469,7 +500,7 @@ console.log(userArtworkSelectedObj);
                   <button
                     className="ps-3 pe-3 mt-3 mb-3 buttonSubmitRatingDesign d-flex justify-content-center align-items-center"
                     onClick={() => {
-                      deleteYourRating(userArtworkSelectedObj)
+                      deleteYourRating(myUserArtwork)
                     }}
                     // commentRatingAct
                     // ?

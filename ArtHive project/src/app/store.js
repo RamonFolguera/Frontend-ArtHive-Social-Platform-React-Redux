@@ -12,7 +12,7 @@ import userArtworkSlice from '../layout/userArtworkSlice';
 const reducers = combineReducers({
     user: userSlice,
     artwork: artworkSlice,
-    userArtwork: userArtworkSlice,
+    // userArtwork: userArtworkSlice,
 })
 
 const persistConfig = {
