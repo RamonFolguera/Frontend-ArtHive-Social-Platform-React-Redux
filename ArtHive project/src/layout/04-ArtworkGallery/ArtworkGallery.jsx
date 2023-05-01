@@ -74,8 +74,6 @@ export const ArtworkGallery = () => {
     }
   }, [allArtworks])
 
-  console.log(isAlreadySaved[2])
-
   const artworkSelected = (artwork) => {
 
     dispatch(addChoosenArtwork({ choosenArtwork: artwork }));
