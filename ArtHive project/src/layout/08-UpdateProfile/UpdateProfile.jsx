@@ -3,13 +3,17 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import { InputText } from "../../components/InputText/InputText";
-
-import { registerUser } from "../../services/apiCalls";
+import "./UpdateProfile.css";
+import { updateMyProfile } from "../../services/apiCalls";
 import { validate } from "../../helpers/useful";
+import { userData } from "../userSlice";
+import { useSelector } from "react-redux";
 
 export const UpdateProfile = () => {
   const navigate = useNavigate();
 
+    const userCredentialsRdx = useSelector(userData)
+  
   const [credentials, setCredentials] = useState({
     name: "",
     last_name: "",
@@ -100,13 +104,13 @@ export const UpdateProfile = () => {
     }));
   };
 
-  const userRegister = () => {
-    registerUser(credentials);
+  const userUpdate = () => {
+    updateMyProfile(credentials, userCredentialsRdx);
 
-    setWelcome(`Welcome to ArtHive. Be creative! `);
+    setWelcome(`Profile updated! Now go explore some art!`);
     setTimeout(() => {
       navigate("/");
-    }, 500);
+    }, 1000);
   };
 
   return (
@@ -260,7 +264,7 @@ export const UpdateProfile = () => {
                 onClick={
                   registerAct
                     ? () => {
-                        userRegister();
+                        userUpdate();
                         <div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
         <h1 className="welcomeMsgDesign">{welcome}</h1>
         </div>
