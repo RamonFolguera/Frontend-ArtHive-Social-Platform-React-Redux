@@ -161,3 +161,14 @@ export const deleteRating = async (params, token) => {
 
   return await axios.delete(`${root}user-artwork/rating/${params}`,  config)
 }
+
+
+export const updateMyProfile = async (body, token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.put(`${root}user/update-me`,  body, config)
+}

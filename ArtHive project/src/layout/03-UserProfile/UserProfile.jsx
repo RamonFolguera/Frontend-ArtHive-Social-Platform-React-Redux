@@ -66,7 +66,7 @@ export const UserProfile = () => {
       </div>
       <div className="buttonContainerDesign d-flex justify-content-center">
         <Link className="buttonUpdateDesign" to="/update-profile">
-          Update your profile
+          Update my details
         </Link>
       </div>
     </Container>
@@ -134,7 +134,7 @@ export const UserProfile = () => {
           </div>
           <div className="buttonContainerDesign d-flex justify-content-center">
             <Link className="buttonUpdateDesign" to="/update-profile">
-              Update your profile
+            Update my details
             </Link>
           </div>
         </Container>
@@ -180,7 +180,7 @@ export const UserProfile = () => {
           </div>
           <div className="buttonContainerDesign d-flex justify-content-center">
             <Link className="buttonUpdateDesign" to="/update-profile">
-              Update your profile
+            Update my details
             </Link>
           </div>
         </Container>
