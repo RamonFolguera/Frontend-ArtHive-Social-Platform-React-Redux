@@ -44,6 +44,8 @@ export const ArtworkDetails = () => {
   const [averageRating, setAverageRating] = useState(null)
   const [commentRatingAct, setCommentRatingAct] = useState(false)
   const [allUserArtworksSelectedWithRating,setAllUserArtworksSelectedWithRating] = useState([])
+  let hasVoted = false;
+   
   let totalRating = 0
 
   const ratingSum = (res) => {
@@ -93,7 +95,7 @@ useEffect(() => {
   },[allUserArtworks])
   console.log(allUserArtworks)
 console.log(allUserArtworksSelected);
-
+console.log(myUserArtwork)
 
   useEffect(() => {
     if (allUserArtworksSelected.length > 0) {
@@ -310,6 +312,8 @@ console.log(myUserArtwork);
   }
 
   const deleteYourRating = (myUserArtwork) => {
+    
+
     deleteRating(
       myUserArtwork.id,
       userCredentialsRdx.credentials.token
@@ -325,9 +329,11 @@ console.log(myUserArtwork);
           : userArtwork
       )
     )
+    hasVoted = false;
+
     })
   }
-
+console.log(hasVoted);
   const createOrUpdateRating = (myUserArtwork) => {
     const rating = parseInt(commentRating.rating);
 
@@ -375,7 +381,6 @@ console.log(myUserArtwork);
       
     }
   }
-
   if (loading) {
     return (
       <>
@@ -427,6 +432,9 @@ console.log(myUserArtwork);
               <div className="commentsContainer">
                 
                 {/* mapping all registers where that artwork in particular has with any user  */}
+                
+                
+                
                 {allUserArtworks.map((userArtwork) => {
                   return (
                     <div
@@ -508,21 +516,23 @@ console.log(myUserArtwork);
                 </div>
 
                 <div className="d-flex justify-content-center flex-column align-items-center">
-                {allUserArtworks.map((userArtworkSelected)=>{
-                  return(
-                  <div key={userArtworkSelected.id}> 
-                  <div>
-                  {!myUserArtwork
-                  ? <div>You haven't voted yet</div> 
-                  : (userArtworkSelected.id === myUserArtwork.id && userArtworkSelected.rating !== null) 
-                  ? `Your rating is: ${userArtworkSelected.rating}` 
-                  : <div></div>
-                }
-                                  </div>
-
-                </div>
-                )
-                })} 
+                
+                
+                
+                {allUserArtworks.map((userArtworkSelected) => {
+      if (!hasVoted && userArtworkSelected.id === myUserArtwork.id && userArtworkSelected.rating !== null) {
+        // Si el usuario ha votado en una obra de arte, mostrar su rating
+        hasVoted = true;
+        return <div key={userArtworkSelected.id}>Your rating is: {userArtworkSelected.rating}</div>;
+      } else if (!hasVoted && myUserArtwork.id && userArtworkSelected.id === myUserArtwork.id && userArtworkSelected.rating === null) {
+        // Si el usuario aún no ha votado en una obra de arte, mostrar "You haven't voted yet"
+        hasVoted = true;
+        return <div key={userArtworkSelected.id}>You haven't voted yet</div>;
+      } else {
+        // Si la obra de arte no es la seleccionada por el usuario, mostrar un espacio en blanco
+        return <div key={userArtworkSelected.id}></div>;
+      }
+    })}
                   <InputText
                     className={
                       commentRatingError.nameError === ''

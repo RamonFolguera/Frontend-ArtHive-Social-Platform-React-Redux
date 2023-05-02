@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from "react-icons/fa";
 import './NavBar.css'
 import { userData, userout } from "../../layout/userSlice";
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const NavBar = () => {
   const navRef = useRef();
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const showNavbar = () => {

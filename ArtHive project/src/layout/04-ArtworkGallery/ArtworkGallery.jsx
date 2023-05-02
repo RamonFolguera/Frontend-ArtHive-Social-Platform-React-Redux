@@ -17,7 +17,7 @@ import { addChoosenArtwork, artworkData } from '../artworkSlice'
 import { userData } from '../userSlice'
 import { SpinnerComponent } from '../../components/SpinnerComponent/SpinnerComponent'
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
-import { addChoosenUserArtwork } from '../userArtworkSlice'
+
 
 export const ArtworkGallery = () => {
   const userCredentialsRdx = useSelector(userData)
@@ -86,7 +86,7 @@ export const ArtworkGallery = () => {
       const artworkToUpdateFav = myUserArtwork.find(
         (userArtwork) => userArtwork.artwork_id === artwork.id
       )
-     console.log(dispatch(addChoosenUserArtwork({ choosenUserArtwork: artworkToUpdateFav })))
+     
       }
     setTimeout(() => {
       navigate('/artwork-details')

@@ -16,6 +16,7 @@ export const Login = () => {
 
   const dispatch = useDispatch() //Instanciamos modo escritura Redux
   const credentialsRdx = useSelector(userData) //Instanciamos modo lecutura Redux
+   console.log(credentialsRdx);
   const [allArtworks, setAllArtworks] = useState([])
 
   useEffect(() => {
