@@ -1,15 +1,14 @@
 
 .homeSection1 {
-    width: 100%;
-    min-height: 50em; 
-    padding: 0 20px ;
-    display:flex;
-    justify-content: space-between;
+ 
+    min-height: 40em; 
+    overflow: hidden;
+    
 }
 
 .titleDesign{
     font-family: 'Lobster', sans-serif;
-    font-size: 8rem;
+    font-size: 8.5rem;
     color: black;
     border-bottom: 2px lightgray solid;
     margin-right: 50px;
@@ -26,8 +25,23 @@
 }
 
 .selectedImgDesign{
-    border-radius: 20px;
-    width: 30em;
-    height: 35em;
-    object-fit: cover;
+    border-radius: 50%;
+    width: 10px;
+    max-height: 40em;
+}
+
+.buttonGoToRegisterDesign {
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    background-color: #ee6055;
+    border-radius: 100px;
+}
+
+.buttonGoToRegisterDesign:hover {
+    text-decoration: none;
+    color: #ee6055;
+    font-weight: bolder;
+    background-color: #e6aca858;
+    border-radius: 100px;
 }
