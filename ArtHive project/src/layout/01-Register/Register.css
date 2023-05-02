@@ -1,0 +1,77 @@
+* {
+    margin:0 ;
+    padding:0 ;
+}
+
+.selectedImgCol {
+    display:none;
+}
+
+.formCol{
+    height: 100vh;
+    margin: 20px 0;
+}
+
+.greetingMsgDesign {
+    font-family: 'Lobster', sans-serif;
+    font-size: 8rem;
+}
+
+.loginFormBody {
+    padding: 0 20px;
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.loginFormContainer {
+    width: 100%;
+}
+
+.inputLoginDesign {
+    width: 100% ;
+    height: 2em;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.419);
+}
+
+.buttonDesign {
+    text-align: center;
+    color: white;
+    height: 2em;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    background-color:rgb(12, 92, 68)
+}
+
+@media (min-width: 1200px) {
+    .main-container {
+        display:flex;
+        justify-content: end;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw
+    }
+    .registerFormBody {
+        width: 50%;
+        padding: 6em 10em;
+
+    }
+
+    .selectedImgCol {
+        display:block;
+    }
+
+    .selectedImgDesignRegister{
+        height: 100vh;
+        width: auto;
+        border-radius: 0;
+        margin: 0;
+        padding:0;
+    }
+}
+    
