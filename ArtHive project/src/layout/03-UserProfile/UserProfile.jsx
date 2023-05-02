@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { bringMyUserProfile } from '../../services/apiCalls'
 import { userData } from '../userSlice'
 import './UserProfile.css'
+import { NavBar } from '../../components/Navbar/NavBar'
 
 export const UserProfile = () => {
   const [user, setUser] = useState([])
@@ -64,7 +65,7 @@ export const UserProfile = () => {
 
       </div>
       <div className="buttonContainerDesign d-flex justify-content-center">
-        <Link className="buttonUpdateDesign" to="/update-user-as-client">
+        <Link className="buttonUpdateDesign" to="/update-profile">
           Update your profile
         </Link>
       </div>
@@ -132,7 +133,7 @@ export const UserProfile = () => {
     
           </div>
           <div className="buttonContainerDesign d-flex justify-content-center">
-            <Link className="buttonUpdateDesign" to="/update-user-as-client">
+            <Link className="buttonUpdateDesign" to="/update-profile">
               Update your profile
             </Link>
           </div>
@@ -178,7 +179,7 @@ export const UserProfile = () => {
     
           </div>
           <div className="buttonContainerDesign d-flex justify-content-center">
-            <Link className="buttonUpdateDesign" to="/update-user-as-client">
+            <Link className="buttonUpdateDesign" to="/update-profile">
               Update your profile
             </Link>
           </div>

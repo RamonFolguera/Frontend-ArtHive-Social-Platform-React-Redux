@@ -10,6 +10,7 @@ import { ArtworkGallery } from '../04-ArtworkGallery/ArtworkGallery'
 import { MyGalleryAsArtist } from '../07-MyGalleryAsArtist/MyGalleryAsArtist'
 
 import { UserProfile } from '../03-UserProfile/UserProfile'
+import { UpdateProfile } from '../08-UpdateProfile/UpdateProfile'
 
 export const Body = () => {
   return (
@@ -25,6 +26,7 @@ export const Body = () => {
         <Route path="/artworks-gallery" element={<ArtworkGallery/>}/>
         <Route path="/my-artworks-gallery" element={<MyGalleryAsArtist/>}/>
         <Route path="/profile" element={<UserProfile/>}/>
+        <Route path="/update-profile" element={<UpdateProfile/>}/>
 
     </Routes>
     </>
