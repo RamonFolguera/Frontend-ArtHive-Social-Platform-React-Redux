@@ -34,7 +34,6 @@ export const NavBar = () => {
     <>
     <nav ref={navRef} className='d-flex align-items-lg-center justify-content-lg-between w-100'>
       <div className="d-flex flex-xs-column align-items-xs-center">
-      <a href="/profile">Hi {userCredentialsRdx.credentials?.user?.name}!</a>
       <a href="/">Home</a>
       <a href="/artworks-gallery">Art gallery</a>
       <a href="/artworks-featured">Featured</a>
@@ -67,7 +66,7 @@ export const NavBar = () => {
       <div className="d-flex flex-xs-column align-items-xs-center">
       <a href="/profile">Hi {userCredentialsRdx.credentials?.user?.name}!</a>
       <a href="/">Home</a>
-      <a href="/artworks-gallery">My panel</a>
+      <a href="/admin-panel">My panel</a>
       </div>
 
       <div>

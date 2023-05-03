@@ -62,7 +62,7 @@ export const Login = () => {
     }))
   }
 
-  const inputValidate = (e) => {
+  const checkError = (e) => {
     switch (e.target.name) {
       case 'email':
         break
@@ -142,7 +142,8 @@ export const Login = () => {
                         name="email"
                         placeholder="e.g. artist@gmail.com"
                         changeFunction={(e) => inputHandler(e)}
-                        validateFunction={(e) => inputValidate(e)}
+                        blurFunction={(e) => checkError(e)}
+
                       />
                       <div>{credentialsError.emailError}</div>
                       <div className="ps-3 mt-4 ">PASSWORD</div>
@@ -153,7 +154,8 @@ export const Login = () => {
                         name="password"
                         placeholder="e.g. password_123"
                         changeFunction={(e) => inputHandler(e)}
-                        validateFunction={(e) => inputValidate(e)}
+                        blurFunction={(e) => checkError(e)}
+
                       />
                       <div>{credentialsError.passwordError}</div>
                       <div className="d-flex justify-content-center">

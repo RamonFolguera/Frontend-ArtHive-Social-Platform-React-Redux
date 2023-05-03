@@ -8,7 +8,6 @@ import { Login } from '../02-Login/Login'
 import { NewArtwork } from '../05-NewArtwork/NewArtwork'
 import { ArtworkGallery } from '../04-ArtworkGallery/ArtworkGallery'
 import { MyGalleryAsArtist } from '../07-MyGalleryAsArtist/MyGalleryAsArtist'
-
 import { UserProfile } from '../03-UserProfile/UserProfile'
 import { UpdateProfile } from '../08-UpdateProfile/UpdateProfile'
 
@@ -16,7 +15,6 @@ export const Body = () => {
   return (
     <> 
     <Routes>
-        {/* <Route path="/" element={<Layout />}/> */}
         <Route path="*" element={<Navigate to="/"/>}/>
         <Route path="/" element={<Home/>}/>
         <Route path="/register" element={<Register/>}/>

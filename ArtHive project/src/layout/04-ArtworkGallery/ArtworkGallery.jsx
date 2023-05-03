@@ -169,7 +169,7 @@ export const ArtworkGallery = () => {
           <h2>All artworks:</h2>
           <Row className="homeSection1">
             <Col>
-              <div className="cardsContainer">
+              <div className="cardsGalleryContainer">
                 {allArtworks.map((artwork) => {
                     const isHovered = artwork.id === hoveredArtworkId
                   return (
