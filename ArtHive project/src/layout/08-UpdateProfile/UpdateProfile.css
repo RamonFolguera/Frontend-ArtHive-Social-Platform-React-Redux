@@ -1,0 +1,11 @@
+.previousDetail{
+    background-color: #c2c5aa;
+    font-weight: bolder;
+    padding: 5px;
+}
+
+.updateUserFormBody{
+    background-color: #e9ecef ;
+    border-radius: 30px;
+    width: 50vw;
+}

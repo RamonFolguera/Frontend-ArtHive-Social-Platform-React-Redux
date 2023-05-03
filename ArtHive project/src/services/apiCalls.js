@@ -170,5 +170,5 @@ export const updateMyProfile = async (body, token) => {
     }
   };
 
-  return await axios.put(`${root}user/update-me`,  body, config)
+  return await axios.put(`${root}users/update-me`,  body, config)
 }

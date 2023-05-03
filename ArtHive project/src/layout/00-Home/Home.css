@@ -25,9 +25,9 @@
 }
 
 .selectedImgDesign{
-    border-radius: 50%;
-    width: 10px;
     max-height: 40em;
+    min-height: 40em;
+    width:auto;
 }
 
 .buttonGoToRegisterDesign {

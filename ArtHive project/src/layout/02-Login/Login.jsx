@@ -115,9 +115,9 @@ export const Login = () => {
             {allArtworks.map((artwork) => {
               return (
                 <div key={artwork.id}>
-                  <div className="d-flex align-items-end justify-content-between">
+                  <div>
                     <img
-                      className="selectedImgDesign"
+                      className="selectedImgLoginDesign"
                       src={`http://localhost:3000/static/${artwork.image_url}`}
                     />
                   </div>

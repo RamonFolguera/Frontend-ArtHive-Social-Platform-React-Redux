@@ -59,7 +59,6 @@
     }
 
     .formCol{
-
         height: 100vh;
     }
     
@@ -67,7 +66,7 @@
         display:block;
     }
 
-    .selectedImgDesign{
+    .selectedImgLoginDesign{
         height: 100vh;
         width: auto;
         border-radius: 0;

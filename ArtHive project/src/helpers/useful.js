@@ -17,6 +17,8 @@ export const validate = (name, data, required) => {
       case "image_url":
       case "dimensions":
       case "comment":
+      case "city":
+      case "country":
 
         if (data === "" && required === true) {
   
@@ -25,7 +27,7 @@ export const validate = (name, data, required) => {
   
       
         } else if (!/[a-z]/gi.test(data)) {
-          return {message: "Invalid name format", validated: false};
+          return {message: "Invalid format", validated: false};
         }
   
         return {message: "", validated: true};

@@ -4,16 +4,30 @@ import { useNavigate } from "react-router-dom";
 
 import { InputText } from "../../components/InputText/InputText";
 import "./UpdateProfile.css";
-import { updateMyProfile } from "../../services/apiCalls";
+import { bringMyUserProfile, updateMyProfile } from "../../services/apiCalls";
 import { validate } from "../../helpers/useful";
 import { userData } from "../userSlice";
 import { useSelector } from "react-redux";
+import { MdCloudUpload } from "react-icons/md";
+import { detailsData } from "../detailsSlice";
 
 export const UpdateProfile = () => {
   const navigate = useNavigate();
 
-    const userCredentialsRdx = useSelector(userData)
-  
+  const [user, setUser] = useState([])
+  const userCredentialsRdx = useSelector(userData)
+
+  useEffect(() => {
+    if (user.length === 0) {
+      bringMyUserProfile(userCredentialsRdx.credentials.token)
+        .then((result) => {
+          setUser(result.data.data)
+
+        })
+        .catch((error) => console.log(error))
+    }
+  }, [user])
+
   const [credentials, setCredentials] = useState({
     name: "",
     last_name: "",
@@ -43,7 +57,6 @@ export const UpdateProfile = () => {
     avatarVali: false,
     cityVali: false,
     countryVali: false,
-
   });
 
   const [credentialsError, setCredentialsError] = useState({
@@ -105,8 +118,8 @@ export const UpdateProfile = () => {
   };
 
   const userUpdate = () => {
-    updateMyProfile(credentials, userCredentialsRdx);
-
+    updateMyProfile(credentials, userCredentialsRdx.credentials.token);
+console.log("entro en update");
     setWelcome(`Profile updated! Now go explore some art!`);
     setTimeout(() => {
       navigate("/");
@@ -116,174 +129,195 @@ export const UpdateProfile = () => {
   return (
 
     <div className="d-flex justify-content-center defaultPageHeight">
-      
-      {welcome === "" ? (
-        <div className="registerContent">
-          <div className="w-100 text-center pt-3 pb-3">
-            <h1>Register with ArtHive and start your art journey</h1>
-          </div>
-          <div className="registerContainerDesign mb-5">
-            <Container>
-              <Row className="mb-3">
-                <Col md={4} id="formGridName">
-                  <p className="mb-0 mt-3">Name</p>
+      {welcome === '' ? (
+        <Container fluid className="register-container">
+          <Row className="mb-3 w-100 d-flex justify-content-center mt-5 mb-5">
+            <Col
+              lg={12}
+              className="updateUserFormBody pb-lg-5 justify-content-lg-center"
+              id="formGridName"
+            >
+              <h1 className="text-center nameDesign">
+                Update my details
+              </h1>
+              <div className="d-flex justify-content-between">
+              <div className="d-flex flex-column justify-content-center align-items-center">
+                <div className="d-flex justify-content-between align-items-center mb-5">
+                  <p className="mb-0 "><span className="previousDetail">{user.name}</span></p>
                   <InputText
                     className={
-                      credentialsError.nameError === ""
-                        ? "inputsDesignCommon inputBasicDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign"
+                      credentialsError.nameError === ''
+                        ? 'inputsDesignCommon inputBasicDesign w-100'
+                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign w-100'
                     }
-                    type={"text"}
-                    name={"name"}
+                    type={'text'}
+                    name={'name'}
                     placeholder="Name"
                     required={true}
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
                   <div>{credentialsError.nameError}</div>
-                </Col>
+                  </div>
 
-                <Col md={4} id="formGridFirstSurname">
-                  <p className="mb-0 mt-3">First Surname</p>
-                  <InputText
-                    className={
-                      credentialsError.first_surnameError === ""
-                        ? "inputsDesignCommon inputBasicDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign"
-                    }
-                    type={"text"}
-                    name={"first_surname"}
-                    required={true}
-                    placeholder="First Surname"
-                    changeFunction={(e) => inputHandler(e)}
-                    blurFunction={(e) => checkError(e)}
-                  />
-                  <div>{credentialsError.first_surnameError}</div>
-                </Col>
+                  <div className="d-flex justify-content-between align-items-center mt-3">
+                  <p className="mb-0 "><span className="previousDetail"> {user.last_name}</span></p>
 
-                <Col md={4} id="formGridSecondSurname">
-                  <p className="mb-0 mt-3">Second Surname</p>
                   <InputText
                     className={
-                      credentialsError.second_surnameError === ""
-                        ? "inputsDesignCommon inputBasicDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign"
+                      credentialsError.last_nameError === ''
+                        ? 'inputsDesignCommon inputBasicDesign w-100'
+                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign w-100'
                     }
-                    type={"text"}
-                    name={"second_surname"}
+                    type={'text'}
+                    name={'last_name'}
                     required={true}
-                    placeholder="Second Surname"
+                    placeholder="Last name"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.second_surnameError}</div>
-                </Col>
-              </Row>
-              <Row className="mb-3">
-               
-                <Col sm={12} lg={6} id="formGridEmail">
-                  <p className="mb-0 mt-3">Email</p>
-                  <InputText
-                    className={
-                      credentialsError.emailError === ""
-                        ? "inputsDesignCommon inputBasicDesign inputEmailDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign inputEmailDesign"
-                    }
-                    type={"email"}
-                    name={"email"}
-                    required={true}
-                    placeholder="Email"
-                    changeFunction={(e) => inputHandler(e)}
-                    blurFunction={(e) => checkError(e)}
+                  <div>{credentialsError.last_nameError}</div>
+                  </div>
+                   </div>
+                <div>
+                <form
+                  action="/profile"
+                  method="post"
+                  encType="multipart/form-data"
+                  className="form-avatar"
+                >
+                  Avatar/photo
+                  <input
+                    type="file"
+                    name="avatar"
+                    className="input-field-avatar"
+                    hidden
                   />
-                  <div>{credentialsError.emailError}</div>
-                </Col>
+                  <MdCloudUpload color="#1475cf" size={60} />
+                  <p>Browse Files to upload</p>
+                </form>
+                </div>
 
-                <Col sm={12} lg={6} id="formGridPassword">
-                  <p className="mb-0 mt-3">Password</p>
+              </div>
+
+              <div className="d-flex justify-content-between align-items-center mt-3">
+              <p className="mb-0 "><span className="previousDetail">{user.email}</span></p>
+
+              <InputText
+                className={
+                  credentialsError.emailError === ''
+                    ? 'inputsDesignCommon inputBasicDesign inputEmailDesign w-100'
+                    : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputEmailDesign w-100'
+                }
+                type={'email'}
+                name={'email'}
+                required={true}
+                placeholder="Email"
+                changeFunction={(e) => inputHandler(e)}
+                blurFunction={(e) => checkError(e)}
+              />
+              <div>{credentialsError.emailError}</div>
+              </div>
+              <div className="d-flex justify-content-between align-items-center mt-3">
+              <p className="mb-0 "><span className="previousDetail">New Password:</span></p>
+
+              <InputText
+                className={
+                  credentialsError.passwordError === ''
+                    ? 'inputsDesignCommon inputBasicDesign inputPasswordDesign w-100'
+                    : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputPasswordDesign w-100'
+                }
+                type={'password'}
+                name={'password'}
+                required={true}
+                placeholder="e.g. Password_123"
+                changeFunction={(e) => inputHandler(e)}
+                blurFunction={(e) => checkError(e)}
+              />
+              <div>{credentialsError.passwordError}</div>
+              </div>
+              <div className="d-flex justify-content-between align-items-center mt-3">
+              <p className="mb-0 "><span className="previousDetail">{user.phone}</span></p>
+
+              <InputText
+                className={
+                  credentialsError.phoneError === ''
+                    ? 'inputsDesignCommon inputBasicDesign w-100'
+                    : 'inputsDesignCommon inputBasicDesign inputErrorDesign w-100'
+                }
+                type={'text'}
+                name={'phone'}
+                required={true}
+                placeholder="e.g. +34666555444"
+                changeFunction={(e) => inputHandler(e)}
+                blurFunction={(e) => checkError(e)}
+              />
+              <div>{credentialsError.phoneError}</div>
+              </div>
+              <div className="cityCountrySection d-flex justify-content-between">
+                <div className="w-100 me-3">
+                <div className="d-flex justify-content-between align-items-center mt-3">
+                <p className="mb-0 "><span className="previousDetail">{user.city}</span></p>
+
                   <InputText
                     className={
-                      credentialsError.passwordError === ""
-                        ? "inputsDesignCommon inputBasicDesign inputPasswordDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign inputPasswordDesign"
+                      credentialsError.cityError === ''
+                        ? 'inputsDesignCommon inputBasicDesign inputAddressDesign w-100'
+                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputAddressDesign w-100'
                     }
-                    type={"password"}
-                    name={"password"}
+                    type={'text'}
+                    name={'city'}
                     required={true}
-                    placeholder="e.g. Password_123"
+                    placeholder="City"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.passwordError}</div>
-                </Col>
-              </Row>
-              <Row>
-              <Col sm={12} lg={6} id="formGridAddress">
-                <p className="mb-0 mt-3">Address</p>
-                <InputText
-                  className={
-                    credentialsError.addressError === ""
-                      ? "inputsDesignCommon inputBasicDesign inputAddressDesign"
-                      : "inputsDesignCommon inputBasicDesign inputErrorDesign inputAddressDesign"
-                  }
-                  type={"text"}
-                  name={"address"}
-                  required={true}
-                  placeholder="Address"
-                  changeFunction={(e) => inputHandler(e)}
-                  blurFunction={(e) => checkError(e)}
-                />
-                <div>{credentialsError.addressError}</div>
-              </Col>
-              <Col  id="formGridPhone">
-                  <p className="mb-0 mt-3">Phone</p>
+                  <div>{credentialsError.cityError}</div>
+                  </div>
+                </div>
+                <div className="w-100 ms-3">
+                <div className="d-flex justify-content-between align-items-center mt-3">
+                <p className="mb-0 "><span className="previousDetail">{user.country}</span></p>
+
                   <InputText
                     className={
-                      credentialsError.phoneError === ""
-                        ? "inputsDesignCommon inputBasicDesign"
-                        : "inputsDesignCommon inputBasicDesign inputErrorDesign"
+                      credentialsError.countryError === ''
+                        ? 'inputsDesignCommon inputBasicDesign inputAddressDesign w-100'
+                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputAddressDesign w-100'
                     }
-                    type={"text"}
-                    name={"phone"}
+                    type={'text'}
+                    name={'country'}
                     required={true}
-                    placeholder="e.g. +34666555444"
+                    placeholder="Country"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.phoneError}</div>
-                </Col>
-                </Row>
-                <Row className="d-flex justify-content-center">
+                  <div>{credentialsError.countryError}</div>
+                  </div>
+                </div>
+              </div>
+
               <div
                 type="submit"
                 className={
                   registerAct
-                    ? "mt-3 buttonDesign registerSendAct text-center"
-                    : "mt-3 buttonDesign text-center"
+                    ? 'mt-3 buttonDesign registerSendAct text-center'
+                    : 'mt-3 buttonDesign text-center'
                 }
                 onClick={
-                  registerAct
-                    ? () => {
-                        userUpdate();
-                        <div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
-        <h1 className="welcomeMsgDesign">{welcome}</h1>
-        </div>
-                      }
-                    : () => {}
-                }
+                  () => { userUpdate()}}
               >
                 Submit
               </div>
-              </Row>
-            </Container>
-          </div>
-        </div>
+            </Col>
+            
+          </Row>
+        </Container>
       ) : (
         <div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
-        <h1 className="welcomeMsgDesign">{welcome}</h1>
+          <h1 className="welcomeMsgDesign">{welcome}</h1>
         </div>
       )}
     </div>
-   
-  );
+  )
 };

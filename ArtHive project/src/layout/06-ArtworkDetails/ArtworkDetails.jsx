@@ -23,18 +23,12 @@ import { validate } from '../../helpers/useful'
 
 export const ArtworkDetails = () => {
   const navigate = useNavigate()
-
   const userCredentialsRdx = useSelector(userData)
- 
   const artworkSelectedRdx = useSelector(artworkData)
   const artworkSelectedObj = artworkSelectedRdx.choosenArtwork
-  // const userArtworkSelectedRdx = useSelector(userArtworkData)
-  // const userArtworkSelectedObj = userArtworkSelectedRdx.choosenUserArtwork
-  // const params = userArtworkSelectedObj.id
   const [myUserArtwork, setMyUserArtwork] = useState([])
   const [allUserArtworks, setAllUserArtworks] = useState([])
   const [allUserArtworksSelected, setAllUserArtworksSelected] = useState([])
-  const [allUserArtworksSelectedWithComment, setAllUserArtworksSelectedWithComment] = useState([])
   const [loading, setLoading] = useState(true)
   const [commentRating, setCommentRating] = useState({
     artwork_id: artworkSelectedObj.id,
@@ -43,9 +37,7 @@ export const ArtworkDetails = () => {
   })
   const [averageRating, setAverageRating] = useState(null)
   const [commentRatingAct, setCommentRatingAct] = useState(false)
-  const [allUserArtworksSelectedWithRating,setAllUserArtworksSelectedWithRating] = useState([])
   let hasVoted = false;
-   
   let totalRating = 0
 
   const ratingSum = (res) => {
@@ -70,7 +62,6 @@ export const ArtworkDetails = () => {
         bringAllUserArtworks(userCredentialsRdx.credentials.token)
           .then((result) => {
             setLoading(false)
-
             if (result.data.data.length === 0) {
               return
             }
@@ -93,91 +84,31 @@ useEffect(() => {
     setAllUserArtworksSelected(selectedUserArtworks)
   }
   },[allUserArtworks])
-  console.log(allUserArtworks)
-console.log(allUserArtworksSelected);
-console.log(myUserArtwork)
 
   useEffect(() => {
     if (allUserArtworksSelected.length > 0) {
     /////////////// Getting my user_artwork registered for this selected artwork
-
     const myUserArtworkSelected = allUserArtworksSelected.find((userArtwork) => {
       return (
         userArtwork.user_id === userCredentialsRdx.credentials.user.userId
       )
     })
-    console.log(myUserArtworkSelected);
-
 
     if (!myUserArtworkSelected) {
       setMyUserArtwork([])
     } else {
       setMyUserArtwork(myUserArtworkSelected)
-
     }
   }
 },[allUserArtworksSelected])
-
-
-console.log(myUserArtwork);
-
-
-  // useEffect(() => {
-  //   if (allUserArtworksSelected.length > 0) {
-  //   //   /////////////// Getting all user_artworks registered for this selected artwork with comments not null
-  //   //   const selectedUserArtworksWithComment = allUserArtworksSelected.filter((userArtworkSelected) => {
-  //   //     return (
-  //   //       userArtworkSelected.comment !== null
-  //   //     )
-  //   //   })
-  //   //   setAllUserArtworksSelectedWithComment(selectedUserArtworksWithComment)
-
-  //     const selectedUserArtworksWithRating = allUserArtworksSelected.filter((userArtworkSelected) => {
-  //       return (
-  //         userArtworkSelected.rating !== null
-  //       )
-  //     })
-  //     setAllUserArtworksSelectedWithRating(selectedUserArtworksWithRating)
-
-  //     /////////////// Saving average rating
-  //   //   let avgRating = 0
-
-  //   //   const ratingsNotNull = allUserArtworks.filter((userArtwork) => {
-  //   //     return (
-  //   //       artworkSelectedObj.id === userArtwork.artwork_id &&
-  //   //     userArtwork.rating !== null
-  //   //     )
-  //   //   })
-  //   //   if (ratingsNotNull.length > 0) {
-  //   //     let totalRating = ratingSum(ratingsNotNull)
-
-        
-  //   //    console.log(ratingsNotNull.length);
-  //   //     avgRating = Math.floor(totalRating / ratingsNotNull.length)
-  //   //    console.log(avgRating);
-
-  //   //   }
-  //   //   setAverageRating(avgRating)
-  //   }
-  // }, [allUserArtworksSelected])
   
-
-
-// console.log(allUserArtworks, "todos los registros");
-// console.log(allUserArtworksSelected, "registros con artwork id seleccionado");
-// console.log(myUserArtwork, "mi registro solo del artwork seleccionado");
-// console.log(allUserArtworksSelectedWithComment, "registros con artwork id seleccionado y comentario no NULL");
-// console.log(allUserArtworksSelectedWithRating, "registros con artwork id seleccionado y rating no NULL");
-
   useEffect(() => {
           /////////////// Saving average rating
-
     const ratingsNotNull = allUserArtworksSelected.filter((userArtwork) => {
       return (
               userArtwork.rating !== null
       )
     })
-    
     if (ratingsNotNull.length > 0) {
     let newTotalRating = ratingSum(ratingsNotNull)
 
@@ -186,9 +117,7 @@ console.log(myUserArtwork);
   } else {
     setAverageRating(null)
   }
-
   }, [allUserArtworksSelected])
-
 
   const [valiCommentRating, setValiCommentRating] = useState({
     commentVali: false,
@@ -226,9 +155,7 @@ console.log(myUserArtwork);
 
   const checkError = (e) => {
     let error = ''
-
     let checked = validate(e.target.name, e.target.value, e.target.required)
-
     error = checked.message
 
     setValiCommentRating((prevState) => ({
@@ -246,10 +173,7 @@ console.log(myUserArtwork);
 
     const comment = commentRating.comment
 
-console.log(myUserArtwork);
-
     if (myUserArtwork.length === 0) {
-      console.log("entro a add");
 
       addComment({ comment: comment, artwork_id:artworkSelectedObj.id }, userCredentialsRdx.credentials.token)
       .then((response) => {
@@ -312,8 +236,6 @@ console.log(myUserArtwork);
   }
 
   const deleteYourRating = (myUserArtwork) => {
-    
-
     deleteRating(
       myUserArtwork.id,
       userCredentialsRdx.credentials.token
@@ -333,12 +255,11 @@ console.log(myUserArtwork);
 
     })
   }
-console.log(hasVoted);
+
   const createOrUpdateRating = (myUserArtwork) => {
     const rating = parseInt(commentRating.rating);
 
        if (myUserArtwork.length === 0) {
-      
       addRating({rating: rating, artwork_id:artworkSelectedObj.id },userCredentialsRdx.credentials.token)
       .then((response) => {
         console.log(response);
@@ -381,6 +302,7 @@ console.log(hasVoted);
       
     }
   }
+
   if (loading) {
     return (
       <>
@@ -410,7 +332,6 @@ console.log(hasVoted);
                   <p>{artworkSelectedObj.technique}</p>
                   <p>{artworkSelectedObj.date_creation}</p>
                   <p>{artworkSelectedObj.dimensions}</p>
-
                   <p>{artworkSelectedObj.price}</p>
                   <div type="button" className="goToArtPageBtn">
                     GO TO THE ARTIST PERSONAL PAGE TO GET TO KNOW THEM
@@ -430,11 +351,7 @@ console.log(hasVoted);
           <Row className="d-flex justify-content-center">
             <Col lg={6}>
               <div className="commentsContainer">
-                
-                {/* mapping all registers where that artwork in particular has with any user  */}
-                
-                
-                
+
                 {allUserArtworks.map((userArtwork) => {
                   return (
                     <div
@@ -512,13 +429,9 @@ console.log(hasVoted);
               <div className="ratingContainer d-flex justify-content-center flex-column align-items-center">
                 <div>
                   {averageRating === null ?  <p className="ratingStyle">0</p> :   <p className="ratingStyle">{averageRating}</p>}
-                
                 </div>
 
                 <div className="d-flex justify-content-center flex-column align-items-center">
-                
-                
-                
                 {allUserArtworks.map((userArtworkSelected) => {
       if (!hasVoted && userArtworkSelected.id === myUserArtwork.id && userArtworkSelected.rating !== null) {
         // Si el usuario ha votado en una obra de arte, mostrar su rating
