@@ -10,12 +10,14 @@ import { NavBar } from '../../components/Navbar/NavBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { addChoosenArtwork } from '../artworkSlice'
 import { userData } from '../userSlice'
+import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 
 export const MyGalleryAsArtist = () => {
   const [allMyArtworks, setAllMyArtworks] = useState([])
   const [loading, setLoading] = useState(true);
+  const [hoveredArtworkId, setHoveredArtworkId] = useState(null)
+  const [isAlreadySaved, setIsAlreadySaved] = useState({})
 
-  // const [postHovered, setPostHovered] = useState(false)
 
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -42,7 +44,7 @@ export const MyGalleryAsArtist = () => {
   const artworkSelected = (artwork) => {
     dispatch(addChoosenArtwork({ choosenArtwork: artwork }));
     setTimeout(() => {
-      navigate("/artwork-details");
+      navigate("/my-artwork-details");
     }, 1000);
   };
 
@@ -72,25 +74,51 @@ export const MyGalleryAsArtist = () => {
       <h2>All artworks:</h2>
       <Row className="homeSection1">
         <Col>
-          <div className="cardsContainer">
-            {allMyArtworks.map((artwork) => {
-              return (
-                <div className="artworkCardDesign " key={artwork.id}>
-
-                    {/* <p>
+          <div className="cardsGalleryContainer">
+                {allMyArtworks.map((artwork) => {
+                    const isHovered = artwork.id === hoveredArtworkId
+                  return (
+                    <div
+                      className="pinDesign "
+                      onMouseEnter={() => setHoveredArtworkId(artwork.id)}
+                      onMouseLeave={() => setHoveredArtworkId(null)}
+                      onClick={() => artworkSelected(artwork)}
+                      key={artwork.id}
+                    >
+                      {/* <p>
                       <span className="pe-4 nameFieldDesign">Title:</span>
                       {artwork.title}
                     </p> */}
-                    <img
-                      // onMouseEnter={() => setPostHovered(true)}
-                      // onMouseLeave={() => setPostHovered(false)}
-                      onClick={() => artworkSelected(artwork)}
-                      className="ImgDesign"
-                      src={`http://localhost:3000/static/${artwork.image_url}`}
-                    />
-                </div>
-              )
-            })}
+                      <img
+                        className="imgDesign"
+                        src={`http://localhost:3000/static/${artwork.image_url}`}
+                      />
+                      {isHovered && (
+                      
+                              <>
+                              <button type="button"
+                                  className="detailsBtn"
+                                  onClick={() => artworkSelected(artwork)}>
+                                    <BsFillArrowUpRightCircleFill className="bs"/>  Go to Details
+                              </button>
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    addToUserArtwork(artwork)
+                                  }}
+                                  type="button"
+                                  className="saveBtn"
+                                >
+                                  {isAlreadySaved[artwork.id]
+                                    ? 'Saved'
+                                    : 'Save'}
+                                </button>
+                              </>
+                      
+                      )}
+                    </div>
+                  )
+                })}
           </div>
         </Col>
       </Row>

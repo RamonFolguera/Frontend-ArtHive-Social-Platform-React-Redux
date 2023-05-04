@@ -11,6 +11,8 @@ import { MyGalleryAsArtist } from '../07-MyGalleryAsArtist/MyGalleryAsArtist'
 import { UserProfile } from '../03-UserProfile/UserProfile'
 import { UpdateProfile } from '../08-UpdateProfile/UpdateProfile'
 import { AdminPanel } from '../09-AdminPanel/AdminPanel'
+import { MyArtworkDetailsAsArtist } from '../11-MyArtworkDetailsAsArtist/MyArtworkDetailsAsArtist'
+import { UserDetailsAsAdmin } from '../10-UserDetailsAsAdmin/UserDetailsAsAdmin'
 
 export const Body = () => {
   return (
@@ -27,6 +29,8 @@ export const Body = () => {
         <Route path="/profile" element={<UserProfile/>}/>
         <Route path="/update-profile" element={<UpdateProfile/>}/>
         <Route path="/admin-panel" element={<AdminPanel/>}/>
+        <Route path="/my-artwork-details" element={<MyArtworkDetailsAsArtist/>}/>
+        <Route path="/user-details" element={<UserDetailsAsAdmin/>}/>
 
     </Routes>
     </>

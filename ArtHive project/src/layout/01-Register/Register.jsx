@@ -118,7 +118,7 @@ export const Register = () => {
 
   const userRegister = () => {
     registerUser(credentials)
-    console.log('entro en registro')
+
     setWelcome(`Welcome to ArtHive. Be creative! `)
     setTimeout(() => {
       navigate('/')

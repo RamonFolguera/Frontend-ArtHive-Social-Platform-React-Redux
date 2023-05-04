@@ -153,9 +153,9 @@ export const NewArtwork = () => {
     setWelcome(
       `Congratulations! Your new artwork is out there to share with the world!`
     )
-    // setTimeout(() => {
-    //   navigate('/')
-    // }, 500)
+    setTimeout(() => {
+      navigate('/my-artworks-gallery')
+    }, 500)
   }
 
   return (

@@ -1,6 +1,6 @@
 
 .totalArtistsDesign, .totalArtLoversDesign, .totalArtworksDesign {
-height: 10em;
+height: 15em;
 width: 25em;
 margin: 0.5em;
 padding: 2em;
@@ -14,7 +14,7 @@ font-weight: bolder;
 .totalTitle{
     font-size: 1.5em;
 }
-.totalArtistsDesign{
+.totalArtistsDesign, .totalArtLoversDesign{
 background-color: #edf6f9;
 
 }
@@ -27,7 +27,7 @@ background-color: #edf6f9;
 
     
 .totalArtworksDesign{
-    background-color: #ffbf69;
+    background-color: #ffef9f;
     
     }
 
@@ -36,3 +36,20 @@ background-color: #edf6f9;
  
         text-decoration: underline;
     }
+
+.usersTableDesign{
+    background-color: #edf6f984;
+    padding: 20px;
+border-radius: 30px;
+border:1px rgb(216, 216, 216) solid
+
+}
+
+.artworksTableDesign{
+    background-color: #ffef9f;
+    padding: 20px;
+border-radius: 30px;
+border:1px rgb(216, 216, 216) solid
+
+
+}

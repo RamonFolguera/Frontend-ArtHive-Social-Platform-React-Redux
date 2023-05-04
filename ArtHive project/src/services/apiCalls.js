@@ -35,13 +35,12 @@ export const bringUsers = async (token) => {
   return await axios.get(`${root}users/`,config);
 }
 
-
 export const bringAllArtworks = async () => {
  
     return await axios.get(`${root}artworks`);
   }
 
-  export const bringAllArtworksAsUser = async (token) => {
+export const bringAllArtworksAsUser = async (token) => {
     let config = {
       headers: { 
         'Authorization': 'Bearer '+ token,  
@@ -117,7 +116,6 @@ export const addComment = async (body, token) => {
   return await axios.post(`${root}user-artwork/comment`, body, config)
 }
 
-
 export const updateComment = async (params, body, token) => {
   let config = {
     headers: { 
@@ -138,9 +136,6 @@ export const deleteComment = async (params, token) => {
   return await axios.delete(`${root}user-artwork/comment/${params}`,  config)
 }
 
-
-
-
 export const addRating = async (body, token) => {
   let config = {
     headers: { 
@@ -150,7 +145,6 @@ export const addRating = async (body, token) => {
 
   return await axios.post(`${root}user-artwork/rating`,body,  config)
 }
-
 
 export const updateRating = async (params, body, token) => {
   let config = {
@@ -162,7 +156,6 @@ export const updateRating = async (params, body, token) => {
   return await axios.put(`${root}user-artwork/rating/${params}`,  body, config)
 }
 
-
 export const deleteRating = async (params, token) => {
   let config = {
     headers: { 
@@ -173,7 +166,6 @@ export const deleteRating = async (params, token) => {
   return await axios.delete(`${root}user-artwork/rating/${params}`,  config)
 }
 
-
 export const updateMyProfile = async (body, token) => {
   let config = {
     headers: { 
@@ -182,4 +174,24 @@ export const updateMyProfile = async (body, token) => {
   };
 
   return await axios.put(`${root}users/update-me`,  body, config)
+}
+
+export const deleteMyArtwork = async (params, token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.delete(`${root}artworks/delete/${params}`,  config)
+}
+
+export const updateUsersStatus = async (params, body, token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.put(`${root}users/update-status/${params}`,  body, config)
 }

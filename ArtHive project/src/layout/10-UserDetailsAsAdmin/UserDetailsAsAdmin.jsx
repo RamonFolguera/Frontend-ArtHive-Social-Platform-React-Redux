@@ -6,35 +6,38 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { detailsData } from "../detailsSlice";
 import { userData } from "../userSlice";
+import { NavBar } from "../../components/Navbar/NavBar";
 
 
 
-export const UserProfileAsAdmin = () => {
+export const UserDetailsAsAdmin = () => {
 
 
 
   const userDetailsRdx = useSelector(detailsData);
-  const credentialsRdx = useSelector(userData)
+  const userCredentialsRdx = useSelector(userData)
 
-  const user = userDetailsRdx.choosenObject
-  
+  const user = userDetailsRdx.choosenUser
+  console.log(user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!credentialsRdx.credentials.token) {
+    if (!userCredentialsRdx.credentials.token) {
       navigate("/");
     }
   });
 
   return (
+    <>
+    <NavBar/>
     <Container className="profileMainDesign">
       <Row>
       <div className="text-center">
         <p className="nameDesign">
      
           {user.name}{" "}
-          {user.first_surname}{" "}
-          {user.second_surname}
+          {user.last_surname}{" "}
+     
         </p>
       </div>
    
@@ -53,7 +56,7 @@ export const UserProfileAsAdmin = () => {
             </div>
 
             <div className="fieldDesign">
-              {user.address}
+              {user.city}
             </div>
           </div>
 
@@ -71,7 +74,7 @@ export const UserProfileAsAdmin = () => {
 
 
 
-
+    </>
 
   );
 };
