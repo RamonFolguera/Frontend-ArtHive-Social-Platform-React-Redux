@@ -25,6 +25,17 @@ export const logMe = async (body) => {
 
 }
 
+export const bringUsers = async (token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.get(`${root}users/`,config);
+}
+
+
 export const bringAllArtworks = async () => {
  
     return await axios.get(`${root}artworks`);

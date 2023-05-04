@@ -1,0 +1,38 @@
+
+.totalArtistsDesign, .totalArtLoversDesign, .totalArtworksDesign {
+height: 10em;
+width: 25em;
+margin: 0.5em;
+padding: 2em;
+border-radius: 30px;
+font-weight: bolder;
+}
+
+.totalNumber{
+    font-size: 8em;
+}
+.totalTitle{
+    font-size: 1.5em;
+}
+.totalArtistsDesign{
+background-color: #edf6f9;
+
+}
+
+
+.totalArtLoversDesign{
+    background-color: #fed9b7;
+    
+    }
+
+    
+.totalArtworksDesign{
+    background-color: #ffbf69;
+    
+    }
+
+    .clickForMoreLink{
+        color:blue;
+ 
+        text-decoration: underline;
+    }
