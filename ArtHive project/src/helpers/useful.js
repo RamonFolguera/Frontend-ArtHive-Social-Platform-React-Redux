@@ -88,6 +88,7 @@ export const validate = (name, data, required) => {
         return {message: "", validated: true};
 
         case "rating":
+        case "role_id":
           if (data === "" && required === true) {
             return {message: "Please fill the field", validated: false};
           } else if (

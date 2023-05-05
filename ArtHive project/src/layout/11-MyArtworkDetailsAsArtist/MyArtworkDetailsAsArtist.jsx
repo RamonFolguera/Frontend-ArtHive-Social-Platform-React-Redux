@@ -28,7 +28,6 @@ export const MyArtworkDetailsAsArtist = () => {
  
   const [averageRating, setAverageRating] = useState(null)
 
-  
   let totalRating = 0
 
   const ratingSum = (res) => {

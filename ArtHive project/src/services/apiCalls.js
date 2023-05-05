@@ -195,3 +195,13 @@ export const updateUsersStatus = async (params, body, token) => {
 
   return await axios.put(`${root}users/update-status/${params}`,  body, config)
 }
+
+export const updateUsersProfileAsAdmin = async (params, body, token) => {
+  let config = {
+    headers: { 
+      'Authorization': 'Bearer '+ token,  
+    }
+  };
+
+  return await axios.put(`${root}users/update-profile-as-admin/${params}`,  body, config)
+}
