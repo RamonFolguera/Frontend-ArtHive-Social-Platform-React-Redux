@@ -27,7 +27,7 @@ export const Home = () => {
     }
   }, [])
 
-  console.log(allArtworks, 'artwork random')
+
   return (
     <>
       <NavBar />

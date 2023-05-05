@@ -14,7 +14,7 @@
     transition: 1s;
 }
 
-form {
+.inputFileForm {
     display: flex;
     flex-direction: column;
     justify-content: center;

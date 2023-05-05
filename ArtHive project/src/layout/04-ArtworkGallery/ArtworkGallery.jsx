@@ -153,17 +153,14 @@ export const ArtworkGallery = () => {
 
   if (loading) {
     return (
-      <>
-        <NavBar />
+      
         <div className="spinnerDesign d-flex justify-content-center align-items-center flex-column">
           <SpinnerComponent message="Art is coming... hold on!" />
         </div>
-      </>
     )
   } else if (allArtworks.length > 0) {
     return (
-      <>
-        <NavBar />
+     
 
         <Container fluid>
           <h2>All artworks:</h2>
@@ -218,7 +215,7 @@ export const ArtworkGallery = () => {
             </Col>
           </Row>
         </Container>
-      </>
+   
     )
   }
 }

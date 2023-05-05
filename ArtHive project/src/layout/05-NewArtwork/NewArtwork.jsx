@@ -172,6 +172,7 @@ export const NewArtwork = () => {
               <Row className="mb-3">
                 <Col md={12}>
                   <form
+                  className="inputFileForm"
                     action="/profile"
                     method="post"
                     encType="multipart/form-data"

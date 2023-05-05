@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Form, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { InputText } from '../../components/InputText/InputText'
@@ -12,6 +12,17 @@ export const Register = () => {
   const navigate = useNavigate()
 
   const [allArtworks, setAllArtworks] = useState([])
+
+  const [roles, setRoles] = useState([
+    {
+      id: 3,
+      name: "Art lover",
+    },
+    {
+      id: 4,
+      name: "Artist",
+    },
+  ]);
 
   useEffect(() => {
     if (allArtworks.length === 0) {
@@ -35,6 +46,7 @@ export const Register = () => {
     last_name: '',
     email: '',
     password: '',
+    role_id: '',
     phone: '',
     avatar: '',
     city: '',
@@ -69,7 +81,7 @@ export const Register = () => {
     cityError: '',
     countryError: '',
   })
-
+console.log(credentials)
   const [registerAct, setRegisterAct] = useState(false)
 
   const [welcome, setWelcome] = useState('')
@@ -130,22 +142,24 @@ export const Register = () => {
       {welcome === '' ? (
         <Container fluid className="register-container">
           <Row className="mb-3 w-100">
+            
             <Col
               lg={6}
               className="registerFormBody pb-lg-5 justify-content-lg-center"
               id="formGridName"
             >
-              <h1 className="text-center">
-                Register with ArtHive and start your art journey
+              <h1 className="greetingRegisterMsgDesign text-center">
+                Register and Start your  Art Journey
               </h1>
+              
               <div className="d-flex justify-content-between">
                 <div>
-                  <p className="mb-0 mt-3">Name:</p>
+                  <p className="mb-0 mt-3">NAME</p>
                   <InputText
                     className={
                       credentialsError.nameError === ''
-                        ? 'inputsDesignCommon inputBasicDesign w-100'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign w-100'
+                        ? 'inputsDesignCommon inputDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign w-100'
                     }
                     type={'text'}
                     name={'name'}
@@ -156,12 +170,12 @@ export const Register = () => {
                   />
                   <div>{credentialsError.nameError}</div>
 
-                  <p className="mb-0 mt-3">Last Name:</p>
+                  <p className="mb-0 mt-3">LAST NAME</p>
                   <InputText
                     className={
                       credentialsError.last_nameError === ''
-                        ? 'inputsDesignCommon inputBasicDesign w-100'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign w-100'
+                        ? 'inputsDesignCommon inputDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign w-100'
                     }
                     type={'text'}
                     name={'last_name'}
@@ -172,11 +186,34 @@ export const Register = () => {
                   />
                   <div>{credentialsError.last_nameError}</div>
                 </div>
+                <Form className="d-flex align-items-center">
+            <Form.Group className="mb-3">
+              <Form.Select
+              className="inputDesign"
+                name={"role_id"}
+                onChange={(e) => inputHandler(e)}
+                aria-label="Default select example"
+              >
+                <option >
+                  <p className="optionFormDesign"> Are you an Artist or an Art lover?</p>
+                </option>
+
+                {roles.map((role) => {
+                  return (
+                    <option key={role.id} value={role.id}>
+                      {role.name}
+                    </option>
+                  );
+                })}
+              </Form.Select>
+            </Form.Group>
+            </Form>
                 <form
+                className="inputFileRegisterForm form-avatar"
                   action="/profile"
                   method="post"
                   encType="multipart/form-data"
-                  className="form-avatar"
+                 
                 >
                   Avatar/photo
                   <input
@@ -189,12 +226,12 @@ export const Register = () => {
                   <p>Browse Files to upload</p>
                 </form>
               </div>
-              <p className="mb-0 mt-3">Email:</p>
+              <p className="mb-0 mt-3">EMAIL</p>
               <InputText
                 className={
                   credentialsError.emailError === ''
-                    ? 'inputsDesignCommon inputBasicDesign inputEmailDesign w-100'
-                    : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputEmailDesign w-100'
+                    ? 'inputsDesignCommon inputDesign inputEmailDesign w-100'
+                    : 'inputsDesignCommon inputDesign inputErrorDesign inputEmailDesign w-100'
                 }
                 type={'email'}
                 name={'email'}
@@ -205,12 +242,12 @@ export const Register = () => {
               />
               <div>{credentialsError.emailError}</div>
 
-              <p className="mb-0 mt-3">Password:</p>
+              <p className="mb-0 mt-3">PASSWORD</p>
               <InputText
                 className={
                   credentialsError.passwordError === ''
-                    ? 'inputsDesignCommon inputBasicDesign inputPasswordDesign w-100'
-                    : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputPasswordDesign w-100'
+                    ? 'inputsDesignCommon inputDesign inputPasswordDesign w-100'
+                    : 'inputsDesignCommon inputDesign inputErrorDesign inputPasswordDesign w-100'
                 }
                 type={'password'}
                 name={'password'}
@@ -221,12 +258,12 @@ export const Register = () => {
               />
               <div>{credentialsError.passwordError}</div>
 
-              <p className="mb-0 mt-3">Phone:</p>
+              <p className="mb-0 mt-3">PHONE</p>
               <InputText
                 className={
                   credentialsError.phoneError === ''
-                    ? 'inputsDesignCommon inputBasicDesign w-100'
-                    : 'inputsDesignCommon inputBasicDesign inputErrorDesign w-100'
+                    ? 'inputsDesignCommon inputDesign w-100'
+                    : 'inputsDesignCommon inputDesign inputErrorDesign w-100'
                 }
                 type={'text'}
                 name={'phone'}
@@ -239,12 +276,12 @@ export const Register = () => {
 
               <div className="cityCountrySection d-flex justify-content-between">
                 <div className="w-100 me-3">
-                  <p className="mb-0 mt-3">City:</p>
+                  <p className="mb-0 mt-3">CITY</p>
                   <InputText
                     className={
                       credentialsError.cityError === ''
-                        ? 'inputsDesignCommon inputBasicDesign inputAddressDesign w-100'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputAddressDesign w-100'
+                        ? 'inputsDesignCommon inputDesign inputAddressDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign inputAddressDesign w-100'
                     }
                     type={'text'}
                     name={'city'}
@@ -256,12 +293,12 @@ export const Register = () => {
                   <div>{credentialsError.cityError}</div>
                 </div>
                 <div className="w-100 ms-3">
-                  <p className="mb-0 mt-3">Country:</p>
+                  <p className="mb-0 mt-3">COUNTRY</p>
                   <InputText
                     className={
                       credentialsError.countryError === ''
-                        ? 'inputsDesignCommon inputBasicDesign inputAddressDesign w-100'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputAddressDesign w-100'
+                        ? 'inputsDesignCommon inputDesign inputAddressDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign inputAddressDesign w-100'
                     }
                     type={'text'}
                     name={'country'}

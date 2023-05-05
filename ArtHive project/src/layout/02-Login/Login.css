@@ -30,29 +30,15 @@
     width: 100%;
 }
 
-.inputLoginDesign {
-    width: 100% ;
-    height: 2em;
-    border: none;
-    border-radius: 5px;
-    background-color: rgba(211, 211, 211, 0.419);
-}
 
-.buttonDesign {
-    text-align: center;
-    color: white;
-    height: 2em;
-    border: none;
-    width: 100%;
-    border-radius: 5px;
-    background-color:rgb(12, 92, 68)
-}
+
 
 @media (min-width: 1200px) {
     .main-container {
         overflow: hidden;
         height: 100vh;
-        width: 100vw
+        width: 100vw;
+
     }
     .loginFormBody {
         width: 65%;
@@ -73,5 +59,35 @@
         margin: 0;
         padding:0;
     }
+    
+    .modalContainer {
+        position:fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top:0;
+        left:0;
+        bottom: 0;
+        right: 0;
+        z-index: 99;
+        background-color: rgba(242, 242, 242, 0.622);
+
+    }
+    .loginModalDesign {
+        padding: 5em;
+        border-radius: 30px;
+        height: 20em;
+        z-index: 100;
+        background-color: white;
+        opacity: 100;
+        width: 100%;
+        max-width: 40em;
+        box-shadow: 0px 0px 10px 2px rgba(93, 93, 93, 0.291);
+      }
+      
+      
+
+
+
 }
     

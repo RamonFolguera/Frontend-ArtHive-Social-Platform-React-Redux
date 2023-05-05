@@ -5,7 +5,7 @@ import './App.scss'
 export const App = () => {
   return (
      <>
-<NavBar/>
+
 
 <div className="App">
       <Body/>

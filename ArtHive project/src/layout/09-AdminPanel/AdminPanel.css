@@ -1,11 +1,13 @@
 
-.totalArtistsDesign, .totalArtLoversDesign, .totalArtworksDesign {
+.totalArtistsDesign, .totalArtLoversDesign, .totalArtworksDesign, .totalDeletedUsersDesign {
 height: 15em;
 width: 25em;
 margin: 0.5em;
 padding: 2em;
 border-radius: 30px;
 font-weight: bolder;
+border:1px rgb(216, 216, 216) solid
+
 }
 
 .totalNumber{
@@ -20,7 +22,7 @@ background-color: #edf6f9;
 }
 
 
-.totalArtLoversDesign{
+.totalDeletedUsersDesign{
     background-color: #fed9b7;
     
     }
@@ -42,6 +44,13 @@ background-color: #edf6f9;
     padding: 20px;
 border-radius: 30px;
 border:1px rgb(216, 216, 216) solid
+}
+
+.deletedTableDesign {
+    background-color: #fed9b7;
+    padding: 20px;
+    border-radius: 30px;
+    border:1px rgb(216, 216, 216) solid
 
 }
 
@@ -52,4 +61,14 @@ border-radius: 30px;
 border:1px rgb(216, 216, 216) solid
 
 
+}
+
+button {
+    padding: 2px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #828282;
+    color: white;
 }

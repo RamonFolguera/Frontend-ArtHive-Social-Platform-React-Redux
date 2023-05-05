@@ -31,3 +31,65 @@ html {
       overflow: visible;
     }
   }
+
+.inputDesign {
+  width: 100% ;
+  height: 2em;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(211, 211, 211, 0.419);
+  font-family: 'Fira Sans', sans-serif;
+  padding-left: 10px;
+}
+
+
+.inputDesign:hover {
+  width: 100% ;
+ border: 1px rgb(164, 164, 164) solid;
+ box-shadow: 0 0 5px 1px rgb(164, 164, 164);
+  background-color: rgba(254, 252, 252, 0.419);
+ 
+}
+
+.inputErrorDesign{
+  background-color: #ff001546;
+}
+
+.errorMessage{
+  color: red;
+}
+
+.buttonDesign {
+  text-align: center;
+  color: white;
+  height: 2em;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  background-color:rgb(12, 92, 68)
+}
+
+
+.buttonDesign:hover {
+  text-align: center;
+  color: rgb(12, 92, 68);
+  height: 2em;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  background-color:white;
+  border: 1px rgb(12, 92, 68) solid;
+}
+
+
+.notActBtn {
+  background-color: rgb(84, 117, 107);
+}
+
+
+.notActBtn:hover {
+  background-color: rgb(250, 172, 172);
+  border: 1 px solid red;
+  color: rgb(12, 92, 68);
+  font-weight: bolder;
+}

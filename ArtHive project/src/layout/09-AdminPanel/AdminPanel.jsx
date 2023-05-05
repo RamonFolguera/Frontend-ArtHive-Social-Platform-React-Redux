@@ -19,6 +19,7 @@ export const AdminPanel = () => {
   const [totalArtworks, setTotalArtworks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deletedUsers, setDeletedUsers] = useState([]);
+  const [totalDeletedUsers, setTotalDeletedUsers] = useState([]);
 
   const userCredentialsRdx = useSelector(userData);
   const token = userCredentialsRdx.credentials.token;
@@ -55,19 +56,18 @@ export const AdminPanel = () => {
             setUsers(statusTrue)
             setDeletedUsers(statusFalse)
 
-            
-
+          setTotalDeletedUsers(statusFalse.length)
 
             let totalArtists = []
             result.data.data.map((user) => {
-              if (user.role_id === 3) {
+              if (user.role_id === 3 && user.status === true) {
                 (totalArtists.push(user)  )
       }})
               setArtists(totalArtists.length)
 
               let totalArtLovers = []
               result.data.data.map((user) => {
-                if (user.role_id === 4) {
+                if (user.role_id === 4 && user.status === true) {
                   (totalArtLovers.push(user)  )
         }})
                 setArtLovers(totalArtLovers.length)
@@ -79,7 +79,6 @@ export const AdminPanel = () => {
 
 
 console.log(users);
-
 console.log(deletedUsers);
 
  
@@ -94,7 +93,6 @@ console.log(deletedUsers);
 
               let totalArtworks = []
               result.data.data.map((artwork) => {
-           
                   (totalArtworks.push(artwork)  )
         })
         setTotalArtworks(totalArtworks.length)
@@ -187,7 +185,7 @@ console.log(deletedUsers);
         <td>{user.country}</td>
         <td>
           <div>
-            <button onClick={() => selected(user)}>UPDATE</button>
+            <button className="me-3" onClick={() => selected(user)}>UPDATE</button>
             <button onClick={() => deleteSelected(user)}>DELETE</button>
           </div>
         </td>
@@ -198,7 +196,7 @@ console.log(deletedUsers);
 
     </Table>
     </div>
-    <div className="usersTableDesign mt-3">
+    <div className="deletedTableDesign mt-3">
 
 <h2>Deleted users list:</h2>
 <Table  striped bordered hover size="lg">
@@ -248,9 +246,12 @@ return (
             <p className="totalTitle">Total Artists registered:</p>
             <p className="totalNumber"> {artists}</p>
             </div>
-          <div className="totalArtLoversDesign d-flex align-items-center justify-content-between"> <p className="totalTitle">Total Art Lovers registered:</p>
+          <div className="totalArtLoversDesign d-flex align-items-center justify-content-between"> 
+          <p className="totalTitle">Total Art Lovers registered:</p>
             <p className="totalNumber"> {artLovers}</p></div>
-        
+            <div className="totalDeletedUsersDesign d-flex align-items-center justify-content-between"> 
+          <p className="totalTitle">Total Deleted Users:</p>
+            <p className="totalNumber"> {totalDeletedUsers}</p></div>
         </Col>
       </Row>
       <Row>
@@ -272,7 +273,7 @@ return (
           <th>Status</th>
           <th>File Name</th>
           <th>Price</th>
-          <th>Actions</th>
+       
 
         
         </tr>
@@ -291,10 +292,7 @@ return (
                         <td>{artwork.status}</td>
                         <td>{artwork.image_url}</td>
                         <td>{artwork.price}</td>
-                        <td>
-                          <button >UPDATE</button>
-                          <button >DELETE</button>
-                          </td>
+                       
                       </tr>
                       )
                     })}
