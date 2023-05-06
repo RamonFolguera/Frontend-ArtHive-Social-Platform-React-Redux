@@ -63,7 +63,6 @@
 }
 
 
-
 @media (max-width:60rem) {
   .cardsGalleryContainer {
     columns:3;
@@ -79,3 +78,22 @@
       columns:1;
      }
    }
+
+   .categoryBtnDesign{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    background-color: white;
+    border-radius: 100px;
+    border:1px solid #ee6055;
+   }
+
+   .categoryBtnDesign:hover {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    background-color: #ee6055;
+    border-radius: 100px;
+    border:1px solid #ee6055;
+
+}
