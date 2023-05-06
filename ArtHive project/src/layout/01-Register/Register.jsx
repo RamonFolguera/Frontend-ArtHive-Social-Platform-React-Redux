@@ -149,7 +149,7 @@ console.log(credentials)
               id="formGridName"
             >
               <h1 className="greetingRegisterMsgDesign text-center">
-                Register and Start your  Art Journey
+                Start your  Art Journey
               </h1>
               
               <div className="d-flex justify-content-between">
@@ -168,14 +168,14 @@ console.log(credentials)
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.nameError}</div>
+                  <div className="errorMessage">{credentialsError.nameError}</div>
 
                   <p className="mb-0 mt-3">LAST NAME</p>
                   <InputText
                     className={
                       credentialsError.last_nameError === ''
                         ? 'inputsDesignCommon inputDesign w-100'
-                        : 'inputsDesignCommon inputDesign inputErrorDesign w-100'
+                        : 'inputsDesignCommon inputDesign  inputErrorDesign w-100'
                     }
                     type={'text'}
                     name={'last_name'}
@@ -184,18 +184,19 @@ console.log(credentials)
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.last_nameError}</div>
+                  <div className="errorMessage">{credentialsError.last_nameError}</div>
                 </div>
                 <Form className="d-flex align-items-center">
             <Form.Group className="mb-3">
               <Form.Select
-              className="inputDesign"
+                className="selectDesign"
                 name={"role_id"}
+                required={true}
                 onChange={(e) => inputHandler(e)}
                 aria-label="Default select example"
               >
                 <option >
-                  <p className="optionFormDesign"> Are you an Artist or an Art lover?</p>
+                  <p > ARTIST or ART LOVER?</p>
                 </option>
 
                 {roles.map((role) => {
@@ -240,7 +241,7 @@ console.log(credentials)
                 changeFunction={(e) => inputHandler(e)}
                 blurFunction={(e) => checkError(e)}
               />
-              <div>{credentialsError.emailError}</div>
+              <div className="errorMessage">{credentialsError.emailError}</div>
 
               <p className="mb-0 mt-3">PASSWORD</p>
               <InputText
@@ -256,7 +257,7 @@ console.log(credentials)
                 changeFunction={(e) => inputHandler(e)}
                 blurFunction={(e) => checkError(e)}
               />
-              <div>{credentialsError.passwordError}</div>
+              <div className="errorMessage">{credentialsError.passwordError}</div>
 
               <p className="mb-0 mt-3">PHONE</p>
               <InputText
@@ -272,7 +273,7 @@ console.log(credentials)
                 changeFunction={(e) => inputHandler(e)}
                 blurFunction={(e) => checkError(e)}
               />
-              <div>{credentialsError.phoneError}</div>
+              <div className="errorMessage">{credentialsError.phoneError}</div>
 
               <div className="cityCountrySection d-flex justify-content-between">
                 <div className="w-100 me-3">
@@ -290,7 +291,7 @@ console.log(credentials)
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.cityError}</div>
+                  <div className="errorMessage">{credentialsError.cityError}</div>
                 </div>
                 <div className="w-100 ms-3">
                   <p className="mb-0 mt-3">COUNTRY</p>
@@ -307,7 +308,7 @@ console.log(credentials)
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.countryError}</div>
+                  <div className="errorMessage">{credentialsError.countryError}</div>
                 </div>
               </div>
 

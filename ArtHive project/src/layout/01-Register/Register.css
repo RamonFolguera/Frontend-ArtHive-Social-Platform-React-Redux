@@ -51,7 +51,7 @@
 
     .registerFormBody {
         width: 50%;
-        padding: 2em 0 2em 3em;
+        padding: 3em 1em 1em 3em;
 
     }
 
@@ -79,9 +79,10 @@
         align-items: center;
         border-radius: 20px;
         border: 1px #1475cf dashed;
-        width: 10em;
-        height: 10em;
+        width: 8em;
+        height: 8em;
         cursor: pointer;
+        margin-top:20px;
     }
 
     .greetingRegisterMsgDesign {
@@ -89,8 +90,17 @@
         font-size: 5rem;
     }
 
-    .optionFormDesign{
-        font-size: 5em;
+    .selectDesign{
+        margin-top: 30px;
+        height:4.25em;
+        font-size: 1.5em;
+        border: none;
+        background-color: #e4c1f998;
+        font-family: 'Fira Sans', sans-serif;
+        padding-left: 30px;
+        padding-right: 50px;
+        font-weight: bolder;
+        border-radius: 5px;
     }
 }
     

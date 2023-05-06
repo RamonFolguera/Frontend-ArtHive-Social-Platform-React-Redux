@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Form, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { validate } from '../../helpers/useful'
 import { InputText } from '../../components/InputText/InputText'
@@ -10,6 +10,8 @@ import { MdCloudUpload, MdDelete } from 'react-icons/md'
 import { AiFillFileImage } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 import { userData } from "../userSlice";
+import { NavBar } from '../../components/Navbar/NavBar'
+import { FooterTemplate } from '../../components/FooterTemplate/FooterTemplate'
 
 export const NewArtwork = () => {
   const userCredentialsRdx = useSelector(userData);
@@ -29,11 +31,44 @@ export const NewArtwork = () => {
     description: '',
     technique: '',
     dimensions: '',
-    // date_creation: "",
     image_url: '',
     status: true,
     price: '',
   })
+
+const [categories, setCategories] = useState([
+  {
+    name: "Abstract painting"
+  },
+  {
+    name: "Oil painting"
+  },
+  {
+    name: "Photography"
+  },
+  {
+    name: "Digital painting"
+  },
+  {
+    name: "Watercolor painting"
+  },
+  {
+    name: "Acrylic painting"
+  },
+  {
+    name: "Graffiti Art"
+  },
+  {
+    name: "Illustration"
+  },
+  {
+    name: "Mix digital and traditional painting"
+  },
+  {
+    name: "Mix photography and digital"
+  },
+])
+
 
   const fileOnChange = (e) => {
     if (e.target.files[0]) {
@@ -159,6 +194,8 @@ export const NewArtwork = () => {
   }
 
   return (
+    <>
+    <NavBar/>
     <div className="d-flex justify-content-center defaultPageHeight">
       {welcome === '' ? (
         <div className="registerContent">
@@ -214,13 +251,13 @@ export const NewArtwork = () => {
                     Upload
                   </button>
                 </Col>
-                <Col md={4} id="formGridName">
-                  <p className="mb-0 mt-3">Title</p>
+                <Col md={12} lg={12} id="formGridTitle">
+                  <p className="mb-0 mt-3 ps-3">TITLE</p>
                   <InputText
                     className={
                       infoArtworkError.titleError === ''
-                        ? 'inputsDesignCommon inputBasicDesign'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign'
+                        ? 'inputDesign'
+                        : 'inputDesign inputErrorDesign'
                     }
                     type={'text'}
                     name={'title'}
@@ -229,34 +266,18 @@ export const NewArtwork = () => {
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{infoArtworkError.titleError}</div>
+                  <div className="errorMessage">{infoArtworkError.titleError}</div>
                 </Col>
 
-                <Col md={4} id="formGridFirstSurname">
-                  <p className="mb-0 mt-3">category</p>
-                  <InputText
-                    className={
-                      infoArtworkError.categoryError === ''
-                        ? 'inputsDesignCommon inputBasicDesign'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign'
-                    }
-                    type={'text'}
-                    name={'category'}
-                    required={true}
-                    placeholder="category"
-                    changeFunction={(e) => inputHandler(e)}
-                    blurFunction={(e) => checkError(e)}
-                  />
-                  <div>{infoArtworkError.categoryError}</div>
-                </Col>
+                
 
-                <Col md={4} id="formGridSecondSurname">
-                  <p className="mb-0 mt-3">description</p>
+                <Col md={12} id="formGridSecondDescription">
+                  <p className="mb-0 mt-3 ps-3">DESCRIPTION</p>
                   <InputText
                     className={
                       infoArtworkError.descriptionError === ''
-                        ? 'inputsDesignCommon inputBasicDesign'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign'
+                      ? 'inputDesign'
+                      : 'inputDesign inputErrorDesign'
                     }
                     type={'text'}
                     name={'description'}
@@ -265,17 +286,17 @@ export const NewArtwork = () => {
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{infoArtworkError.descriptionError}</div>
+                  <div className="errorMessage">{infoArtworkError.descriptionError}</div>
                 </Col>
               </Row>
               <Row className="mb-3">
                 <Col sm={12} lg={6} id="formGridEmail">
-                  <p className="mb-0 mt-3">technique</p>
+                  <p className="mb-0 mt-3 ps-3">TECHNIQUE</p>
                   <InputText
                     className={
                       infoArtworkError.techniqueError === ''
-                        ? 'inputsDesignCommon inputBasicDesign inputEmailDesign'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputEmailDesign'
+                      ? 'inputDesign'
+                      : 'inputDesign inputErrorDesign'
                     }
                     type={'text'}
                     name={'technique'}
@@ -284,16 +305,42 @@ export const NewArtwork = () => {
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{infoArtworkError.techniqueError}</div>
+                  <div className="errorMessage">{infoArtworkError.techniqueError}</div>
                 </Col>
+                <Col md={12} lg={6} id="formGridFirstSurname">
+                <Form>
+            <Form.Group className="mb-3">
+              <p className="pe-4 nameFieldDesign ps-3">CATEGORY</p>
+              <Form.Select
+               className="selectCategoryDesign"
+                name={"category"}
+                onChange={(e) => inputHandler(e)}
+                aria-label="Default select example"
+              >
+                <option>Choose category</option>
 
-                <Col sm={12} lg={6} id="formGridPassword">
-                  <p className="mb-0 mt-3">dimensions</p>
+                {categories.map((category) => {
+                  return (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  );
+                })}
+              </Form.Select>
+            </Form.Group>
+          </Form>
+    
+                </Col>
+              </Row>
+              <Row>
+                
+              <Col sm={12} lg={6} id="formGridDimensions">
+                  <p className="mb-0 mt-3 ps-3">DIMENSIONS</p>
                   <InputText
                     className={
                       infoArtworkError.dimensionsError === ''
-                        ? 'inputsDesignCommon inputBasicDesign inputPasswordDesign'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputPasswordDesign'
+                      ? 'inputDesign'
+                      : 'inputDesign inputErrorDesign'
                     }
                     type={'text'}
                     name={'dimensions'}
@@ -302,34 +349,15 @@ export const NewArtwork = () => {
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{infoArtworkError.dimensionsError}</div>
+                  <div className="errorMessage">{infoArtworkError.dimensionsError}</div>
                 </Col>
-              </Row>
-              <Row>
-                <Col sm={12} lg={6} id="formGridAddress">
-                  {/* <p className="mb-0 mt-3">date_creation</p>
-                <InputText
-                  className={
-                    credentialsError.date_creationError === ""
-                      ? "inputsDesignCommon inputBasicDesign inputAddressDesign"
-                      : "inputsDesignCommon inputBasicDesign inputErrorDesign inputAddressDesign"
-                  }
-                  type={"datetime-local"}
-                  name={"date_creation"}
-                  required={true}
-                  changeFunction={(e) => inputHandler(e)}
-                  blurFunction={(e) => checkError(e)}
-                />
-                <div>{credentialsError.date_creationError}</div> */}
-                </Col>
-
-                <Col id="formGridPrice">
-                  <p className="mb-0 mt-3">Price</p>
+                <Col sm={12} lg={6} id="formGridPrice">
+                  <p className="mb-0 mt-3 ps-3">PRICE</p>
                   <InputText
                     className={
                       infoArtworkError.priceError === ''
-                        ? 'inputsDesignCommon inputBasicDesign'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign'
+                      ? 'inputDesign'
+                      : 'inputDesign inputErrorDesign'
                     }
                     type={'integer'}
                     name={'price'}
@@ -338,7 +366,7 @@ export const NewArtwork = () => {
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{infoArtworkError.priceError}</div>
+                  <div className="errorMessage">{infoArtworkError.priceError}</div>
                 </Col>
               </Row>
               <Row className="d-flex justify-content-center">
@@ -375,5 +403,7 @@ export const NewArtwork = () => {
         </div>
       )}
     </div>
+<FooterTemplate/>
+    </>
   )
 }
