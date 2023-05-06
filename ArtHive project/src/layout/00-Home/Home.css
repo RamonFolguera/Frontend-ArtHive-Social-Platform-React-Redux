@@ -45,3 +45,15 @@
     background-color: #e6aca858;
     border-radius: 100px;
 }
+
+
+
+.ratingTop10Table{
+    border-top: 2px lightgray solid;  
+    width: 100%;
+}
+
+.tdDesign {
+    padding: 2em 0;
+    font-weight: bolder;
+}

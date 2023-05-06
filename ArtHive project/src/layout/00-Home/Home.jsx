@@ -6,9 +6,11 @@ import { NavBar } from '../../components/Navbar/NavBar'
 import community from '../../assets/images/community.png'
 import { Link } from 'react-router-dom'
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
+import { FooterTemplate } from '../../components/FooterTemplate/FooterTemplate'
 
 export const Home = () => {
-  const [allArtworks, setAllArtworks] = useState([])
+  const [allArtworks, setAllArtworks] = useState([]);
+  const [topRatedArtworks, setTopRatedArtworks] = useState([]);
 
   useEffect(() => {
     if (allArtworks.length === 0) {
@@ -22,6 +24,16 @@ export const Home = () => {
               Math.floor(Math.random() * result.data.data.length)
             ]
           setAllArtworks([randomArtwork])
+
+          //Sorting artwors from higher rating to lower
+          const sortedByRating = result.data.data.sort(
+            (a, b) => b.rating - a.rating
+          );
+
+          //Taking only first 10 artworks
+          const topRatedData = sortedByRating.slice(0, 10);
+          setTopRatedArtworks(topRatedData);
+
         })
         .catch((error) => console.log(error))
     }
@@ -31,7 +43,7 @@ export const Home = () => {
   return (
     <>
       <NavBar />
-      <Container>
+      <Container className="defaultPageHeight">
         <Row className="my-auto homeSection1">
           <Col lg={6}>
             <p className="titleDesign">
@@ -76,7 +88,37 @@ export const Home = () => {
             })}
           </Col>
         </Row>
+        <Row className="my-auto homeSection2">
+<Col lg={12} className="mt-5">
+<div >
+      <h1>Top 10 Artworks by Rating</h1>
+      <table className="ratingTop10Table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {topRatedArtworks.map((artwork) => (
+            <tr key={artwork.id}>
+              <td className="tdDesign">{artwork.title}</td>
+              <td>{artwork.category}</td>
+              <td>{artwork.rating}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+</Col>
+
+
+
+
+        </Row>
       </Container>
+      <FooterTemplate/>
     </>
   )
 }
