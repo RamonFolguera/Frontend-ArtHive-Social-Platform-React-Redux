@@ -6,7 +6,7 @@ header {
     margin: 1rem 6rem;
     border-bottom: 2px lightgray solid;  
     z-index: 10;
-        position: relative;
+    position: relative;
 
  
 }
@@ -50,6 +50,7 @@ header .nav-btn {
 .login-btn:hover {
     background-color: lightgray;
     color:black;
+    cursor:pointer;
 }
 
 

@@ -131,11 +131,11 @@ setAverageRating(null)
         <NavBar />
 
         <Container fluid className="mainContainer">
-          <h2>Selected artwork in detail:</h2>
+          <h2 className="galleryTitleDesign text-center">My Artwork in Detail</h2>
           <Row className="d-flex justify-content-center">
             <Col lg={4} className="me-5">
-              <div className="cardsContainer d-flex ">
-                <div className="artworkCardDetailsDesign ">
+              <div className="cardsContainer d-flex  ">
+                <div className="artworkCardDetailsDesign d-flex flex-column justify-content-between">
                   <p className="pe-4 titleFieldDesign">
                     {artworkSelectedObj.title}
                   </p>
@@ -143,12 +143,11 @@ setAverageRating(null)
                   {/* <p>{artworkSelectedObj.Artist.artistic_name}</p> */}
                   <p>{artworkSelectedObj.category}</p>
                   <p>{artworkSelectedObj.technique}</p>
-                  <p>{artworkSelectedObj.date_creation}</p>
                   <p>{artworkSelectedObj.dimensions}</p>
                   <p>{artworkSelectedObj.price}</p>
                   <div className="goToUpdateProfileBtnContainer d-flex justify-content-center align-items-center">
               <Link
-                className="goToUpdateProfileBtn pt-3 pb-3 ps-5 pe-5 justify-content-center d-flex align-items-center"
+                className="detailsBtnDesign pt-3 pb-3 ps-5 pe-5 w-100 justify-content-center d-flex align-items-center"
                 to="/update-profile"
               >
                 UPDATE MY ARTWORK DETAILS <BsFillArrowUpRightCircleFill className="bs ms-3 arrowDesign" />
@@ -156,7 +155,7 @@ setAverageRating(null)
             </div>
             <div className="goToUpdateProfileBtnContainer d-flex justify-content-center align-items-center">
               <Link
-                className="goToUpdateProfileBtn pt-3 pb-3 ps-5 pe-5 justify-content-center d-flex align-items-center"
+                className="detailsBtnDesign pt-3 pb-3 ps-5 pe-5 w-100 justify-content-center d-flex align-items-center"
 onClick = {() => {deleteArtwork()}}              >
                 DELETE MY ARTWORK DETAILS 
               </Link>

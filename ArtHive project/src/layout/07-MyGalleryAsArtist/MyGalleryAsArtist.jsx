@@ -71,7 +71,7 @@ export const MyGalleryAsArtist = () => {
     <NavBar/>
 
     <Container fluid>
-      <h2>All artworks:</h2>
+      <h2 className="galleryTitleDesign text-center">My Artworks Gallery</h2>
       <Row className="homeSection1">
         <Col>
           <div className="cardsGalleryContainer">
