@@ -43,7 +43,7 @@ I worked on getting all those endpoints I built on the backend side to perfectly
   
 ## Deploy 🚀
 <div align="center">
-    <a href="https://artplatf.d2lr6rkacmk4a.amplifyapp.com/"><strong>Url to ArtHive Web Application </strong></a>🚀🚀🚀
+    <a href="https://ramon23.d3biezth2ueuj6.amplifyapp.com/"><strong>Url to ArtHive Web Application </strong></a>🚀🚀🚀
 </div>
 
 ## Stack
