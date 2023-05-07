@@ -150,10 +150,10 @@ export const Register = () => {
   const userRegister = () => {
     registerUser(credentials)
 
-    setWelcome(`Welcome to ArtHive. Be creative! `)
+    setWelcome(`Welcome to ArtHive. Be creative!`)
     setTimeout(() => {
       navigate('/')
-    }, 500)
+    }, 2000)
   }
 
   return (

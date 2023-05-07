@@ -20,10 +20,26 @@
 </details>
 
 ## Goal 🎯
-In this second part, we needed for this project to use react to create a web and connect to our functional API.
+In this project from our Full Stack Bootcamp with Geekshubs we are faced with the final challenge for which we are asked to show our knowledge adquired during this 12 weeks.
+
+We have to create a complete Web Application from scratch using the technology learnt during the bootcamp of our choice, and also, we are given the opportunity to choose the product we want to build.
+
+For my frontend I worked with React framework and Redux.
 
 ## About 🔎
-We continue working creating our Dental Practise web application. I worked on getting all those endpoints we worked on the backend side to perfectly function on the frontend side. To do so I needed for the web to let users to register, login, book appointments, delete appointments, update appointments, update their user profiles, ... etc.. And acces the web with different roles: doctor, client and admin.
+<img src="./src/assets/images/ARTHIVE.gif"> 
+
+My project consists in a social platform where users can explore and find new art. Mainly, the idea revolves around allowing users to discover and explore art from emerging and established artists from all over the world. I am looking for an application that is open to generating spaces for dialogue between art lovers and artists, and open to stimulating the development of new quests for creative and artistic expression.
+
+What problem do I want to solve with this development?
+With the recent rise of AI technologies, I consider that on one hand many artists will be affected, but at the same time, it will encourage the use of applications like the one I would like to create, where works of art made by and for humans are valued, rewarded, and made known.
+
+What special advantage makes your project different?
+I perceive these web applications as a platform for presenting art. They try to incorporate functionalities to make it more dynamic beyond what Pinterest has, which is showing images, or a forum/blog page, or posting content. I would like to go further and have my space be more of a socio-cultural celebration, as if it were an exhibition in an art gallery where the artist is showcased and you as a user have time to appreciate it and if you want, even contact them or buy their work. Perhaps it could be like a bar that offers space on the wall to hang photographs by an amateur, or a friendly competition between a group of painters on a specific theme.
+
+I want the art-loving user to open the app and the first thing they see is the featured artwork of the day. If they like it, they can see more by the artist, or even offer a 3D or 2D virtual space to virtually place the artwork to appreciate it in a kind of metaverse.
+
+I worked on getting all those endpoints I built on the backend side to perfectly function on the frontend side. To do so I needed for the web to let users to register, login, book appointments, delete appointments, update appointments, update their user profiles, ... etc.. And acces the web with different roles: artist, art lover and admin.
   
 ## Deploy 🚀
 <div align="center">
@@ -75,14 +91,20 @@ $git clone https://github.com/RamonFolguera/rfc-geekshubs-fsd-val-project5-26032
 4. ... -->
 
 ## Pages
-Landing
-<img src="./img/readme/Home.JPG">  
-Register
-<img src="./img/readme/register.JPG">
-Login
-<img src="./img/readme/login.JPG">
-Profile
-<img src="./img/readme/profile.JPG">
+######Landing page
+On the landing page we have already a randomly selected artwork registered in the data base. Everytime we land on that page we get a new one as a way to give visibility to everyone in the platform. 
+Below we have a top 10 ranking of the highest rated artworks.
+Before you sign in or register you are able to explore the artwork gallery. However, when you try to save the image or get to the details you are asked to sign in or register.
+<img src="./src/assets/images/Landing_noRoles.gif">  
+######Register page
+When you register you have to choose your role Artist or Art Lover. This role will only be possible to be changed by an admin once you have registered.
+<img src="./src/assets/images/register.gif">
+######Login and Profile pages
+<img src="./src/assets/images/userprofile.gif">
+<img src="./src/assets/images/userprofileartist.gif">
+######Artwork in detail page
+Here art lovers can see more details from the artist's uploaded artworks, can comment them and rate them.
+<img src="./src/assets/images/commentRating.gif">
 Book Appointment
 <img src="./img/readme/bookappointment.JPG">
 Your appointments as client

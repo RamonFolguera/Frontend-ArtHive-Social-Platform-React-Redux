@@ -17,13 +17,12 @@ export const Home = () => {
   const [showModal, setShowModal] = useState(false)
 
   const handleShowModal = () => {
-    setShowModal(true);
-  
-  };
+    setShowModal(true)
+  }
 
   const handleCloseModal = () => {
-    setShowModal(false);
-  };
+    setShowModal(false)
+  }
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -55,37 +54,36 @@ export const Home = () => {
   }, [])
 
   const artworkSelected = (artwork) => {
-    
     setTimeout(() => {
       navigate('/artwork-details')
     }, 500)
   }
 
-const gotToLogin =() =>{
-  setTimeout(() => {
-    navigate('/login')
-  }, 500)
-}
+  const gotToLogin = () => {
+    setTimeout(() => {
+      navigate('/login')
+    }, 500)
+  }
   return (
     <>
       <NavBar />
       <Container className="defaultPageHeight">
         <Row className="my-auto homeSection1">
           <Col xs={12} lg={6}>
-          {showModal && (
-               <div className="modalContainer">
-  <ModalTemplate
-    key="loginModal"
-    className="loginModalDesign"
-    title="Are you part of our Art Community already?"
-    body="Please, sign in to get access to all the details."
-    button1="Close"
-    button2="Sign in"
-    clickFunction1={() => handleCloseModal()}
-    clickFunction2={() => gotToLogin()}
-  />
-  </div>
-)}
+            {showModal && (
+              <div className="modalContainer">
+                <ModalTemplate
+                  key="loginModal"
+                  className="loginModalDesign"
+                  title="Are you part of our Art Community already?"
+                  body="Please, sign in to get access to all the details."
+                  button1="Close"
+                  button2="Sign in"
+                  clickFunction1={() => handleCloseModal()}
+                  clickFunction2={() => gotToLogin()}
+                />
+              </div>
+            )}
             <p className="titleDesign">
               Discover limitless creativity everyday
             </p>
@@ -115,17 +113,17 @@ const gotToLogin =() =>{
               return (
                 <div key={artwork.id}>
                   <div className="d-flex align-items-end justify-content-end ">
-                  <div className="d-flex align-items-end flex-column justify-content-end me-5">
-                    <div>
-                      <p className="randomArtworkTitle">{artwork.title}</p>
-                    </div>
-                    <div
-                      type="button"
-                      className="seeMoreHomeDesign text-center d-flex align-items-center justify-content-center"
-                      onClick={() => handleShowModal()}
-                    >
-                      Click for more details
-                    </div>
+                    <div className="d-flex align-items-end flex-column justify-content-end me-5">
+                      <div>
+                        <p className="randomArtworkTitle">{artwork.title}</p>
+                      </div>
+                      <div
+                        type="button"
+                        className="seeMoreHomeDesign text-center d-flex align-items-center justify-content-center"
+                        onClick={() => handleShowModal()}
+                      >
+                        Click for more details
+                      </div>
                     </div>
                     <div>
                       <img
@@ -145,10 +143,10 @@ const gotToLogin =() =>{
               <h1 className="galleryTitleDesign text-center mt-5 mb-3">
                 Top 10 Artworks Today
               </h1>
-    
+
               <Table responsive className="ratingTop10Table">
-                <thead >
-                  <tr >
+                <thead>
+                  <tr>
                     <th className="theadDesign m-5">ARTIST</th>
                     <th className="theadDesign m-5">NAME</th>
 
@@ -161,10 +159,13 @@ const gotToLogin =() =>{
                 <tbody>
                   {topRatedArtworks.map((artwork) => (
                     <tr key={artwork.id}>
-                      <td className="tdDesign"> <img
+                      <td className="tdDesign">
+                        {' '}
+                        <img
                           className="top10AvatarDesign"
                           src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${artwork.Artist.User.avatar}`}
-                        /></td>
+                        />
+                      </td>
                       <td className="tdDesign">
                         {artwork.Artist.User.name}{' '}
                         {artwork.Artist.User.last_name}
@@ -172,7 +173,14 @@ const gotToLogin =() =>{
 
                       <td className="tdDesign">{artwork.title}</td>
                       <td className="tdDesign">{artwork.category}</td>
-                      <td ><p className="seeMoreHomeDesign d-flex align-items-center justify-content-center">Click for more details</p></td>
+                      <td>
+                        <p 
+                        type="button"
+                        onClick={() => handleShowModal()}
+                        className="seeMoreHomeDesign d-flex align-items-center justify-content-center">
+                          Click for more details
+                        </p>
+                      </td>
 
                       <td>
                         {' '}
@@ -185,9 +193,7 @@ const gotToLogin =() =>{
                   ))}
                 </tbody>
               </Table>
-              </div>
-
-            
+            </div>
           </Col>
         </Row>
       </Container>
