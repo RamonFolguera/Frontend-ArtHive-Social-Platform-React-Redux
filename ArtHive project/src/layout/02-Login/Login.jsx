@@ -15,21 +15,20 @@ import { validate } from '../../helpers/useful'
 export const Login = () => {
   const navigate = useNavigate()
 
-  const dispatch = useDispatch() 
-  const credentialsRdx = useSelector(userData) 
-  const [loginAct, setLoginAct] = useState(false);
+  const dispatch = useDispatch()
+  const credentialsRdx = useSelector(userData)
+  const [loginAct, setLoginAct] = useState(false)
 
   const [allArtworks, setAllArtworks] = useState([])
   const [showModal, setShowModal] = useState(false)
 
   const handleShowModal = () => {
-    setShowModal(true);
-  
-  };
+    setShowModal(true)
+  }
 
   const handleCloseModal = () => {
-    setShowModal(false);
-  };
+    setShowModal(false)
+  }
 
   useEffect(() => {
     if (allArtworks.length === 0) {
@@ -118,7 +117,6 @@ export const Login = () => {
     }))
   }
 
-
   const loginFunction = () => {
     logMe(credentials)
       .then((userData) => {
@@ -128,11 +126,10 @@ export const Login = () => {
           user: decoded,
         }
         if (!dataBackend.user.status) {
-          console.log("status false");
-          handleShowModal();
-          throw new Error("User is not registered");
+          console.log('status false')
+          handleShowModal()
+          throw new Error('User is not registered')
         }
-
 
         dispatch(login({ credentials: dataBackend }))
 
@@ -145,10 +142,16 @@ export const Login = () => {
       .catch((error) => console.log(error))
   }
 
+  const goToSignUp = () =>{
+    setTimeout(() => {
+      navigate('/register')
+    }, 500)
+  }
+
   return (
     <>
       <Container fluid className="main-container">
-        <Row >
+        <Row>
           <Col lg={6} className="p-0 m-0 selectedImgCol">
             {allArtworks.map((artwork) => {
               return (
@@ -164,23 +167,26 @@ export const Login = () => {
             })}
           </Col>
 
-
-          <Col lg={6} className="formCol d-flex justify-content-center ps-lg-5 pb-lg-5 justify-content-lg-start align-items-start align-items-lg-center">
+          <Col
+            lg={6}
+            className="formCol d-flex justify-content-center ps-lg-5 pb-lg-5 justify-content-lg-start align-items-start align-items-lg-center"
+          >
             <>
-           
-            {showModal && (
-               <div className="modalContainer">
-  <ModalTemplate
-    key="loginModal"
-    className="loginModalDesign"
-    title="User not found"
-    body="Please, register or send an email to admin@admin.com to recover your account if you have previously registered."
-    button="Close"
-    clickFunction={() => handleCloseModal()}
-  />
-  </div>
-)}
-    
+              {showModal && (
+                <div className="modalContainer">
+                  <ModalTemplate
+                    key="loginModal"
+                    className="loginModalDesign"
+                    title="User not found"
+                    body="Please, register or send an email to admin@admin.com to recover your account if you have previously registered."
+                    button1="Close"
+                    button2="Sign up"
+                    clickFunction1={() => handleCloseModal()}
+                    clickFunction2={() => goToSignUp()}
+                  />
+                </div>
+              )}
+
               {welcome === '' ? (
                 <>
                   <div className="loginFormBody">
@@ -190,53 +196,66 @@ export const Login = () => {
                       <div className="ps-3">EMAIL</div>
                       <InputText
                         className={
-                        credentialsError.emailError === ''
-                        ? 'ps-3 inputDesign w-100'
-                        : 'ps-3 inputDesign inputErrorDesign w-100'}
+                          credentialsError.emailError === ''
+                            ? 'ps-3 inputDesign w-100'
+                            : 'ps-3 inputDesign inputErrorDesign w-100'
+                        }
                         type="email"
                         name="email"
                         placeholder="e.g. artist@gmail.com"
                         changeFunction={(e) => inputHandler(e)}
                         blurFunction={(e) => checkError(e)}
-
                       />
-                      <div className="errorMessage">{credentialsError.emailError}</div>
+                      <div className="errorMessage">
+                        {credentialsError.emailError}
+                      </div>
                       <div className="ps-3 mt-4 ">PASSWORD</div>
 
                       <InputText
                         className={
                           credentialsError.passwordError === ''
-                          ? 'ps-3 inputDesign w-100'
-                          : 'ps-3 inputDesign inputErrorDesign w-100'}
+                            ? 'ps-3 inputDesign w-100'
+                            : 'ps-3 inputDesign inputErrorDesign w-100'
+                        }
                         type="password"
                         name="password"
                         placeholder="e.g. Password_123"
                         changeFunction={(e) => inputHandler(e)}
                         blurFunction={(e) => checkError(e)}
-
                       />
-                      <div className="errorMessage">{credentialsError.passwordError}</div>
-                      <div className="d-flex justify-content-center">
+                      <div className="errorMessage">
+                        {credentialsError.passwordError}
+                      </div>
+                      <div className="d-flex justify-content-center flex-column">
                         <div
-                        type="button" 
-                        className={
-                          loginAct
-                            ? "mt-3 buttonDesign  d-flex justify-content-center align-items-center"
-                            : "mt-3 buttonDesign notActBtn d-flex justify-content-center align-items-center"
-                        }
-                         
+                          type="button"
+                          className={
+                            loginAct
+                              ? 'mt-3 buttonDesign  d-flex justify-content-center align-items-center'
+                              : 'mt-3 buttonDesign notActBtn d-flex justify-content-center align-items-center'
+                          }
                           onClick={
-                              loginAct
-                                ? () => {loginFunction();
-                                <div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
-        <h1 className="welcomeMsgDesign">{welcome}</h1>
-        </div>
-      }
-      : () => {}
-  }
+                            loginAct
+                              ? () => {
+                                  loginFunction()
+                                  ;<div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
+                                    <h1 className="welcomeMsgDesign">
+                                      {welcome}
+                                    </h1>
+                                  </div>
+                                }
+                              : () => {}
+                          }
                         >
                           Sign in
                         </div>
+                        <Link
+                          type="button"
+                          className='mt-3 buttonDesign d-flex justify-content-center align-items-center'
+                          to="/"
+                        >
+                          Back Home
+                        </Link>
                       </div>
                       <Link to="/register">Don't have an account?</Link>
                     </div>
@@ -249,9 +268,6 @@ export const Login = () => {
               )}
             </>
           </Col>
-        
-
-        
         </Row>
       </Container>
     </>

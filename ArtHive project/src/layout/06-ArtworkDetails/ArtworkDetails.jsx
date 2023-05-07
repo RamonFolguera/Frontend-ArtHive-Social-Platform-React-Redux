@@ -20,6 +20,7 @@ import {
 import { userData } from '../userSlice'
 import { InputText } from '../../components/InputText/InputText'
 import { validate } from '../../helpers/useful'
+import { ModalTemplate } from '../../components/ModalTemplate/ModalTemplate'
 
 export const ArtworkDetails = () => {
   const navigate = useNavigate()
@@ -37,6 +38,15 @@ export const ArtworkDetails = () => {
   })
   const [averageRating, setAverageRating] = useState(null)
   const [commentRatingAct, setCommentRatingAct] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+
+  const handleShowModal = () => {
+    setShowModal(true)
+  }
+
+  const handleCloseModal = () => {
+    setShowModal(false)
+  }
   let hasVoted = false;
   let totalRating = 0
 
@@ -232,6 +242,7 @@ useEffect(() => {
             : userArtworkSelected
         )
       )
+     
     })
   }
 
@@ -252,7 +263,7 @@ useEffect(() => {
       )
     )
     hasVoted = false;
-
+    handleCloseModal();
     })
   }
 console.log(allUserArtworks);
@@ -317,10 +328,10 @@ console.log(allUserArtworks);
       <>
         <NavBar />
 
-        <Container fluid className="mainContainer">
+        <Container fluid className="mainContainer d-flex flex-column align-items-center">
           <h2 className="galleryTitleDesign text-center">Artwork in detail</h2>
-          <Row className="d-flex justify-content-center">
-            <Col lg={4} className="me-5">
+          <Row className="d-flex justify-content-center sectionRow">
+            <Col xs={12} lg={4} className="me-lg-5 mb-4">
               <div className="cardsContainer d-flex ">
                 <div className="artworkCardDetailsDesign d-flex flex-column justify-content-between">
                   <p className="pe-4 titleFieldDesign">
@@ -338,7 +349,7 @@ console.log(allUserArtworks);
                 </div>
               </div>
             </Col>
-            <Col lg={4} className="ms-5">
+            <Col xs={12} lg={4} className="ms-lg-5">
               <div>
                 <img
                   className="ImgDesign"
@@ -347,22 +358,23 @@ console.log(allUserArtworks);
               </div>
             </Col>
           </Row>
-          <Row className="d-flex justify-content-center">
-            <Col lg={6}>
-              <div className="commentsContainer">
+          <Row className="d-flex justify-content-center align-items-center commentsRatingContainer">
+          
+            <Col xs={12} lg={6} className="mb-4">
+          
 
                 {allUserArtworks.map((userArtwork) => {
                   return (
                     <div
                       key={userArtwork.id}
-                      className="d-flex justify-content-between"
+                      className="d-flex justify-content-between align-items-end flex-column flex-lg-row"
                     >
                       <div
                         className={
                           (userArtwork.id === myUserArtwork.id &&  myUserArtwork.user_id === userCredentialsRdx.credentials.user.userId && userArtwork.comment !== null)
-                          ? 'commentLine userComment m-0 mt-3  me-3 w-100' :
+                          ? 'commentLine userComment m-0 mt-3 me-0 me-lg-3 w-100' :
                           (userArtwork.artwork_id === artworkSelectedObj.id && userArtwork.comment !== null )  
-                          ? 'commentLine m-0 mt-3 me-3 w-100'
+                          ? 'commentLine m-0 mt-3 w-100'
                           : 'm-0 w-100'
                         }
                       >
@@ -370,7 +382,6 @@ console.log(allUserArtworks);
                           <div className="m-0">{
                           (userArtwork.artwork_id === artworkSelectedObj.id && userArtwork.comment !== null) 
                           ? <div>
-                            
                             {}{userArtwork.comment} </div>
                           : <div></div>
                           }</div>
@@ -417,9 +428,24 @@ console.log(allUserArtworks);
                     Submit{' '}
                   </button>
                 </div>
-              </div>
+              
             </Col>
-            <Col lg={2}>
+            <Col xs={12} lg={6}>
+            {showModal && (
+                <div className="modalContainer">
+                  <ModalTemplate
+                    key="loginModal"
+                    className="loginModalDesign"
+                    title="Please, confirm"
+                    body="Are you sure you want to delete your rating?"
+                    button1="Close"
+                    button2="Yes, delete it"
+                    clickFunction1={() => handleCloseModal()}
+                    clickFunction2={() => deleteYourRating(myUserArtwork)}
+                  />
+                </div>
+              )}
+
               <div className="ratingContainer d-flex justify-content-center flex-column align-items-center">
                 <div>
                   {averageRating === null ?  <p className="ratingStyle">0</p> :   <p className="ratingStyle">{averageRating}</p>}
@@ -453,8 +479,9 @@ console.log(allUserArtworks);
                     blurFunction={(e) => checkError(e)}
                   />
                   <div className="errorMessage">{commentRatingError.nameError}</div>
+                 <div className="d-flex justify-content-between">
                   <button
-                    className="ps-3 pe-3 mt-3 mb-3 buttonSubmitRatingDesign d-flex justify-content-center align-items-center"
+                    className="ps-3 pe-3 mt-3 mb-3 me-2 buttonSubmitRatingDesign d-flex justify-content-center align-items-center"
                     onClick={() => {
                       createOrUpdateRating(myUserArtwork)
                     }}
@@ -463,18 +490,19 @@ console.log(allUserArtworks);
                     Submit{' '}
                   </button>
                   <button
-                    className="ps-3 pe-3 mt-3 mb-3 buttonSubmitRatingDesign d-flex justify-content-center align-items-center"
+                    className="ps-3 pe-3 mt-3 mb-3  ms-2 buttonSubmitRatingDesign d-flex justify-content-center align-items-center"
                     onClick={() => {
-                      deleteYourRating(myUserArtwork)
+                      handleShowModal()
                     }}
                  
                   >
                     Delete{' '}
                   </button>
-              
+                  </div>
                 </div>
               </div>
             </Col>
+           
           </Row>
         </Container>
         <FooterTemplate/>

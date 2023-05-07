@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Col, Container, Form, Row } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { InputText } from '../../components/InputText/InputText'
 import './Register.css'
@@ -383,6 +383,13 @@ export const Register = () => {
               >
                 Submit
               </div>
+              <Link
+                type="submit"
+                className= 'mt-3 buttonDesign text-center'
+                to="/"
+              >
+                Back Home
+              </Link>
             </Col>
             <Col xs={12} lg={6} className="p-0 m-0 selectedImgCol">
               {allArtworks.map((artwork) => {

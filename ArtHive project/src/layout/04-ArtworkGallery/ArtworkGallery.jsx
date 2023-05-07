@@ -124,12 +124,14 @@ export const ArtworkGallery = () => {
     console.log(isRegistered, 'isRegistered')
 
     if (isRegistered) {
+
       const artworkToUpdateFav = myUserArtwork.find(
         (userArtwork) => userArtwork.artwork_id === artwork.id
       )
+      console.log(artworkToUpdateFav, 'artworkToUpdateFav')
 
       updateFavorite(
-        artworkToUpdateFav.id,
+        artworkToUpdateFav.artwork_id,
         { favorite: !artworkToUpdateFav.favorite },
         userCredentialsRdx.credentials.token
       )
@@ -179,9 +181,12 @@ export const ArtworkGallery = () => {
 
   if (loading) {
     return (
+      <>
+        <NavBar />
       <div className="spinnerDesign d-flex justify-content-center align-items-center flex-column">
         <SpinnerComponent message="Art is coming... hold on!" />
       </div>
+      </>
     )
   } else if (allArtworks.length > 0) {
     return (
