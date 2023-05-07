@@ -98,7 +98,7 @@ export const NavBar = () => {
       <a href="/my-artworks-gallery">My artworks</a>
       </div>
 
-      <div>
+      <div >
       <a className="logoDesign" href="/#">ARTHIVE</a>
       </div>
 

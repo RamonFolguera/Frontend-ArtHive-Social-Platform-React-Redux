@@ -119,7 +119,10 @@ export const Register = () => {
       }
     }
 
-    if ((credentials.password === confirmedCredential.confirm_password) && credentials.role_id !== '') {
+    if (
+      credentials.password === confirmedCredential.confirm_password &&
+      credentials.role_id !== ''
+    ) {
       setRegisterAct(true)
     } else {
       setRegisterAct(false)
@@ -159,6 +162,7 @@ export const Register = () => {
         <Container fluid className="register-container">
           <Row className="mb-3 w-100">
             <Col
+              xs={12}
               lg={6}
               className="registerFormBody pb-lg-5 justify-content-lg-center"
               id="formGridName"
@@ -167,9 +171,9 @@ export const Register = () => {
                 Start your Art Journey
               </h1>
 
-              <div className="d-flex justify-content-between">
-                <div>
-                  <p className="mb-0 mt-3">NAME</p>
+              <div className="d-flex flex-column flex-md-row  flex-lg-row justify-content-between">
+                <div className="w-100 me-5">
+                  <p className="mb-0 mt-3 ">NAME</p>
                   <InputText
                     className={
                       credentialsError.nameError === ''
@@ -205,20 +209,19 @@ export const Register = () => {
                     {credentialsError.last_nameError}
                   </div>
                 </div>
+                <div className="d-flex justify-content-between w-100">
                 <Form className="d-flex align-items-center">
                   <Form.Group className="mb-3">
-                  <p> ARTIST or ART LOVER?</p>
+                    <p className="mt-3"> ARTIST or ART LOVER?</p>
 
                     <Form.Select
-                      className="selectDesign"
+                      className="selectDesign m-0"
                       name={'role_id'}
                       required={true}
                       onChange={(e) => inputHandler(e)}
                       aria-label="Default select example"
                     >
-
-                      <option>
-                      </option>
+                      <option></option>
 
                       {roles.map((role) => {
                         return (
@@ -236,7 +239,7 @@ export const Register = () => {
                   method="post"
                   encType="multipart/form-data"
                 >
-                  Avatar/photo
+                   <p className="text-center pt-1">Avatar/photo</p>
                   <input
                     type="file"
                     name="avatar"
@@ -244,8 +247,9 @@ export const Register = () => {
                     hidden
                   />
                   <MdCloudUpload color="#1475cf" size={60} />
-                  <p>Browse Files to upload</p>
+                  <p className="text-center">Browse Files to upload</p>
                 </form>
+                </div>
               </div>
               <p className="mb-0 mt-3">EMAIL</p>
               <InputText
@@ -380,7 +384,7 @@ export const Register = () => {
                 Submit
               </div>
             </Col>
-            <Col lg={6} className="p-0 m-0 selectedImgCol">
+            <Col xs={12} lg={6} className="p-0 m-0 selectedImgCol">
               {allArtworks.map((artwork) => {
                 return (
                   <div key={artwork.id}>

@@ -1,16 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row, Table } from 'react-bootstrap'
 import './Home.css'
 import { bringAllArtworks } from '../../services/apiCalls'
 import { NavBar } from '../../components/Navbar/NavBar'
 import community from '../../assets/images/community.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 import { FooterTemplate } from '../../components/FooterTemplate/FooterTemplate'
+import { addChoosenArtwork } from '../artworkSlice'
+import { useDispatch } from 'react-redux'
+import { ModalTemplate } from '../../components/ModalTemplate/ModalTemplate'
 
 export const Home = () => {
   const [allArtworks, setAllArtworks] = useState([])
   const [topRatedArtworks, setTopRatedArtworks] = useState([])
+  const [showModal, setShowModal] = useState(false)
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (allArtworks.length === 0) {
@@ -38,21 +54,38 @@ export const Home = () => {
     }
   }, [])
 
-  // const artworkSelected = (artwork) => {
-  //   dispatch(addChoosenArtwork({ choosenArtwork: artwork }))
+  const artworkSelected = (artwork) => {
+    
+    setTimeout(() => {
+      navigate('/artwork-details')
+    }, 500)
+  }
 
-  //   }
-  //   setTimeout(() => {
-  //     navigate('/artwork-details')
-  //   }, 500)
-  // }
-
+const gotToLogin =() =>{
+  setTimeout(() => {
+    navigate('/login')
+  }, 500)
+}
   return (
     <>
       <NavBar />
       <Container className="defaultPageHeight">
         <Row className="my-auto homeSection1">
-          <Col lg={6}>
+          <Col xs={12} lg={6}>
+          {showModal && (
+               <div className="modalContainer">
+  <ModalTemplate
+    key="loginModal"
+    className="loginModalDesign"
+    title="Are you part of our Art Community already?"
+    body="Please, sign in to get access to all the details."
+    button1="Close"
+    button2="Sign in"
+    clickFunction1={() => handleCloseModal()}
+    clickFunction2={() => gotToLogin()}
+  />
+  </div>
+)}
             <p className="titleDesign">
               Discover limitless creativity everyday
             </p>
@@ -77,7 +110,7 @@ export const Home = () => {
             </div>
           </Col>
 
-          <Col lg={6} className="selectedImgCol">
+          <Col xs={12} lg={6} className="selectedImgCol">
             {allArtworks.map((artwork) => {
               return (
                 <div key={artwork.id}>
@@ -89,7 +122,7 @@ export const Home = () => {
                     <div
                       type="button"
                       className="seeMoreHomeDesign text-center d-flex align-items-center justify-content-center"
-                      onClick={() => artworkSelected(artwork)}
+                      onClick={() => handleShowModal()}
                     >
                       Click for more details
                     </div>
@@ -112,7 +145,8 @@ export const Home = () => {
               <h1 className="galleryTitleDesign text-center mt-5 mb-3">
                 Top 10 Artworks Today
               </h1>
-              <table className="ratingTop10Table">
+    
+              <Table responsive className="ratingTop10Table">
                 <thead >
                   <tr >
                     <th className="theadDesign m-5">ARTIST</th>
@@ -150,8 +184,10 @@ export const Home = () => {
                     </tr>
                   ))}
                 </tbody>
-              </table>
-            </div>
+              </Table>
+              </div>
+
+            
           </Col>
         </Row>
       </Container>

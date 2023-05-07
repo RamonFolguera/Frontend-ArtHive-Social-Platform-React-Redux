@@ -66,6 +66,9 @@ html {
 }
 
 .buttonDesign {
+  display:flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: white;
   height: 2em;
@@ -87,11 +90,9 @@ html {
   border: 1px rgb(12, 92, 68) solid;
 }
 
-
 .notActBtn {
   background-color: rgb(84, 117, 107);
 }
-
 
 .notActBtn:hover {
   background-color: rgb(250, 172, 172);
@@ -99,7 +100,6 @@ html {
   color: rgb(12, 92, 68);
   font-weight: bolder;
 }
-
 
 .galleryTitleDesign {
   font-family: 'Lobster', sans-serif;
