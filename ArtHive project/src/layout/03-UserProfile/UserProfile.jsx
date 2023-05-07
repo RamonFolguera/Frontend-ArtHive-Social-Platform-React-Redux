@@ -171,59 +171,127 @@ console.log(user);
 
       </>
     )
-  } else {
+  } else  if (userCredentialsRdx.credentials?.user?.roleId === 1) {
     return (
       <>
-        <NavBar />
+      <NavBar />
 
-        <Container className="profileMainDesign">
-          <Row className="rowUserProfileDesign">
-            <div className="text-center">
-              <p className="nameDesign">
-                {user.name} {user.last_name}{' '}
-              </p>
+      <Container className="profileMainDesign">
+        <Row className="rowUserProfileDesign d-flex justify-content-center ">
+          <div className="text-center">
+            <p className="nameDesign">
+              CEO: {user.name} {user.last_name}{' '}
+            </p>
+          </div>
+          <Col xs={10} lg={4}>
+            <div className="avatarPicContainer mt-5 mb-5">
+              <img
+                className="avatarPic"
+                src={`http://localhost:3000/static/${user.avatar}`}
+              />
             </div>
-            <Col lg={8}>
-              <div className="profileContainerDesign d-flex flex-wrap">
-                <div className="profileDetailDesign d-flex">
-                  <div className="detailDesign me-5">Email:</div>
-                  <div className="fieldDesign">{user.email}</div>
-                </div>
-
-                <div className="profileDetailDesign d-flex">
-                  <div className="detailDesign me-5">Phone:</div>
-                  <div className="fieldDesign">{user.phone}</div>
-                </div>
-
-                <div className="profileDetailDesign d-flex">
-                  <div className="detailDesign me-5">City:</div>
-                  <div className="fieldDesign">{user.city}</div>
-                </div>
-
-                <div className="profileDetailDesign d-flex">
-                  <div className="detailDesign me-5">Country:</div>
-                  <div className="fieldDesign">{user.country}</div>
-                </div>
+          </Col>
+          <Col xs={12} lg={4} className="d-flex justify-content-center me-lg-5">
+            <div className="profileContainerDesign d-flex justify-content-center flex-column">
+              <div className="profileDetailDesign d-flex justify-content-between flex-column flex-lg-row ps-5 pe-5">
+                <div className="detailDesign me-5">EMAIL:</div>
+                <div className="fieldDesign">{user.email}</div>
               </div>
-            </Col>
-            <Col lg={4}>
-              <div className="avatarPicContainer">
-                <img className="avatarPic" src={avatar} alt="" />
+
+              <div className="profileDetailDesign d-flex justify-content-between ps-5 pe-5 flex-column flex-lg-row">
+                <div className="detailDesign  me-5">PHONE:</div>
+                <div className="fieldDesign">{user.phone}</div>
               </div>
-            </Col>
-            <div className="goToUpdateProfileBtnContainer d-flex justify-content-center align-items-center">
-              <Link
-                className="goToUpdateProfileBtn pt-3 pb-3 ps-5 pe-5 justify-content-center d-flex align-items-center"
-                to="/update-profile"
-              >
-                UPDATE MY DETAILS{' '}
-                <BsFillArrowUpRightCircleFill className="bs ms-3 arrowDesign" />
-              </Link>
+
+              <div className="profileDetailDesign d-flex justify-content-between ps-5 pe-5 flex-column flex-lg-row">
+                <div className="detailDesign me-5">CITY:</div>
+                <div className="fieldDesign">{user.city}</div>
+              </div>
+
+              <div className="profileDetailDesign d-flex justify-content-between ps-5 pe-5 flex-column flex-lg-row">
+                <div className="detailDesign me-5">COUNTRY:</div>
+                <div className="fieldDesign">{user.country}</div>
+              </div>
+
+              <div className="goToUpdateProfileBtnContainer d-flex justify-content-center align-items-center mb-5">
+            <Link
+              className="goToUpdateProfileBtn pt-3 pb-3 ps-5 pe-5 justify-content-center d-flex align-items-center"
+              to="/update-profile"
+            >
+              UPDATE MY DETAILS{' '}
+              <BsFillArrowUpRightCircleFill className="bs ms-3 arrowDesign" />
+            </Link>
+          </div>
             </div>
-          </Row>
-        </Container>
-        <FooterTemplate/>
-      </>
+            
+          </Col>
+         
+        </Row>
+      </Container>
+      <FooterTemplate/>
+
+    </>
     )
-  }
+  } else  if (userCredentialsRdx.credentials?.user?.roleId === 2) {
+    return (
+      <>
+      <NavBar />
+
+      <Container className="profileMainDesign">
+        <Row className="rowUserProfileDesign d-flex justify-content-center ">
+          <div className="text-center">
+            <p className="nameDesign">
+              CEO: {user.name} {user.last_name}{' '}
+            </p>
+          </div>
+          <Col xs={10} lg={4}>
+            <div className="avatarPicContainer mt-5 mb-5">
+              <img
+                className="avatarPic"
+                src={`http://localhost:3000/static/${user.avatar}`}
+              />
+            </div>
+          </Col>
+          <Col xs={12} lg={4} className="d-flex justify-content-center me-lg-5">
+            <div className="profileContainerDesign d-flex justify-content-center flex-column">
+              <div className="profileDetailDesign d-flex justify-content-between flex-column flex-lg-row ps-5 pe-5">
+                <div className="detailDesign me-5">EMAIL:</div>
+                <div className="fieldDesign">{user.email}</div>
+              </div>
+
+              <div className="profileDetailDesign d-flex justify-content-between ps-5 pe-5 flex-column flex-lg-row">
+                <div className="detailDesign  me-5">PHONE:</div>
+                <div className="fieldDesign">{user.phone}</div>
+              </div>
+
+              <div className="profileDetailDesign d-flex justify-content-between ps-5 pe-5 flex-column flex-lg-row">
+                <div className="detailDesign me-5">CITY:</div>
+                <div className="fieldDesign">{user.city}</div>
+              </div>
+
+              <div className="profileDetailDesign d-flex justify-content-between ps-5 pe-5 flex-column flex-lg-row">
+                <div className="detailDesign me-5">COUNTRY:</div>
+                <div className="fieldDesign">{user.country}</div>
+              </div>
+
+              <div className="goToUpdateProfileBtnContainer d-flex justify-content-center align-items-center mb-5">
+            <Link
+              className="goToUpdateProfileBtn pt-3 pb-3 ps-5 pe-5 justify-content-center d-flex align-items-center"
+              to="/update-profile"
+            >
+              UPDATE MY DETAILS{' '}
+              <BsFillArrowUpRightCircleFill className="bs ms-3 arrowDesign" />
+            </Link>
+          </div>
+            </div>
+            
+          </Col>
+         
+        </Row>
+      </Container>
+      <FooterTemplate/>
+
+    </>
+    )
+}
 }

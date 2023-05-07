@@ -157,7 +157,7 @@ console.log(deletedUsers);
             <Col xs={10} lg={9}>
             <div className="usersTableDesign mt-3">
 
-          <h2 className="titleDesign">Registered users list:</h2>
+          <h2 className="titleAdminDesign">Registered users list:</h2>
     <Table responsive striped bordered hover size="lg">
       <thead>
         <tr>
@@ -200,7 +200,7 @@ console.log(deletedUsers);
     </div>
     <div className="deletedTableDesign mt-3">
 
-<h2 className="titleDesign">Deleted users list:</h2>
+<h2 className="titleAdminDesign">Deleted users list:</h2>
 <Table responsive striped bordered hover size="lg">
 <thead>
 <tr>
@@ -260,7 +260,7 @@ return (
             <Col xs={10} lg={9}>
             <div className="artworksTableDesign mt-3">
 
-          <h2 className="titleDesign">Registered Artworks list:</h2>
+          <h2 className="titleAdminDesign">Registered Artworks list:</h2>
         
     <Table responsive striped bordered hover size="lg">
       <thead>
@@ -324,12 +324,12 @@ return (
           <Row className="d-flex justify-content-center">
             <Col xs={10} lg={9}>
             <div className="usersTableDesign mt-3">
-          <div className="titleDesign">No registered users</div>
+          <div className="titleAdminDesign">No registered users</div>
    
     </div>
     <div className="deletedTableDesign mt-3">
 
-<h2 className="titleDesign">Deleted users list:</h2>
+<h2 className="titleAdminDesign">Deleted users list:</h2>
 <Table responsive striped bordered hover size="lg">
 <thead>
 <tr>
@@ -389,7 +389,7 @@ return (
             <Col xs={10} lg={9}>
             <div className="artworksTableDesign mt-3">
 
-          <h2 className="titleDesign">Registered Artworks list:</h2>
+          <h2 className="titleAdminDesign">Registered Artworks list:</h2>
         
     <Table responsive striped bordered hover size="lg">
       <thead>
