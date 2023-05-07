@@ -173,7 +173,7 @@ const [categories, setCategories] = useState([
     const formData = new FormData()
     formData.append('file', image)
     try {
-      const result = await axios.post('http://localhost:3000/file', formData)
+      const result = await axios.post('https://rfc-val-finalproject-backend-production.up.railway.app/file', formData)
       console.log(result)
     } catch (error) {
       console.log(error)

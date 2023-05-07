@@ -184,7 +184,7 @@ console.log("entro en update");
                 <div className="mt-5 ms-5">
                 <img
                   className="avatarPicUpdate"
-                  src={`http://localhost:3000/static/${user.avatar}`}
+                  src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${user.avatar}`}
                 />
               </div>
                 <form

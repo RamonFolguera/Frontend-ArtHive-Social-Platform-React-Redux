@@ -353,7 +353,7 @@ console.log(allUserArtworks);
               <div>
                 <img
                   className="ImgDesign"
-                  src={`http://localhost:3000/static/${artworkSelectedObj.image_url}`}
+                  src={`https://rfc-val-finalproject-backend-production.up.railway.app/${artworkSelectedObj.image_url}`}
                 />
               </div>
             </Col>

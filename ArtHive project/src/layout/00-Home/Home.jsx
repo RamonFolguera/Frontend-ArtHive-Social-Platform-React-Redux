@@ -130,7 +130,7 @@ const gotToLogin =() =>{
                     <div>
                       <img
                         className="selectedImgDesign"
-                        src={`http://localhost:3000/static/${artwork.image_url}`}
+                        src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${artwork.image_url}`}
                       />
                     </div>
                   </div>
@@ -163,7 +163,7 @@ const gotToLogin =() =>{
                     <tr key={artwork.id}>
                       <td className="tdDesign"> <img
                           className="top10AvatarDesign"
-                          src={`http://localhost:3000/static/${artwork.Artist.User.avatar}`}
+                          src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${artwork.Artist.User.avatar}`}
                         /></td>
                       <td className="tdDesign">
                         {artwork.Artist.User.name}{' '}
@@ -178,7 +178,7 @@ const gotToLogin =() =>{
                         {' '}
                         <img
                           className="top10ImgDesign"
-                          src={`http://localhost:3000/static/${artwork.image_url}`}
+                          src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${artwork.image_url}`}
                         />
                       </td>
                     </tr>

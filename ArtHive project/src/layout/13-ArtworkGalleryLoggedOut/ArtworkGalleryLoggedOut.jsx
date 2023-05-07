@@ -309,7 +309,7 @@ export const ArtworkGalleryLoggedOut = () => {
                       >
                                             <img
                           className="imgDesign"
-                          src={`http://localhost:3000/static/${artwork.image_url}`}
+                          src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${artwork.image_url}`}
                         />
                         {isHovered && (
                           <>
@@ -354,7 +354,7 @@ export const ArtworkGalleryLoggedOut = () => {
             >
               <img
                 className="imgDesign"
-                src={`http://localhost:3000/static/${artwork.image_url}`}
+                src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${artwork.image_url}`}
               />
               {isHovered && (
                 <>

@@ -43,7 +43,7 @@ console.log(user);
               <div className="avatarPicContainer mt-5 mb-5">
                 <img
                   className="avatarPic"
-                  src={`http://localhost:3000/static/${user.avatar}`}
+                  src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${user.avatar}`}
                 />
               </div>
             </Col>
@@ -103,7 +103,7 @@ console.log(user);
               <div className="avatarPicContainer mt-5 d-flex justify-content-center">
                 <img
                   className="avatarPic"
-                  src={`http://localhost:3000/static/${user.avatar}`}
+                  src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${user.avatar}`}
                 />
               </div>
             </Col>
@@ -187,7 +187,7 @@ console.log(user);
             <div className="avatarPicContainer mt-5 mb-5">
               <img
                 className="avatarPic"
-                src={`http://localhost:3000/static/${user.avatar}`}
+                src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${user.avatar}`}
               />
             </div>
           </Col>
@@ -248,7 +248,7 @@ console.log(user);
             <div className="avatarPicContainer mt-5 mb-5">
               <img
                 className="avatarPic"
-                src={`http://localhost:3000/static/${user.avatar}`}
+                src={`https://rfc-val-finalproject-backend-production.up.railway.app/static/${user.avatar}`}
               />
             </div>
           </Col>
