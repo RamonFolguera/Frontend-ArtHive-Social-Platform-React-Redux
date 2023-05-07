@@ -52,8 +52,55 @@
     border-top: 2px lightgray solid;  
     width: 100%;
 }
-
+.theadDesign{
+    padding-top: 10px;
+    color:rgb(131, 130, 130);
+}
 .tdDesign {
     padding: 2em 0;
     font-weight: bolder;
 }
+.randomArtworkTitle{
+    font-weight: bolder;
+    color: black;
+}
+
+.top10ImgDesign{
+    height: 7em;
+    width:auto;
+    transition: transform .5s;
+}
+
+.top10ImgDesign:hover{
+    height: 5em;
+    width:auto;
+    transform: scale(2);
+}
+.top10AvatarDesign{
+    height: 4em;
+    width:auto;
+
+}
+
+.seeMoreHomeDesign{
+    height: 2em;
+    width: 12em;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    background-color: white;
+    border-radius: 100px;
+    border:1px solid #ee6055;
+}
+
+.seeMoreHomeDesign:hover{
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    background-color: #ee6055;
+    border-radius: 100px;
+    border:1px solid #ee6055;
+    cursor:pointer;
+
+}
+

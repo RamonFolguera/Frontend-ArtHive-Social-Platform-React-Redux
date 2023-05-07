@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom'
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 import { deleteMyArtwork } from '../../services/apiCalls'
 import { useEffect } from 'react'
+import { ModalTemplate } from '../../components/ModalTemplate/ModalTemplate'
 
 export const MyArtworkDetailsAsArtist = () => {
   const navigate = useNavigate()
@@ -27,6 +28,15 @@ export const MyArtworkDetailsAsArtist = () => {
   const [loading, setLoading] = useState(true)
  
   const [averageRating, setAverageRating] = useState(null)
+  const [showModal, setShowModal] = useState(false)
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   let totalRating = 0
 
@@ -134,13 +144,27 @@ setAverageRating(null)
           <h2 className="galleryTitleDesign text-center">My Artwork in Detail</h2>
           <Row className="d-flex justify-content-center">
             <Col lg={4} className="me-5">
+            {showModal && (
+               <div className="modalContainer">
+  <ModalTemplate
+    key="loginModal"
+    className="loginModalDesign"
+    title="Hey artist!"
+    body="Are you sure you want to delete your Artwork?."
+    button1="Yes, delete it"
+    button2="No, go back"
+    clickFunction1={() => deleteArtwork()}
+    clickFunction2={() => handleCloseModal()}
+  />
+  </div>
+)}
               <div className="cardsContainer d-flex  ">
                 <div className="artworkCardDetailsDesign d-flex flex-column justify-content-between">
                   <p className="pe-4 titleFieldDesign">
                     {artworkSelectedObj.title}
                   </p>
                   <p>{artworkSelectedObj.description}</p>
-                  {/* <p>{artworkSelectedObj.Artist.artistic_name}</p> */}
+                  <p>{artworkSelectedObj.Artist.artistic_name}</p>
                   <p>{artworkSelectedObj.category}</p>
                   <p>{artworkSelectedObj.technique}</p>
                   <p>{artworkSelectedObj.dimensions}</p>
@@ -156,7 +180,7 @@ setAverageRating(null)
             <div className="goToUpdateProfileBtnContainer d-flex justify-content-center align-items-center">
               <Link
                 className="detailsBtnDesign pt-3 pb-3 ps-5 pe-5 w-100 justify-content-center d-flex align-items-center"
-onClick = {() => {deleteArtwork()}}              >
+onClick = {() => {handleShowModal()}}              >
                 DELETE MY ARTWORK DETAILS 
               </Link>
             </div>

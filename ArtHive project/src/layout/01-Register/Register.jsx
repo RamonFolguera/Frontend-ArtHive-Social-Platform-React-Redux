@@ -12,17 +12,20 @@ export const Register = () => {
   const navigate = useNavigate()
 
   const [allArtworks, setAllArtworks] = useState([])
+  const [confirmedCredential, setConfirmedCredential] = useState({
+    confirm_password: '',
+  })
 
   const [roles, setRoles] = useState([
     {
       id: 3,
-      name: "Art lover",
+      name: 'Art lover',
     },
     {
       id: 4,
-      name: "Artist",
+      name: 'Artist',
     },
-  ]);
+  ])
 
   useEffect(() => {
     if (allArtworks.length === 0) {
@@ -48,10 +51,17 @@ export const Register = () => {
     password: '',
     role_id: '',
     phone: '',
-    avatar: '',
+    // avatar: '',
     city: '',
     country: '',
   })
+
+  const inputHandlerConfirmPassword = (e) => {
+    setConfirmedCredential((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }))
+  }
 
   const inputHandler = (e) => {
     setCredentials((prevState) => ({
@@ -66,7 +76,7 @@ export const Register = () => {
     emailVali: false,
     passwordVali: false,
     phoneVali: false,
-    avatarVali: false,
+    // avatarVali: false,
     cityVali: false,
     countryVali: false,
   })
@@ -77,11 +87,12 @@ export const Register = () => {
     emailError: '',
     passwordError: '',
     phoneError: '',
-    avatarError: '',
+    // avatarError: '',
     cityError: '',
     countryError: '',
   })
-console.log(credentials)
+  console.log(credentials)
+  console.log(confirmedCredential)
   const [registerAct, setRegisterAct] = useState(false)
 
   const [welcome, setWelcome] = useState('')
@@ -107,9 +118,14 @@ console.log(credentials)
         return
       }
     }
-    setRegisterAct(true)
-  })
 
+    if ((credentials.password === confirmedCredential.confirm_password) && credentials.role_id !== '') {
+      setRegisterAct(true)
+    } else {
+      setRegisterAct(false)
+    }
+  })
+  console.log(credentials.password === confirmedCredential.confirm_password)
   const checkError = (e) => {
     let error = ''
 
@@ -142,16 +158,15 @@ console.log(credentials)
       {welcome === '' ? (
         <Container fluid className="register-container">
           <Row className="mb-3 w-100">
-            
             <Col
               lg={6}
               className="registerFormBody pb-lg-5 justify-content-lg-center"
               id="formGridName"
             >
               <h1 className="greetingRegisterMsgDesign text-center">
-                Start your  Art Journey
+                Start your Art Journey
               </h1>
-              
+
               <div className="d-flex justify-content-between">
                 <div>
                   <p className="mb-0 mt-3">NAME</p>
@@ -168,7 +183,9 @@ console.log(credentials)
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div className="errorMessage">{credentialsError.nameError}</div>
+                  <div className="errorMessage">
+                    {credentialsError.nameError}
+                  </div>
 
                   <p className="mb-0 mt-3">LAST NAME</p>
                   <InputText
@@ -184,37 +201,40 @@ console.log(credentials)
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div className="errorMessage">{credentialsError.last_nameError}</div>
+                  <div className="errorMessage">
+                    {credentialsError.last_nameError}
+                  </div>
                 </div>
                 <Form className="d-flex align-items-center">
-            <Form.Group className="mb-3">
-              <Form.Select
-                className="selectDesign"
-                name={"role_id"}
-                required={true}
-                onChange={(e) => inputHandler(e)}
-                aria-label="Default select example"
-              >
-                <option >
-                  <p > ARTIST or ART LOVER?</p>
-                </option>
+                  <Form.Group className="mb-3">
+                  <p> ARTIST or ART LOVER?</p>
 
-                {roles.map((role) => {
-                  return (
-                    <option key={role.id} value={role.id}>
-                      {role.name}
-                    </option>
-                  );
-                })}
-              </Form.Select>
-            </Form.Group>
-            </Form>
+                    <Form.Select
+                      className="selectDesign"
+                      name={'role_id'}
+                      required={true}
+                      onChange={(e) => inputHandler(e)}
+                      aria-label="Default select example"
+                    >
+
+                      <option>
+                      </option>
+
+                      {roles.map((role) => {
+                        return (
+                          <option key={role.id} value={role.id}>
+                            {role.name}
+                          </option>
+                        )
+                      })}
+                    </Form.Select>
+                  </Form.Group>
+                </Form>
                 <form
-                className="inputFileRegisterForm form-avatar"
+                  className="inputFileRegisterForm form-avatar"
                   action="/profile"
                   method="post"
                   encType="multipart/form-data"
-                 
                 >
                   Avatar/photo
                   <input
@@ -242,23 +262,46 @@ console.log(credentials)
                 blurFunction={(e) => checkError(e)}
               />
               <div className="errorMessage">{credentialsError.emailError}</div>
-
-              <p className="mb-0 mt-3">PASSWORD</p>
-              <InputText
-                className={
-                  credentialsError.passwordError === ''
-                    ? 'inputsDesignCommon inputDesign inputPasswordDesign w-100'
-                    : 'inputsDesignCommon inputDesign inputErrorDesign inputPasswordDesign w-100'
-                }
-                type={'password'}
-                name={'password'}
-                required={true}
-                placeholder="e.g. Password_123"
-                changeFunction={(e) => inputHandler(e)}
-                blurFunction={(e) => checkError(e)}
-              />
-              <div className="errorMessage">{credentialsError.passwordError}</div>
-
+              <div className="passwordsFields d-flex justify-content-between w-100">
+                <div className="w-100 me-3">
+                  <p className="mb-0 mt-3">PASSWORD</p>
+                  <InputText
+                    className={
+                      credentialsError.passwordError === ''
+                        ? 'inputsDesignCommon inputDesign inputPasswordDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign inputPasswordDesign w-100'
+                    }
+                    type={'password'}
+                    name={'password'}
+                    required={true}
+                    placeholder="e.g. Password_123"
+                    changeFunction={(e) => inputHandler(e)}
+                    blurFunction={(e) => checkError(e)}
+                  />
+                  <div className="errorMessage">
+                    {credentialsError.passwordError}
+                  </div>
+                </div>
+                <div className="w-100 ms-3">
+                  <p className="mb-0 mt-3">CONFIRM PASSWORD</p>
+                  <InputText
+                    className={
+                      credentialsError.passwordError === ''
+                        ? 'inputsDesignCommon inputDesign inputPasswordDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign inputPasswordDesign w-100'
+                    }
+                    type={'password'}
+                    name={'confirm_password'}
+                    required={true}
+                    placeholder="e.g. Password_123"
+                    changeFunction={(e) => inputHandlerConfirmPassword(e)}
+                    blurFunction={(e) => checkError(e)}
+                  />
+                  <div className="errorMessage">
+                    {credentialsError.passwordError}
+                  </div>
+                </div>
+              </div>
               <p className="mb-0 mt-3">PHONE</p>
               <InputText
                 className={
@@ -291,7 +334,9 @@ console.log(credentials)
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div className="errorMessage">{credentialsError.cityError}</div>
+                  <div className="errorMessage">
+                    {credentialsError.cityError}
+                  </div>
                 </div>
                 <div className="w-100 ms-3">
                   <p className="mb-0 mt-3">COUNTRY</p>
@@ -308,7 +353,9 @@ console.log(credentials)
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div className="errorMessage">{credentialsError.countryError}</div>
+                  <div className="errorMessage">
+                    {credentialsError.countryError}
+                  </div>
                 </div>
               </div>
 
@@ -316,16 +363,19 @@ console.log(credentials)
                 type="submit"
                 className={
                   registerAct
-                    ? 'mt-3 buttonDesign registerSendAct text-center'
-                    : 'mt-3 buttonDesign text-center'
+                    ? 'mt-3 buttonDesign  text-center'
+                    : 'mt-3 buttonDesign notActBtn text-center'
                 }
                 onClick={
-                  () => {
-                 
+                  registerAct
+                    ? () => {
                         userRegister()
-                   
-                    
-                }}
+                        ;<div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
+                          <h1 className="welcomeMsgDesign">{welcome}</h1>
+                        </div>
+                      }
+                    : () => {}
+                }
               >
                 Submit
               </div>

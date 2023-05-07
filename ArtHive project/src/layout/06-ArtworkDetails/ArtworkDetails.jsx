@@ -7,7 +7,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { useState } from 'react'
 import { SpinnerComponent } from '../../components/SpinnerComponent/SpinnerComponent'
 import './ArtworkDetails.css'
-// import { userArtworkData } from '../userArtworkSlice'
+import { FooterTemplate } from '../../components/FooterTemplate/FooterTemplate'
 import {
   addComment,
   addRating,
@@ -255,7 +255,7 @@ useEffect(() => {
 
     })
   }
-
+console.log(allUserArtworks);
   const createOrUpdateRating = (myUserArtwork) => {
     const rating = parseInt(commentRating.rating);
 
@@ -318,11 +318,11 @@ useEffect(() => {
         <NavBar />
 
         <Container fluid className="mainContainer">
-          <h2>Selected artwork in detail:</h2>
+          <h2 className="galleryTitleDesign text-center">Artwork in detail</h2>
           <Row className="d-flex justify-content-center">
             <Col lg={4} className="me-5">
               <div className="cardsContainer d-flex ">
-                <div className="artworkCardDetailsDesign ">
+                <div className="artworkCardDetailsDesign d-flex flex-column justify-content-between">
                   <p className="pe-4 titleFieldDesign">
                     {artworkSelectedObj.title}
                   </p>
@@ -330,11 +330,10 @@ useEffect(() => {
                   <p>{artworkSelectedObj.Artist.artistic_name}</p>
                   <p>{artworkSelectedObj.category}</p>
                   <p>{artworkSelectedObj.technique}</p>
-                  <p>{artworkSelectedObj.date_creation}</p>
                   <p>{artworkSelectedObj.dimensions}</p>
                   <p>{artworkSelectedObj.price}</p>
-                  <div type="button" className="goToArtPageBtn">
-                    GO TO THE ARTIST PERSONAL PAGE TO GET TO KNOW THEM
+                  <div type="button" className="goToArtPageBtn text-center d-flex align-items-center">
+                    <p className="m-0">GO TO THE ARTIST PERSONAL PAGE TO GET TO KNOW THEM</p>
                   </div>
                 </div>
               </div>
@@ -361,16 +360,18 @@ useEffect(() => {
                       <div
                         className={
                           (userArtwork.id === myUserArtwork.id &&  myUserArtwork.user_id === userCredentialsRdx.credentials.user.userId && userArtwork.comment !== null)
-                          ? 'commentLine userComment m-0 w-100' :
+                          ? 'commentLine userComment m-0 mt-3  me-3 w-100' :
                           (userArtwork.artwork_id === artworkSelectedObj.id && userArtwork.comment !== null )  
-                          ? 'commentLine m-0 w-100'
+                          ? 'commentLine m-0 mt-3 me-3 w-100'
                           : 'm-0 w-100'
                         }
                       >
                         <div className="d-flex align-items-center justify-content-between">
                           <div className="m-0">{
                           (userArtwork.artwork_id === artworkSelectedObj.id && userArtwork.comment !== null) 
-                          ? userArtwork.comment 
+                          ? <div>
+                            
+                            {}{userArtwork.comment} </div>
                           : <div></div>
                           }</div>
                         </div>
@@ -381,7 +382,7 @@ useEffect(() => {
                           onClick={() =>
                             deleteYourComment(myUserArtwork)
                           }
-                          className="buttonSubmitCommentDesign"
+                          className="buttonSubmitCommentDesign mt-3"
                         >
                           Delete
                         </button>
@@ -396,8 +397,8 @@ useEffect(() => {
                   <InputText
                     className={
                       commentRatingError.nameError === ''
-                        ? 'inputsDesignCommon inputBasicDesign commentInput'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign commentInput'
+                        ? 'inputDesign commentInput me-3'
+                        : 'inputDesign commentInput me-3'
                     }
                     type={'text'}
                     name={'comment'}
@@ -405,20 +406,13 @@ useEffect(() => {
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  {commentRatingError.nameError}
+                 <div className="errorMessage"> {commentRatingError.nameError}</div>
                   <button
                     className="ps-3 pe-3 mt-3 mb-3 buttonSubmitCommentDesign d-flex justify-content-center align-items-center"
                     onClick={() => {
                       createOrUpdateComment(myUserArtwork)
                     }}
-                    // commentRatingAct
-                    // ?
-                    //  () => {
-                    //   createOrUpdateComment(userArtworkSelected)
-
-                    //   }
-                    //     : () => {}
-                    // }
+               
                   >
                     Submit{' '}
                   </button>
@@ -449,29 +443,22 @@ useEffect(() => {
                   <InputText
                     className={
                       commentRatingError.nameError === ''
-                        ? 'inputsDesignCommon inputBasicDesign ratingInput'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign ratingInput'
+                        ? 'inputDesign ratingInput'
+                        : 'inputDesign  ratingInput'
                     }
                     type={'text'}
                     name={'rating'}
-                    placeholder="Add new rating"
+                    placeholder="Add rating (1-100)"
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  {commentRatingError.nameError}
+                  <div className="errorMessage">{commentRatingError.nameError}</div>
                   <button
                     className="ps-3 pe-3 mt-3 mb-3 buttonSubmitRatingDesign d-flex justify-content-center align-items-center"
                     onClick={() => {
                       createOrUpdateRating(myUserArtwork)
                     }}
-                    // commentRatingAct
-                    // ?
-                    //  () => {
-                    //   createOrUpdateComment(userArtworkSelected)
-
-                    //   }
-                    //     : () => {}
-                    // }
+                 
                   >
                     Submit{' '}
                   </button>
@@ -480,14 +467,7 @@ useEffect(() => {
                     onClick={() => {
                       deleteYourRating(myUserArtwork)
                     }}
-                    // commentRatingAct
-                    // ?
-                    //  () => {
-                    //   createOrUpdateComment(userArtworkSelected)
-
-                    //   }
-                    //     : () => {}
-                    // }
+                 
                   >
                     Delete{' '}
                   </button>
@@ -497,6 +477,7 @@ useEffect(() => {
             </Col>
           </Row>
         </Container>
+        <FooterTemplate/>
       </>
     )
   }

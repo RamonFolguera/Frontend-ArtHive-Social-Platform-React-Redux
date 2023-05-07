@@ -6,8 +6,11 @@ export const ModalTemplate = ({
     className,
     title,
     body,
-    button,
-    clickFunction,
+    button1,
+    button2,
+    clickFunction1,
+    clickFunction2,
+
 }) =>{
   return (
     <div
@@ -23,8 +26,9 @@ export const ModalTemplate = ({
           <p className="modalBody">{body}</p>
         </Modal.Body>
 
-        <Modal.Footer>
-          <Button variant="secondary" className="modalBtn" onClick={() => clickFunction()} >{button}</Button>
+        <Modal.Footer className="d-flex justify-content-between">
+          <Button variant="secondary" className="modalBtn me-5" onClick={() => clickFunction1()} >{button1}</Button>
+          <Button variant="secondary" className="modalBtn" onClick={() => clickFunction2()} >{button2}</Button>
         </Modal.Footer>
       </Modal.Dialog>
     </div>

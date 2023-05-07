@@ -7,17 +7,6 @@
     border-radius: 15px;
 }
 
-.goToArtPageBtn {
-    text-align: center;
-    color: white;
-    height: 2em;
-    border: none;
-    width: 100%;
-    border-radius: 5px;
-    background-color:rgb(12, 92, 68)
-}
-
-
 .cardsContainer {
     padding: 5rem;
     height: 100%;
@@ -59,6 +48,7 @@
 }
 
 .commentLine{
+    
     padding: 2px 10px;
     margin: 5px 0;
     background-color: white;
@@ -77,7 +67,7 @@
 }
 
 .buttonSubmitCommentDesign, .buttonSubmitRatingDesign{
-    width: 5em;
+    width: 6em;
     text-align: center;
     color: white;
     height: 3rem;
@@ -88,4 +78,24 @@
 
 .userComment{
     background-color: rgb(167, 238, 167);
+}
+
+.goToArtPageBtn{
+    height: 4em;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    background-color: white;
+    border-radius: 100px;
+    border:1px solid #ee6055;
+   }
+
+   .goToArtPageBtn:hover {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    background-color: #ee6055;
+    border-radius: 100px;
+    border:1px solid #ee6055;
+
 }

@@ -44,6 +44,7 @@ export const validate = (name, data, required) => {
         return {message: "", validated: true};
   
       case "password":
+        case "confirm_password":
         if (data === "" && required === true) {
           return {message: "Please fill the field", validated: false};
         } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+|~\-=?\[\]{};:<>,./]).{8,}$/g

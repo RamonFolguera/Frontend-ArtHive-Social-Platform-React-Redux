@@ -15,8 +15,8 @@ import { validate } from '../../helpers/useful'
 export const Login = () => {
   const navigate = useNavigate()
 
-  const dispatch = useDispatch() //Instanciamos modo escritura Redux
-  const credentialsRdx = useSelector(userData) //Instanciamos modo lecutura Redux
+  const dispatch = useDispatch() 
+  const credentialsRdx = useSelector(userData) 
   const [loginAct, setLoginAct] = useState(false);
 
   const [allArtworks, setAllArtworks] = useState([])
@@ -24,14 +24,12 @@ export const Login = () => {
 
   const handleShowModal = () => {
     setShowModal(true);
-    console.log(showModal);
+  
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
-
 
   useEffect(() => {
     if (allArtworks.length === 0) {

@@ -280,11 +280,7 @@ export const ArtworkGallery = () => {
                         onClick={() => artworkSelected(artwork)}
                         key={artwork.id}
                       >
-                        {/* <p>
-                      <span className="pe-4 nameFieldDesign">Title:</span>
-                      {artwork.title}
-                    </p> */}
-                        <img
+                                            <img
                           className="imgDesign"
                           src={`http://localhost:3000/static/${artwork.image_url}`}
                         />

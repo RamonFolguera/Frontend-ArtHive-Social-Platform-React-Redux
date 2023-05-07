@@ -95,7 +95,9 @@
         height:4.25em;
         font-size: 1.5em;
         border: none;
-        background-color: #e4c1f998;
+        background-color: white;
+        border:1px solid #ee6055;
+
         font-family: 'Fira Sans', sans-serif;
         padding-left: 30px;
         padding-right: 50px;
@@ -103,4 +105,9 @@
         border-radius: 5px;
     }
 }
-    
+    .selectDesign:hover {
+    background-color: #ee6055;
+    color: white;
+    border:1px solid #ee6055;
+
+    }
