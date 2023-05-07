@@ -1,0 +1,39 @@
+
+
+.defaultUpdateProfilePageHeight {
+    min-height:58em;;
+}
+
+
+.avatarPicUpdate{
+    height:7em;
+}
+
+
+
+@media (min-width: 1200px) {
+    .previousDetail{
+        background-color: #c2c5aa;
+        font-weight: bolder;
+        padding: 5px;
+    }
+    
+    .updateUserFormBody{
+        background-color: #e9ecef ;
+        border-radius: 30px;
+        width: 50vw;
+    }
+    
+.defaultUpdateProfilePageHeight {
+    min-height:30em;
+}
+
+.avatarPicUpdate{
+    height:7em;
+}
+
+.inputFileRegisterForm{
+    width: 10em;
+}
+  
+}

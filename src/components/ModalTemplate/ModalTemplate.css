@@ -1,0 +1,29 @@
+.modalTitle {
+    font-size: 2em;
+    font-weight: bolder;
+    color: black;
+}
+
+.modalBtn {
+    margin-top: 2em;
+    background-color: #6d597a;
+    color: white;
+    height: 2.8em;
+    width:9em;
+    font-size: 1.2em;
+}
+
+.modalBtn:hover {
+    background-color:  white;
+    color: #6d597a;
+}
+
+.modalBody{
+    font-size:1.1em;
+    color: #747474;
+}
+
+.modalCloseBtn {
+    color: red;
+}
+

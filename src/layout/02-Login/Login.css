@@ -1,0 +1,69 @@
+* {
+    margin:0 ;
+    padding:0 ;
+}
+
+.selectedImgCol {
+    display:none;
+}
+
+.formCol{
+    height: 100vh;
+    margin: 20px 0;
+}
+
+.greetingMsgDesign {
+    font-family: 'Lobster', sans-serif;
+    font-size: 8rem;
+}
+
+.loginFormBody {
+    padding: 0 20px;
+    display:flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.loginFormContainer {
+    width: 100%;
+}
+
+
+
+
+@media (min-width: 1200px) {
+    .main-container {
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+
+    }
+    .loginFormBody {
+        width: 65%;
+    }
+
+    .formCol{
+        height: 100vh;
+    }
+    
+    .selectedImgCol {
+        display:block;
+    }
+
+    .selectedImgLoginDesign{
+        height: 100vh;
+        width: auto;
+        border-radius: 0;
+        margin: 0;
+        padding:0;
+    }
+    
+     
+      
+
+
+
+}
+    

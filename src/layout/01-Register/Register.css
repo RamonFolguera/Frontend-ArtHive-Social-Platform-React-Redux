@@ -1,0 +1,128 @@
+* {
+    margin:0 ;
+    padding:0 ;
+}
+
+.selectedImgCol {
+    display:none;
+}
+
+.formCol{
+    height: 100vh;
+    margin: 20px 0;
+}
+
+.greetingMsgDesign {
+    font-family: 'Lobster', sans-serif;
+    font-size: 8rem;
+}
+
+.register-container {
+    display:flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw
+}
+    .registerFormBody {
+        width: 100%;
+        padding: 1em;
+}
+
+.loginFormContainer {
+    width: 100%;
+}
+
+.buttonDesign {
+    text-align: center;
+    color: white;
+    height: 2em;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    background-color:rgb(12, 92, 68)
+}
+
+.inputFileRegisterForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 1px #1475cf dashed;
+    width: 8em;
+    height: 8em;
+    cursor: pointer;
+    margin-top:20px;
+}
+
+.greetingRegisterMsgDesign {
+    font-family: 'Lobster', sans-serif;
+    font-size: 5rem;
+}
+
+@media (min-width: 1200px) {
+    .register-container {
+        display:flex;
+        justify-content: end;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw
+    }
+
+    .registerFormBody {
+        width: 50%;
+        padding: 3em 1em 1em 3em;
+
+    }
+
+    .selectedImgCol {
+        display:block;
+    }
+
+    .selectedImgDesignRegister{
+        height: 100vh;
+        width: auto;
+        border-radius: 0;
+        margin: 0;
+        padding:0;
+    }
+
+    .form-avatar{
+        height: 11em;
+        width: 11em;
+    }
+
+    .inputFileRegisterForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        border: 1px #1475cf dashed;
+        width: 8em;
+        height: 8em;
+        cursor: pointer;
+        margin-top:20px;
+    }
+
+      .selectDesign{
+        margin-top: 30px;
+        height:3em;
+        font-size: 1.5em;
+        border: none;
+        background-color: white;
+        border:1px solid #ee6055;
+
+        font-family: 'Fira Sans', sans-serif;
+        padding-left: 30px;
+        padding-right: 50px;
+        font-weight: bolder;
+        border-radius: 5px;
+    }
+}
+    .selectDesign:hover {
+    background-color: #ee6055;
+    color: white;
+    border:1px solid #ee6055;
+
+    }

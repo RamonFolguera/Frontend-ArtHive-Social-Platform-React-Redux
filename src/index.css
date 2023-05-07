@@ -1,0 +1,143 @@
+html {
+    font-size: 62.5%;
+  }
+  
+  body {
+    margin: 0;
+    font-size: 1.5em;
+    font-family: 'Fira Sans', sans-serif;;
+    color: #444;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* overflow: hidden; */
+    display: block;
+  }
+/* 
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  } */
+  
+  .dashboard {
+    margin-top: 200px;
+    margin-left: 200px;
+  }
+  
+  .arrowDesign {
+    font-size: 2rem;
+  }
+
+  /* @ screen and (max-width: 1200px) {
+    body {
+      overflow: visible;
+    } */
+  /* } */
+
+  .defaultPageHeight {
+    min-height: 65vh;
+}
+
+.inputDesign {
+  width: 100% ;
+  height: 2em;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(211, 211, 211, 0.419);
+  font-family: 'Fira Sans', sans-serif;
+  padding-left: 10px;
+
+}
+
+
+.inputDesign:hover {
+  width: 100% ;
+ border: 1px rgb(164, 164, 164) solid;
+ box-shadow: 0 0 5px 1px rgb(164, 164, 164);
+  background-color: rgba(254, 252, 252, 0.419);
+ 
+}
+
+.inputErrorDesign{
+  background-color: #ff001546;
+}
+
+.errorMessage{
+  color: red;
+}
+
+.buttonDesign {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  height: 2em;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  background-color:rgb(12, 92, 68);
+  text-decoration: none;
+}
+
+
+.buttonDesign:hover {
+  text-align: center;
+  color: rgb(12, 92, 68);
+  height: 2em;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  background-color:white;
+  border: 1px rgb(12, 92, 68) solid;
+}
+
+.notActBtn {
+  background-color: rgb(84, 117, 107);
+}
+
+.notActBtn:hover {
+  background-color: rgb(250, 172, 172);
+  border: 1 px solid red;
+  color: rgb(12, 92, 68);
+  font-weight: bolder;
+}
+
+.galleryTitleDesign,.welcomeMsgDesign {
+  font-family: 'Lobster', sans-serif;
+  font-size: 8rem;
+}
+
+.welcomeMsgContainerDesign{
+margin-top: 8em;
+}
+
+.modalContainer {
+  position:fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:0;
+  left:0;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+  background-color: rgba(242, 242, 242, 0.622);
+}
+
+.loginModalDesign {
+  padding: 5em;
+  border-radius: 30px;
+  height: 20em;
+  z-index: 100;
+  background-color: white;
+  opacity: 100;
+  width: 100%;
+  max-width: 40em;
+  box-shadow: 0px 0px 10px 2px rgba(93, 93, 93, 0.291);
+}
+
+.spinnerDesign {
+  margin-top: 2em;
+  font-family: 'Lobster', sans-serif;
+  font-size: 8rem;
+}

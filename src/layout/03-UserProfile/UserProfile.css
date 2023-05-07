@@ -1,0 +1,77 @@
+
+
+.nameDesign{
+    font-family: 'Lobster', sans-serif;
+    font-size: 8rem;
+}
+
+.profileContainerDesign{
+    background-color: #e9ecef ;
+    border-radius: 30px;
+   
+}
+.fieldDesign{
+    color:black
+}
+.profileDetailDesign{
+    background-color: white ;
+    border-radius: 10px;
+    width: 85%;
+    padding: 5px;
+    font-size: 2rem;
+    margin: 3rem;
+}
+
+.goToUpdateProfileBtn {
+    height:3em;
+    width: 15em;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    background-color: #ee6055;
+    border-radius: 100px;
+}
+
+.goToUpdateProfileBtn:hover {
+    text-decoration: none;
+    color: #ee6055;
+    font-weight: bolder;
+    background-color: #e6aca858;
+    border-radius: 100px;
+}
+.avatarPicContainer{
+    width: 100%;
+    height: 100%;
+
+}
+.avatarPic{
+    height: 30em;
+    width: auto;
+}
+
+@media only screen and (max-width: 1024px) {
+    .avatarPic{
+
+        height: 20em;
+        width: auto;
+    }
+
+    .profileContainerDesign{
+        background-color: #e9ecef ;
+        border-radius: 30px;
+        width: 75%;
+    }
+
+    .profileDetailDesign{
+
+        width: 75%;
+
+        font-size: 2rem;
+
+    }
+
+    .socialMedia, .personalWeb {
+        font-size: 0.7em;
+    }
+    
+}
