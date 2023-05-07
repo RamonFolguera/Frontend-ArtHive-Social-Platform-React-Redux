@@ -17,8 +17,8 @@ export const ModalTemplate = ({
       className={className}
       style={{ display: 'block', position: 'initial' }}
     >
-      <Modal.Dialog className="dialogModal">
-        <Modal.Header className="modalCloseBtn" closeButton>
+      <Modal.Dialog>
+        <Modal.Header >
           <Modal.Title className='modalTitle'>{title}</Modal.Title>
         </Modal.Header>
 

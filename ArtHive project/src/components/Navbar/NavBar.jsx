@@ -35,8 +35,7 @@ export const NavBar = () => {
     <nav ref={navRef} className='d-flex align-items-lg-center justify-content-lg-between w-100'>
       <div className="d-flex flex-xs-column align-items-xs-center">
       <a href="/">Home</a>
-      <a href="/artworks-gallery">Art gallery</a>
-      <a href="/artworks-featured">Featured</a>
+      <a href="/artworks-gallery-loggedOut">Art gallery</a>
       <a href="/artists">Artists</a>
       </div>
 
@@ -93,7 +92,6 @@ export const NavBar = () => {
       <a href="/profile">Hi {userCredentialsRdx.credentials?.user?.name}!</a>
       <a href="/">Home</a>
       <a href="/artworks-gallery">Art gallery</a>
-      <a href="/artworks-featured">Featured</a>
       <a href="/new-artwork">New artwork</a>
       <a href="/my-artworks-gallery">My artworks</a>
       </div>
@@ -103,7 +101,7 @@ export const NavBar = () => {
       </div>
 
       <div className="d-flex flex-xs-column align-items-center">
-      <a href="/artworks-featured">My profile</a>
+      <a href="/profile">My profile</a>
 
       <a href="/how-it-works">How it works</a>
       <a href="/about-me">About me</a>
@@ -126,8 +124,7 @@ export const NavBar = () => {
       <a href="/profile">Hi {userCredentialsRdx.credentials?.user?.name}!</a>
       <a href="/">Home</a>
       <a href="/artworks-gallery">Art gallery</a>
-      <a href="/artworks-featured">Featured</a>
-      <a href="/artists">Artists</a>
+       <a href="/artists">Artists</a>
       <a href="/artists">Favorites</a>
       </div>
 
@@ -136,7 +133,7 @@ export const NavBar = () => {
       </div>
 
       <div className="d-flex flex-xs-column align-items-center">
-      <a href="/artworks-featured">My profile</a>
+      <a href="/profile">My profile</a>
 
       <a href="/how-it-works">How it works</a>
       <a href="/about-me">About me</a>

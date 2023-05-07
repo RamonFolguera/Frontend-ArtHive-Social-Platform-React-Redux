@@ -3,13 +3,14 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import {
   addFavorite,
+  bringAllArtworks,
   bringAllArtworksAsUser,
   bringMyUserArtworks,
   updateFavorite,
 } from '../../services/apiCalls'
 import { Col, Container, Row } from 'react-bootstrap'
 
-import './ArtworkGallery.css'
+import './ArtworkGalleryLoggedOut.css'
 import { useNavigate } from 'react-router'
 import { NavBar } from '../../components/NavBar/NavBar'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,14 +20,16 @@ import { SpinnerComponent } from '../../components/SpinnerComponent/SpinnerCompo
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 import { FooterTemplate } from '../../components/FooterTemplate/FooterTemplate'
 import { Link } from 'react-router-dom'
+import { ModalTemplate } from '../../components/ModalTemplate/ModalTemplate'
 
-export const ArtworkGallery = () => {
+export const ArtworkGalleryLoggedOut = () => {
   const userCredentialsRdx = useSelector(userData)
+
 
   const [allArtworks, setAllArtworks] = useState([])
   const [loading, setLoading] = useState(true)
   const [hoveredArtworkId, setHoveredArtworkId] = useState(null)
-  const [myUserArtwork, setMyUserArtwork] = useState([])
+ 
   const [isAlreadySaved, setIsAlreadySaved] = useState({})
 
   const [selectedCategory, setSelectedCategory] = useState('ALL') // Category selection
@@ -35,23 +38,21 @@ export const ArtworkGallery = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (myUserArtwork.length === 0) {
-      bringMyUserArtworks(userCredentialsRdx.credentials.token)
-        .then((result) => {
-          if (result.data.data.length === 0) {
-            return
-          }
-          setMyUserArtwork(result.data.data)
-        })
-        .catch((error) => console.log(error))
-    }
-  }, [myUserArtwork])
+  const [showModal, setShowModal] = useState(false)
 
+  const handleShowModal = () => {
+    setShowModal(true)
+  }
+
+  const handleCloseModal = () => {
+    setShowModal(false)
+  }
+
+  
   useEffect(() => {
     if (allArtworks.length === 0) {
       setTimeout(() => {
-        bringAllArtworksAsUser(userCredentialsRdx.credentials.token)
+        bringAllArtworks(userCredentialsRdx.credentials.token)
           .then((result) => {
             setLoading(false)
 
@@ -179,6 +180,12 @@ export const ArtworkGallery = () => {
     setSelectedCategory(category)
   }
 
+  const goToSignin = () => {
+    setTimeout(() => {
+        navigate('/login')
+      }, 500)
+  }
+
   if (loading) {
     return (
       <>
@@ -194,6 +201,21 @@ export const ArtworkGallery = () => {
         <NavBar />
         <Container fluid>
           <h2 className="galleryTitleDesign text-center">Artworks Gallery</h2>
+          {showModal && (
+                <div className="modalContainer">
+                  <ModalTemplate
+                    key="loginModal"
+                    className="loginModalDesign"
+                    title="Hold on!"
+                    body="Please, sign in to start enjoying with your ArtHive community"
+                    button1="Close"
+                    button2="Sign in"
+                    clickFunction1={() => handleCloseModal()}
+                    clickFunction2={() => goToSignin()}
+                  />
+                </div>
+              )}
+
           <Row>
             <Col
               lg={12}
@@ -282,7 +304,7 @@ export const ArtworkGallery = () => {
                         className="pinDesign "
                         onMouseEnter={() => setHoveredArtworkId(artwork.id)}
                         onMouseLeave={() => setHoveredArtworkId(null)}
-                        onClick={() => artworkSelected(artwork)}
+                        onClick={() => handleShowModal()}
                         key={artwork.id}
                       >
                                             <img
@@ -294,7 +316,7 @@ export const ArtworkGallery = () => {
                             <button
                               type="button"
                               className="detailsBtn"
-                              onClick={() => artworkSelected(artwork)}
+                              onClick={() => handleShowModal()}
                             >
                               <BsFillArrowUpRightCircleFill className="bs" /> Go
                               to Details
@@ -302,7 +324,7 @@ export const ArtworkGallery = () => {
                             <button
                               onClick={(e) => {
                                 e.stopPropagation()
-                                addToUserArtwork(artwork)
+                                handleShowModal()
                               }}
                               type="button"
                               className="saveBtn"
@@ -327,7 +349,7 @@ export const ArtworkGallery = () => {
               className="pinDesign"
               onMouseEnter={() => setHoveredArtworkId(artwork.id)}
               onMouseLeave={() => setHoveredArtworkId(null)}
-              onClick={() => artworkSelected(artwork)}
+              onClick={() => handleShowModal()}
               key={artwork.id}
             >
               <img
@@ -339,14 +361,14 @@ export const ArtworkGallery = () => {
                   <button
                     type="button"
                     className="detailsBtn"
-                    onClick={() => artworkSelected(artwork)}
+                    onClick={() => handleShowModal()}
                   >
                     <BsFillArrowUpRightCircleFill className="bs"/> Go to Details
                   </button>
                   <button
                     onClick={(e) => {
                       e.stopPropagation()
-                      addToUserArtwork(artwork)
+                      handleShowModal()
                     }}
                     type="button"
                     className="saveBtn"
@@ -369,3 +391,4 @@ export const ArtworkGallery = () => {
     )
   }
 }
+

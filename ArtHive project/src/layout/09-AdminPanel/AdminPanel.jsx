@@ -10,6 +10,9 @@ import './AdminPanel.css'
 
 import { Col, Container, Row, Table } from 'react-bootstrap'
 import { bringAllArtworks } from '../../services/apiCalls'
+import { SpinnerComponent } from '../../components/SpinnerComponent/SpinnerComponent'
+import { NavBar } from '../../components/NavBar/NavBar'
+import { FooterTemplate } from '../../components/FooterTemplate/FooterTemplate'
 
 export const AdminPanel = () => {
   const [users, setUsers] = useState([]);
@@ -140,23 +143,22 @@ console.log(deletedUsers);
         <div className="spinnerDesign d-flex justify-content-center align-items-center flex-column">
           <div>
             {' '}
-            <Spinner animation="border" variant="primary" />
+            <SpinnerComponent animation="border" message="Loading your panel..." />
           </div>
-          <div>
-            {' '}
-            <h4>Loading...</h4>
-          </div>
+        
         </div>
     )
   } else if (users.length > 0) {
     return (
-        <Container>
-          <Row>
-            <Col lg={9}>
+      <>
+      <NavBar/>
+        <Container >
+          <Row className="d-flex justify-content-center">
+            <Col xs={10} lg={9}>
             <div className="usersTableDesign mt-3">
 
-          <h2>Registered users list:</h2>
-    <Table  striped bordered hover size="lg">
+          <h2 className="titleDesign">Registered users list:</h2>
+    <Table responsive striped bordered hover size="lg">
       <thead>
         <tr>
           <th>ID</th>
@@ -198,8 +200,8 @@ console.log(deletedUsers);
     </div>
     <div className="deletedTableDesign mt-3">
 
-<h2>Deleted users list:</h2>
-<Table  striped bordered hover size="lg">
+<h2 className="titleDesign">Deleted users list:</h2>
+<Table responsive striped bordered hover size="lg">
 <thead>
 <tr>
 <th>ID</th>
@@ -237,10 +239,10 @@ return (
 </tbody>
 )}
 
-</Table>
+</Table >
 </div>
         </Col>
-        <Col lg={3}>
+        <Col xs={10} lg={3} >
 
           <div className="totalArtistsDesign d-flex align-items-center justify-content-between">
             <p className="totalTitle">Total Artists registered:</p>
@@ -254,13 +256,13 @@ return (
             <p className="totalNumber"> {totalDeletedUsers}</p></div>
         </Col>
       </Row>
-      <Row>
-            <Col lg={9}>
+      <Row className="d-flex justify-content-center">
+            <Col xs={10} lg={9}>
             <div className="artworksTableDesign mt-3">
 
-          <h2>Registered Artworks list:</h2>
+          <h2 className="titleDesign">Registered Artworks list:</h2>
         
-    <Table striped bordered hover size="lg">
+    <Table responsive striped bordered hover size="lg">
       <thead>
         <tr>
           <th>ID</th>
@@ -301,26 +303,151 @@ return (
     </Table>
 </div>
         </Col>
-        <Col lg={3}>
+        <Col xs={10} lg={3}>
+          <div className="totalArtworksDesign d-flex align-items-center justify-content-between"> <p className="totalTitle">Total Artworks registered:</p>
+            <p className="totalNumber"> {totalArtworks}</p></div>
+        </Col>
+      </Row>
+  
+
+      </Container>
+      <FooterTemplate/>
+
+      </>
+    )
+  } else {
+    return (
+      <>
+        <NavBar/>
+
+        <Container>
+          <Row className="d-flex justify-content-center">
+            <Col xs={10} lg={9}>
+            <div className="usersTableDesign mt-3">
+          <div className="titleDesign">No registered users</div>
+   
+    </div>
+    <div className="deletedTableDesign mt-3">
+
+<h2 className="titleDesign">Deleted users list:</h2>
+<Table responsive striped bordered hover size="lg">
+<thead>
+<tr>
+<th>ID</th>
+<th>Role</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>City</th>
+<th>Country</th>
+<th>Actions</th>
+
+</tr>
+</thead>
+{deletedUsers.length > 0 && (
+<tbody>
+{deletedUsers.map((deletedUser) => {
+return (
+
+<tr key={deletedUser.id}>
+<td>{deletedUser.id}</td>
+<td>{deletedUser.role_id}</td>
+<td>{deletedUser.name}</td>
+<td>{deletedUser.last_name}</td>
+<td>{deletedUser.email}</td>
+<td>{deletedUser.phone}</td>
+<td>{deletedUser.city}</td>
+<td>{deletedUser.country}</td>
+<td>
+  <button onClick={() => restoreSelected(deletedUser)}>RESTORE</button>
+</td>
+</tr>
+);
+})}
+</tbody>
+)}
+
+</Table>
+</div>
+        </Col>
+        <Col xs={10} lg={3}>
+
+          <div className="totalArtistsDesign d-flex align-items-center justify-content-between">
+            <p className="totalTitle">Total Artists registered:</p>
+            <p className="totalNumber"> {artists}</p>
+            </div>
+          <div className="totalArtLoversDesign d-flex align-items-center justify-content-between"> 
+          <p className="totalTitle">Total Art Lovers registered:</p>
+            <p className="totalNumber"> {artLovers}</p></div>
+            <div className="totalDeletedUsersDesign d-flex align-items-center justify-content-between"> 
+          <p className="totalTitle">Total Deleted Users:</p>
+            <p className="totalNumber"> {totalDeletedUsers}</p></div>
+        </Col>
+      </Row>
+      <Row className="d-flex justify-content-center">
+            <Col xs={10} lg={9}>
+            <div className="artworksTableDesign mt-3">
+
+          <h2 className="titleDesign">Registered Artworks list:</h2>
+        
+    <Table responsive striped bordered hover size="lg">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Artist ID</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Technique</th>
+          <th>Creation Date</th>
+          <th>Status</th>
+          <th>File Name</th>
+          <th>Price</th>
+       
+
+        
+        </tr>
+      </thead>
+      <tbody>
+      {artworks.map((artwork) => {
+                      return (
+                      <tr key={artwork.id}>
+                        <td>{artwork.id}</td>
+                        <td>{artwork.artist_id}</td>
+                        <td>{artwork.title}</td>
+                        <td>{artwork.category}</td>
+                        <td>{artwork.technique}</td>
+                        <td>{artwork.dimensions}</td>
+                        <td>{artwork.date_creation}</td>
+                        <td>{artwork.status}</td>
+                        <td>{artwork.image_url}</td>
+                        <td>{artwork.price}</td>
+                       
+                      </tr>
+                      )
+                    })}
+      
+      </tbody>
+    </Table>
+</div>
+        </Col>
+        <Col xs={10} lg={3}>
           <div className="totalArtworksDesign d-flex align-items-center justify-content-between"> <p className="totalTitle">Total Artworks registered:</p>
             <p className="totalNumber"> {totalArtworks}</p></div>
         </Col>
       </Row>
       <Row>
-            <Col lg={9}>
+            <Col xs={10} lg={9}>
         
     
         </Col>
         </Row>
 
       </Container>
-    )
-  } else {
-    return (
-   
-    
-    
-    <div>No registered user</div>
+      <FooterTemplate/>
+
+    </>
    )
   }
 }

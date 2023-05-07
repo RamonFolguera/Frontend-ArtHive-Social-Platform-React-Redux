@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Col, Container, Form, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 
 import { InputText } from "../../components/InputText/InputText";
 import "./UpdateProfile.css";
@@ -9,13 +9,15 @@ import { validate } from "../../helpers/useful";
 import { userData } from "../userSlice";
 import { useSelector } from "react-redux";
 import { MdCloudUpload } from "react-icons/md";
-import { detailsData } from "../detailsSlice";
+import { NavBar } from "../../components/NavBar/NavBar";
+import { FooterTemplate } from "../../components/FooterTemplate/FooterTemplate";
+
 
 export const UpdateProfile = () => {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState([])
-  const userCredentialsRdx = useSelector(userData)
+  const [user, setUser] = useState([]);
+  const userCredentialsRdx = useSelector(userData);
 
   useEffect(() => {
     if (user.length === 0) {
@@ -33,7 +35,6 @@ export const UpdateProfile = () => {
     last_name: "",
     email: "",
     password: "",
-    birth_date: "",
     phone: "",
     avatar: "",
     city: "",
@@ -52,7 +53,6 @@ export const UpdateProfile = () => {
     last_nameVali: false,
     emailVali: false,
     passwordVali: false,
-    birth_dateVali: false,
     phoneVali: false,
     avatarVali: false,
     cityVali: false,
@@ -64,7 +64,6 @@ export const UpdateProfile = () => {
     last_nameError: "",
     emailError: "",
     passwordError: "",
-    birth_dateError: "",
     phoneError: "",
     avatarError: "",
     cityError: "",
@@ -127,28 +126,30 @@ console.log("entro en update");
   };
 
   return (
-
-    <div className="d-flex justify-content-center defaultPageHeight">
+<>
+<NavBar/>
+<div className="d-flex justify-content-center defaultUpdateProfilePageHeight">
       {welcome === '' ? (
         <Container fluid className="register-container">
-          <Row className="mb-3 w-100 d-flex justify-content-center mt-5 mb-5">
+          <Row className="mb-3 w-100 d-flex justify-content-center">
             <Col
+              xs={12}
               lg={12}
-              className="updateUserFormBody pb-lg-5 justify-content-lg-center"
+              className="registerFormBody pb-lg-5 "
               id="formGridName"
             >
-              <h1 className="text-center nameDesign">
-                Update my details
+              <h1 className="greetingRegisterMsgDesign text-center">
+                Update Your Details
               </h1>
-              <div className="d-flex justify-content-between">
-              <div className="d-flex flex-column justify-content-center align-items-center">
-                <div className="d-flex justify-content-between align-items-center mb-5">
-                  <p className="mb-0 "><span className="previousDetail">{user.name}</span></p>
+
+              <div className="d-flex flex-column flex-md-row  flex-lg-row justify-content-between">
+                <div className="w-100 me-5">
+                  <p className="mb-0 mt-3 ">{user.name}</p>
                   <InputText
                     className={
                       credentialsError.nameError === ''
-                        ? 'inputsDesignCommon inputBasicDesign w-100'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign w-100'
+                        ? 'inputsDesignCommon inputDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign w-100'
                     }
                     type={'text'}
                     name={'name'}
@@ -157,17 +158,16 @@ console.log("entro en update");
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.nameError}</div>
+                  <div className="errorMessage">
+                    {credentialsError.nameError}
                   </div>
 
-                  <div className="d-flex justify-content-between align-items-center mt-3">
-                  <p className="mb-0 "><span className="previousDetail"> {user.last_name}</span></p>
-
+                  <p className="mb-0 mt-3">{user.last_name}</p>
                   <InputText
                     className={
                       credentialsError.last_nameError === ''
-                        ? 'inputsDesignCommon inputBasicDesign w-100'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign w-100'
+                        ? 'inputsDesignCommon inputDesign w-100'
+                        : 'inputsDesignCommon inputDesign  inputErrorDesign w-100'
                     }
                     type={'text'}
                     name={'last_name'}
@@ -176,17 +176,24 @@ console.log("entro en update");
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.last_nameError}</div>
+                  <div className="errorMessage">
+                    {credentialsError.last_nameError}
                   </div>
-                   </div>
-                <div>
+                </div>
+                <div className="d-flex justify-content-between w-100">
+                <div className="mt-5 ms-5">
+                <img
+                  className="avatarPicUpdate"
+                  src={`http://localhost:3000/static/${user.avatar}`}
+                />
+              </div>
                 <form
+                  className="inputFileRegisterForm form-avatar"
                   action="/profile"
                   method="post"
                   encType="multipart/form-data"
-                  className="form-avatar"
                 >
-                  Avatar/photo
+                   <p className="text-center pt-1">Avatar/photo</p>
                   <input
                     type="file"
                     name="avatar"
@@ -194,20 +201,16 @@ console.log("entro en update");
                     hidden
                   />
                   <MdCloudUpload color="#1475cf" size={60} />
-                  <p>Browse Files to upload</p>
+                  <p className="text-center">Browse Files to upload</p>
                 </form>
                 </div>
-
               </div>
-
-              <div className="d-flex justify-content-between align-items-center mt-3">
-              <p className="mb-0 "><span className="previousDetail">{user.email}</span></p>
-
+              <p className="mb-0 mt-3">{user.email}</p>
               <InputText
                 className={
                   credentialsError.emailError === ''
-                    ? 'inputsDesignCommon inputBasicDesign inputEmailDesign w-100'
-                    : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputEmailDesign w-100'
+                    ? 'inputsDesignCommon inputDesign inputEmailDesign w-100'
+                    : 'inputsDesignCommon inputDesign inputErrorDesign inputEmailDesign w-100'
                 }
                 type={'email'}
                 name={'email'}
@@ -216,34 +219,53 @@ console.log("entro en update");
                 changeFunction={(e) => inputHandler(e)}
                 blurFunction={(e) => checkError(e)}
               />
-              <div>{credentialsError.emailError}</div>
+              <div className="errorMessage">{credentialsError.emailError}</div>
+              <div className="passwordsFields d-flex justify-content-between w-100">
+                <div className="w-100 me-3">
+                  <p className="mb-0 mt-3">PASSWORD</p>
+                  <InputText
+                    className={
+                      credentialsError.passwordError === ''
+                        ? 'inputsDesignCommon inputDesign inputPasswordDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign inputPasswordDesign w-100'
+                    }
+                    type={'password'}
+                    name={'password'}
+                    required={true}
+                    placeholder="e.g. Password_123"
+                    changeFunction={(e) => inputHandler(e)}
+                    blurFunction={(e) => checkError(e)}
+                  />
+                  <div className="errorMessage">
+                    {credentialsError.passwordError}
+                  </div>
+                </div>
+                <div className="w-100 ms-3">
+                  <p className="mb-0 mt-3">CONFIRM PASSWORD</p>
+                  <InputText
+                    className={
+                      credentialsError.passwordError === ''
+                        ? 'inputsDesignCommon inputDesign inputPasswordDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign inputPasswordDesign w-100'
+                    }
+                    type={'password'}
+                    name={'confirm_password'}
+                    required={true}
+                    placeholder="e.g. Password_123"
+                    changeFunction={(e) => inputHandlerConfirmPassword(e)}
+                    blurFunction={(e) => checkError(e)}
+                  />
+                  <div className="errorMessage">
+                    {credentialsError.passwordError}
+                  </div>
+                </div>
               </div>
-              <div className="d-flex justify-content-between align-items-center mt-3">
-              <p className="mb-0 "><span className="previousDetail">New Password:</span></p>
-
-              <InputText
-                className={
-                  credentialsError.passwordError === ''
-                    ? 'inputsDesignCommon inputBasicDesign inputPasswordDesign w-100'
-                    : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputPasswordDesign w-100'
-                }
-                type={'password'}
-                name={'password'}
-                required={true}
-                placeholder="e.g. Password_123"
-                changeFunction={(e) => inputHandler(e)}
-                blurFunction={(e) => checkError(e)}
-              />
-              <div>{credentialsError.passwordError}</div>
-              </div>
-              <div className="d-flex justify-content-between align-items-center mt-3">
-              <p className="mb-0 "><span className="previousDetail">{user.phone}</span></p>
-
+              <p className="mb-0 mt-3">{user.phone}</p>
               <InputText
                 className={
                   credentialsError.phoneError === ''
-                    ? 'inputsDesignCommon inputBasicDesign w-100'
-                    : 'inputsDesignCommon inputBasicDesign inputErrorDesign w-100'
+                    ? 'inputsDesignCommon inputDesign w-100'
+                    : 'inputsDesignCommon inputDesign inputErrorDesign w-100'
                 }
                 type={'text'}
                 name={'phone'}
@@ -252,18 +274,16 @@ console.log("entro en update");
                 changeFunction={(e) => inputHandler(e)}
                 blurFunction={(e) => checkError(e)}
               />
-              <div>{credentialsError.phoneError}</div>
-              </div>
+              <div className="errorMessage">{credentialsError.phoneError}</div>
+
               <div className="cityCountrySection d-flex justify-content-between">
                 <div className="w-100 me-3">
-                <div className="d-flex justify-content-between align-items-center mt-3">
-                <p className="mb-0 "><span className="previousDetail">{user.city}</span></p>
-
+                  <p className="mb-0 mt-3">{user.city}</p>
                   <InputText
                     className={
                       credentialsError.cityError === ''
-                        ? 'inputsDesignCommon inputBasicDesign inputAddressDesign w-100'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputAddressDesign w-100'
+                        ? 'inputsDesignCommon inputDesign inputAddressDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign inputAddressDesign w-100'
                     }
                     type={'text'}
                     name={'city'}
@@ -272,18 +292,17 @@ console.log("entro en update");
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.cityError}</div>
+                  <div className="errorMessage">
+                    {credentialsError.cityError}
                   </div>
                 </div>
                 <div className="w-100 ms-3">
-                <div className="d-flex justify-content-between align-items-center mt-3">
-                <p className="mb-0 "><span className="previousDetail">{user.country}</span></p>
-
+                  <p className="mb-0 mt-3">{user.country}</p>
                   <InputText
                     className={
                       credentialsError.countryError === ''
-                        ? 'inputsDesignCommon inputBasicDesign inputAddressDesign w-100'
-                        : 'inputsDesignCommon inputBasicDesign inputErrorDesign inputAddressDesign w-100'
+                        ? 'inputsDesignCommon inputDesign inputAddressDesign w-100'
+                        : 'inputsDesignCommon inputDesign inputErrorDesign inputAddressDesign w-100'
                     }
                     type={'text'}
                     name={'country'}
@@ -292,7 +311,8 @@ console.log("entro en update");
                     changeFunction={(e) => inputHandler(e)}
                     blurFunction={(e) => checkError(e)}
                   />
-                  <div>{credentialsError.countryError}</div>
+                  <div className="errorMessage">
+                    {credentialsError.countryError}
                   </div>
                 </div>
               </div>
@@ -301,16 +321,31 @@ console.log("entro en update");
                 type="submit"
                 className={
                   registerAct
-                    ? 'mt-3 buttonDesign registerSendAct text-center'
-                    : 'mt-3 buttonDesign text-center'
+                    ? 'mt-3 buttonDesign  text-center'
+                    : 'mt-3 buttonDesign notActBtn text-center'
                 }
                 onClick={
-                  () => { userUpdate()}}
+                  registerAct
+                    ? () => {
+                      userUpdate()
+                        ;<div className="d-flex justify-content-center align-items-center welcomeMsgContainerDesign">
+                          <h1 className="welcomeMsgDesign">{welcome}</h1>
+                        </div>
+                      }
+                    : () => {}
+                }
               >
                 Submit
               </div>
+              <Link
+                type="submit"
+                className= 'mt-3 buttonDesign text-center'
+                to="/profile"
+              >
+                Back To Your Profile
+              </Link>
             </Col>
-            
+          
           </Row>
         </Container>
       ) : (
@@ -319,5 +354,7 @@ console.log("entro en update");
         </div>
       )}
     </div>
-  )
+    <FooterTemplate/>
+    </>)
+ 
 };

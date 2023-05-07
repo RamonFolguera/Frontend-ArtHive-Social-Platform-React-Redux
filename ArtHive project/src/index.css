@@ -26,11 +26,11 @@ html {
     font-size: 2rem;
   }
 
-  @ screen and (max-width: 1200px) {
+  /* @ screen and (max-width: 1200px) {
     body {
       overflow: visible;
-    }
-  }
+    } */
+  /* } */
 
   .defaultPageHeight {
     min-height: 65vh;
@@ -108,7 +108,7 @@ html {
 }
 
 .welcomeMsgContainerDesign{
-margin-top: 10em;
+margin-top: 8em;
 }
 
 .modalContainer {
@@ -134,4 +134,10 @@ margin-top: 10em;
   width: 100%;
   max-width: 40em;
   box-shadow: 0px 0px 10px 2px rgba(93, 93, 93, 0.291);
+}
+
+.spinnerDesign {
+  margin-top: 2em;
+  font-family: 'Lobster', sans-serif;
+  font-size: 8rem;
 }

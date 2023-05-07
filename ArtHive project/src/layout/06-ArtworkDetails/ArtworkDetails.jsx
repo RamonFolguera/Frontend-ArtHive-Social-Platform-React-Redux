@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { artworkData } from '../artworkSlice'
 import { useSelector } from 'react-redux'
-import { NavBar } from '../../components/Navbar/NavBar'
+import { NavBar } from '../../components/NavBar/NavBar'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useState } from 'react'
 import { SpinnerComponent } from '../../components/SpinnerComponent/SpinnerComponent'
@@ -360,7 +360,7 @@ console.log(allUserArtworks);
           </Row>
           <Row className="d-flex justify-content-center align-items-center commentsRatingContainer">
           
-            <Col xs={12} lg={6} className="mb-4">
+            <Col xs={12} lg={8} className="mb-4">
           
 
                 {allUserArtworks.map((userArtwork) => {
@@ -430,7 +430,7 @@ console.log(allUserArtworks);
                 </div>
               
             </Col>
-            <Col xs={12} lg={6}>
+            <Col xs={12} lg={4}>
             {showModal && (
                 <div className="modalContainer">
                   <ModalTemplate

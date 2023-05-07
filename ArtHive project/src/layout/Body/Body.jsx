@@ -13,6 +13,7 @@ import { UpdateProfile } from '../08-UpdateProfile/UpdateProfile'
 import { AdminPanel } from '../09-AdminPanel/AdminPanel'
 import { MyArtworkDetailsAsArtist } from '../11-MyArtworkDetailsAsArtist/MyArtworkDetailsAsArtist'
 import { UserDetailsAsAdmin } from '../10-UserDetailsAsAdmin/UserDetailsAsAdmin'
+import { ArtworkGalleryLoggedOut } from '../13-ArtworkGalleryLoggedOut/ArtworkGalleryLoggedOut'
 
 export const Body = () => {
   return (
@@ -31,6 +32,7 @@ export const Body = () => {
         <Route path="/admin-panel" element={<AdminPanel/>}/>
         <Route path="/my-artwork-details" element={<MyArtworkDetailsAsArtist/>}/>
         <Route path="/user-details" element={<UserDetailsAsAdmin/>}/>
+        <Route path="/artworks-gallery-loggedOut" element={<ArtworkGalleryLoggedOut/>}/>
 
     </Routes>
     </>

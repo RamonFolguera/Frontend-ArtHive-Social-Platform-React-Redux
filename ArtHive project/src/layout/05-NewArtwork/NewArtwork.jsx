@@ -10,7 +10,7 @@ import { MdCloudUpload, MdDelete } from 'react-icons/md'
 import { AiFillFileImage } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 import { userData } from "../userSlice";
-import { NavBar } from '../../components/Navbar/NavBar'
+import { NavBar } from '../../components/NavBar/NavBar'
 import { FooterTemplate } from '../../components/FooterTemplate/FooterTemplate'
 
 export const NewArtwork = () => {

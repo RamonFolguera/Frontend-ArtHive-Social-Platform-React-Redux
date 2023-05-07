@@ -7,20 +7,19 @@ padding: 2em;
 border-radius: 30px;
 font-weight: bolder;
 border:1px rgb(216, 216, 216) solid
-
 }
 
 .totalNumber{
     font-size: 8em;
 }
+
 .totalTitle{
     font-size: 1.5em;
 }
+
 .totalArtistsDesign, .totalArtLoversDesign{
 background-color: #edf6f9;
-
 }
-
 
 .totalDeletedUsersDesign{
     background-color: #fed9b7;
@@ -33,11 +32,10 @@ background-color: #edf6f9;
     
     }
 
-    .clickForMoreLink{
-        color:blue;
- 
-        text-decoration: underline;
-    }
+.clickForMoreLink{
+    color:blue;
+    text-decoration: underline;
+}
 
 .usersTableDesign{
     background-color: #edf6f984;
@@ -59,8 +57,6 @@ border:1px rgb(216, 216, 216) solid
     padding: 20px;
 border-radius: 30px;
 border:1px rgb(216, 216, 216) solid
-
-
 }
 
 button {
@@ -71,4 +67,25 @@ button {
 button:hover {
     background-color: #828282;
     color: white;
+}
+
+.titleDesign{
+    color:#424242;
+    display:flex;
+    justify-content: center;
+    font-family: 'Lobster', sans-serif;
+    font-size: 5rem;
+}
+
+@media (max-width: 1024px) {
+    .totalArtistsDesign, .totalArtLoversDesign, .totalArtworksDesign, .totalDeletedUsersDesign {
+        
+        height: 15em;
+        width: 18em;
+        margin: 0.5em;
+        padding: 2em;
+        border-radius: 30px;
+        font-weight: bolder;
+        border:1px rgb(216, 216, 216) solid
+        }
 }

@@ -6,7 +6,7 @@ import { Col, Container, Row, Spinner } from 'react-bootstrap'
 
 import './MyGalleryAsArtist.css'
 import { useNavigate } from 'react-router'
-import { NavBar } from '../../components/Navbar/NavBar'
+import { NavBar } from '../../components/NavBar/NavBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { addChoosenArtwork } from '../artworkSlice'
 import { userData } from '../userSlice'
