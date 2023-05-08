@@ -43,7 +43,7 @@ I worked on getting all those endpoints I built on the backend side to perfectly
   
 ## Deploy 🚀
 <div align="center">
-    <a href="https://ramon23.d3biezth2ueuj6.amplifyapp.com/"><strong>Url to ArtHive Web Application </strong></a>🚀🚀🚀
+    <a href="https://dev08.d2q3jx0trhztx0.amplifyapp.com"><strong>Url to ArtHive Web Application </strong></a>🚀🚀🚀
 </div>
 
 ## Stack
@@ -100,46 +100,46 @@ Before you sign in or register you are able to explore the artwork gallery. Howe
 When you register you have to choose your role Artist or Art Lover. This role will only be possible to be changed by an admin once you have registered.
 <img src="./src/assets/images/register.gif">
 ######Login and Profile pages
+Logged as ART LOVER
 <img src="./src/assets/images/userprofile.gif">
+Logged as ARTIST
 <img src="./src/assets/images/userprofileartist.gif">
+######Admin Panels
+Logged as SUPERADMIN or ADMIN
+<img src="./src/assets/images/adminpanel.gif">
+######Artwork gallery
+Logged as ART LOVER
+<img src="./src/assets/images/artworkgalleryartlover.gif">
+######New artwork
+Logged as ARTIST
+<img src="./src/assets/images/newartwork.gif">
 ######Artwork in detail page
 Here art lovers can see more details from the artist's uploaded artworks, can comment them and rate them.
 <img src="./src/assets/images/commentRating.gif">
-Book Appointment
-<img src="./img/readme/bookappointment.JPG">
-Your appointments as client
-<img src="./img/readme/listofappointmentsasclient.JPG">
-Update your selected appointment
-<img src="./img/readme/updateappointment.JPG">
-Get list of appointments as doctor
-<img src="./img/readme/appointmentsasdoctor.JPG">
-Get all registered users as admin
-<img src="./img/readme/allregisteredusersasadmin.JPG">
 
-## Future functionaly
-⬜ Search and filter tool to find a user or an appointment
-⬜ Add a Superadmin role able to assign roles to our users
 
-<!-- ## Contributions
-Suggestions and contributions are more than welcomed.  
+## Known bugs 
+There are a few things I have noticed during the testing that could be improved (and will be):
 
-Puedes hacerlo de dos maneras:
+⬜ Inputs for comments and rating need to be emptied after submiting.
+⬜ Password confirmation validation to improve.
+⬜ Button "GET STARTED" should not be visible when user is logged in.
+⬜ In admin panels 
+⬜ In some pages, loading time is too long.
 
-1. Abriendo una issue
-2. Crea un fork del repositorio
-    - Crea una nueva rama  
-        ```
-        $ git checkout -b feature/nombreUsuario-mejora
-        ```
-    - Haz un commit con tus cambios 
-        ```
-        $ git commit -m 'feat: mejora X cosa'
-        ```
-    - Haz push a la rama 
-        ```
-        $ git push origin feature/nombreUsuario-mejora
-        ```
-    - Abre una solicitud de Pull Request -->
+## Future functionalities - Road Map
+This are the coming new funtionalities for ArtHive in order of what's coming next:
+
+⬜ Fixing knon bugs.
+⬜ Section where you can see all your favorites.
+⬜ Better rating implementation. 
+⬜ Limit file uploads size. 
+⬜ Users be able to upload their avata profile picture.
+⬜ SuperAdmin only can assign roles.
+⬜ Only SuperAdmin should be able to delete or restore other admins.
+⬜ Art lovers be able to follow and message their favorite artists.
+
+
 
 ## License
 This project has been created under a MIT License. To learn more about the details go to LICENSE.md.
@@ -149,6 +149,20 @@ This project has been created under a MIT License. To learn more about the detai
 ``` js
  console.log("Developed by: " + Ramón Folguera Carbonell);
 ```  
+Project made by:
+
+- **Ramón**
+<a href="https://github.com/RamonFolguera" target="_blank"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>
+
+## Contact
+
+Feel free to contact me anytime, I will be happy to help you with your project or to get me some feedback from you. 
+
+<a href = "mailto:folguera.ramon@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+<a href="https://www.linkedin.com/in/ram%C3%B3n-folguera-0ab32776/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+</p>
+
+
 
 ## Thanks:
 
@@ -163,13 +177,6 @@ I want to thank my GeekHub mentors for all the support they have given us everyd
 - **David**  
 <a href="https://www.github.com/userGithub/" target="_blank"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=red" target="_blank"></a>
 
-- ***Mara***  
+- **Mara**  
 <a href="https://github.com/MaraScampini" target="_blank"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=green" target="_blank"></a> 
 
-## Contact
-
-Feel free to contact me anytime, to help you with your project with React or to give me some feedback. Happy to hear from you.
-
-<a href = "mailto:folguera.ramon@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-<a href="https://www.linkedin.com/in/ram%C3%B3n-folguera-0ab32776/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
-</p>

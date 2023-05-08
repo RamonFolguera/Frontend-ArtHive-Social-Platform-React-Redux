@@ -105,7 +105,6 @@ const [categories, setCategories] = useState([
     descriptionVali: false,
     techniqueVali: false,
     dimensionsVali: false,
-    // date_creationVali: false,
     image_urlVali: false,
     statusVali: false,
     priceVali: false,
@@ -118,8 +117,7 @@ const [categories, setCategories] = useState([
     descriptionError: '',
     techniqueError: '',
     dimensionsError: '',
-    // date_creationError: "",
-    image_urlError: '',
+     image_urlError: '',
     statusError: '',
     priceError: '',
   })
@@ -180,7 +178,7 @@ const [categories, setCategories] = useState([
     }
   }
 
-  console.log(image)
+
 
   const artworkRegister = () => {
     registerNewArtwork(infoArtwork, userCredentialsRdx.credentials.token)
@@ -190,7 +188,7 @@ const [categories, setCategories] = useState([
     )
     setTimeout(() => {
       navigate('/my-artworks-gallery')
-    }, 500)
+    }, 2000)
   }
 
   return (
@@ -207,7 +205,7 @@ const [categories, setCategories] = useState([
           <div className="registerContainerDesign mb-5">
             <Container>
               <Row className="mb-3">
-                <Col md={12}>
+                <Col md={12} className="d-flex justify-content-center align-items-between flex-column">
                   <form
                   className="inputFileForm"
                     action="/profile"
@@ -244,6 +242,7 @@ const [categories, setCategories] = useState([
                     </span>
                   </section>
                   <button
+                  className="buttonDesign"
                     onClick={() => {
                       sendImage()
                     }}

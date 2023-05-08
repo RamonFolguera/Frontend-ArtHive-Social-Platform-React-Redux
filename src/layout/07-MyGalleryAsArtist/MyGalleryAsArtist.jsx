@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addChoosenArtwork } from '../artworkSlice'
 import { userData } from '../userSlice'
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
+import { SpinnerComponent } from '../../components/SpinnerComponent/SpinnerComponent'
 
 export const MyGalleryAsArtist = () => {
   const [allMyArtworks, setAllMyArtworks] = useState([])
@@ -50,20 +51,12 @@ export const MyGalleryAsArtist = () => {
 
   if (loading) {
     return (
-        <>
-    <NavBar/>
-
-      <div className="spinnerDesign d-flex justify-content-center align-items-center flex-column">
-        <div>
-          {" "}
-          <Spinner animation="border" variant="primary" />
-        </div>
-        <div>
-          {" "}
-          <h4>Art is coming... hold on!</h4>
-        </div>
-      </div>
-      </>
+      <>
+      <NavBar />
+    <div className="spinnerDesign d-flex justify-content-center align-items-center flex-column">
+      <SpinnerComponent message="Art is coming... hold on!" />
+    </div>
+    </>
     );
 } else if (allMyArtworks.length > 0) {
   return (
