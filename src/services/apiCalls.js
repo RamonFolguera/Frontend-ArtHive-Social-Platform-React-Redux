@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const root = 'https://web-production-841d.up.railway.app/https://rfc-val-finalproject-backend-production.up.railway.app/'
+const root = 'https://rfc-val-finalproject-backend-production.up.railway.app/'
 
 
 export const registerUser = async (body) => {
