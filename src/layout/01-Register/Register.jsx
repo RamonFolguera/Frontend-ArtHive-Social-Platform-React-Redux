@@ -19,11 +19,11 @@ export const Register = () => {
   const [roles, setRoles] = useState([
     {
       id: 3,
-      name: 'Art lover',
+      name: 'Artist',
     },
     {
       id: 4,
-      name: 'Artist',
+      name: 'Art Lover',
     },
   ])
 
